@@ -4,7 +4,7 @@ require "fileutils"
 home = File.expand_path("~")
 glob = File.expand_path("../../*", __FILE__)
 old_dotfiles = File.join(home, "old_dotfiles")
-excludes = %w[ssh script]
+excludes = %w[LICENSE README.md rubocop.yml ssh script]
 
 Dir[glob].each do |path|
   file = File.basename(path)
