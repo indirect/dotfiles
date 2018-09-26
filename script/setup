@@ -1,39 +1,7 @@
 #!/usr/bin/env ruby
-require "fileutils"
 
-home = File.expand_path("~")
-glob = File.expand_path("../../*", __FILE__)
-old_dotfiles = File.join(home, "old_dotfiles")
-excludes = %w[LICENSE README.md rubocop.yml ssh script]
+puts "linking dotfiles..."
+system File.join(__dir__, "link")
 
-Dir[glob].each do |path|
-  file = File.basename(path)
-  next if excludes.include?(file)
-  target = File.join(home, ".#{file}")
-  if File.symlink?(target)
-    print "removing link #{file}... "
-    FileUtils.rm(target)
-  elsif File.exist?(target)
-    puts "#{file} already exists, push enter to replace it"
-    gets
-    print "moving #{file} to #{old_dotfiles}... "
-    FileUtils.mkdir_p(old_dotfiles) unless File.exist?(old_dotfiles)
-    FileUtils.mv target, File.join(old_dotfiles, file)
-  end
-  puts "linking #{file}"
-  `ln -s #{path} #{target}`
-end
-
-puts "linking ssh/config"
-`[[ -d ~/.ssh ]] || ( mkdir ~/.ssh && chmod 0700 ~/.ssh )`
-`[[ -L ~/.ssh/config ]] || ln -s #{File.expand_path "ssh"} #{File.join(home, ".ssh/config")}`
-
-dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
-parent_dir = File.expand_path("../..", __FILE__)
-unless dotfiles_dir == parent_dir
-  puts "moving dotfiles checkout..."
-  `[[ -d ~/src/indirect ]] || mkdir -p ~/src/indirect`
-  `[[ -d ~/src/indirect/dotfiles ]] || mv ~/.dotfiles ~/src/indirect/dotfiles`
-  `[[ -d ~/.dotfiles ]] && rm -rf ~/.dotfiles`
-  `[[ -L ~/.dotfiles ]] || ln -s ~/src/indirect/dotfiles ~/.dotfiles`
-end
+puts "configuring..."
+system File.join(__dir__, "configure")

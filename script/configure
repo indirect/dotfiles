@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Install rustup, cargo, and rust nightly
+if [[ -z ~/.cargo ]]; then
+  curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path --default-toolchain nightly
+fi
+
+# Configure ShiftIt to add 1/3 and 2/3 after 1/2 on repeated invocations
+defaults write org.shiftitapp.ShiftIt multipleActionsCycleWindowSizes YES
+
+echo "configuration complete"
