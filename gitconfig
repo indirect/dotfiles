@@ -1,0 +1,83 @@
+[alias]
+	age = !echo "First commit:" && git log --reverse --pretty=format:'\t\t%ar' | head -n 1 && echo 'Last commit:' && git log --pretty=format:'\t\t%ar' | head -n 1
+	authors = !"git log | grep ^Author: | sed 's/ <.*//; s/^Author: //' | sort | uniq -c | sort -nr"
+	b = branch -v
+	ba = !git branch -va --color | grep -v remotes/changes/
+	bl = !git branch -vv --color | grep -v '\\[.*\\/.*\\] '
+	br = !git branch -vr --color | grep -v 'origin/HEAD'
+	burn = reset --hard HEAD^
+	ci = commit -v
+	cia = commit -v -a
+	ciaa = commit -v -a --amend
+	changed-files = "!f(){ git show --name-only --pretty=format: $1 | sort | uniq | awk NF; }; f"
+	cleanup = "!git branch --merged | egrep -v '[*]|main|master' | xargs git branch -d"
+	co = checkout
+	conflicted=diff --name-only --diff-filter=U
+	compact = gc --prune --aggressive
+	cp = cherry-pick
+	cpsha = !git sha | pbcopy
+	d = diff
+	down = "!f() { git push -u ${1:-origin} $(git rev-parse --abbrev-ref HEAD); }; f"
+	expire = reflog expire --expire=30.days refs/stash
+	files = "!git ls-files --modified --cached --other --exclude-standard | sort | uniq"
+	fixup = commit --amend --reuse-message=HEAD
+	ff = merge --ff-only
+	head = diff HEAD^ HEAD
+	hunk = add -p
+	ignored = "!git ls-files --others --exclude-standard"
+	info = remote show origin
+	latest = for-each-ref --count=10 --sort=-committerdate --format='%(committerdate:short) %(refname:short)'
+	lc = log ORIG_HEAD.. --stat --no-merges
+	lg = log --all --graph --decorate --oneline --simplify-by-decoration
+	llog = log --date=local
+	msg = !"git log -1 --oneline | cut -d ' ' -f 2-"
+	noff = merge --no-ff
+	nuke = "!git reset --hard HEAD"
+	nuke-all = "!git reset --hard HEAD && git clean -fd"
+	pending = "!git --no-pager log --pretty=format:'%Cblue%ar%Creset\t%s' origin/master..master && echo"
+	punch = push --force
+	prl = !git log --format=%B -n 1 | hub pull-request -b "$((git branch | egrep 'development|main' || echo 'master') | tr -d ' ')" -F -
+	rc = commit --amend -C HEAD
+	recommit = commit --amend -C HEAD
+	review = !git-review
+	rup = remote update -p
+	sha = log -1 --pretty=format:%H
+	st = status -sb
+	sta = stash
+	track = "!f(){ branch=$(git name-rev --name-only HEAD); cmd=\"git branch --set-upstream-to ${1:-origin}/${2:-$branch} $branch\"; echo $cmd; $cmd; }; f"
+	uncommit = reset --soft HEAD^
+	up = "!git fetch && git merge --ff-only"
+	wd = diff --word-diff
+	wipe = "!git remote | sed -E \"/^(origin|upstream|indirect)$/d\" | xargs -L 1 git remote rm"
+[branch]
+	autosetupmerge = true
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = auto
+[core]
+	legacyheaders = false
+	excludesfile = ~/.gitignore
+[push]
+	default = simple
+[repack]
+	usedeltabaseoffset = true
+[rerere]
+	enabled = true
+[user]
+	name = Andre Arko
+	email = andre@arko.net
+[hub]
+	protocol = https
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[diff]
+	algorithm = patience
+[gpg]
+	program = /usr/local/bin/bpb
+[commit]
+	gpgsign = true
