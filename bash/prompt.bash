@@ -61,13 +61,18 @@ function dotfiles_status_colorize {
 }
 
 function git_status {
+  local status
+  local branch_exp
+  local name
+
   status=$($GIT status 2> /dev/null)
 
   # Bail if status failed, not a git repo
   if [[ $? -ne 0 ]]; then return 1; fi
 
+  local branch_exp="On branch (.*?) "
   # Try to get the branch from the status we already have
-  if [[ $status =~ "# On branch (.*?) " ]]; then
+  if [[ "$status" =~ $branch_exp ]]; then
     name="${BASH_REMATCH[1]}"
   fi
 
