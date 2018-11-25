@@ -78,7 +78,9 @@
 	process = git-lfs filter-process
 [diff]
 	algorithm = patience
+[github]
+	user = indirect
 [gpg]
-	program = /usr/local/bin/bpb
+	program = bpb
 [commit]
-	gpgsign = true
+	gpgSign = true
