@@ -86,3 +86,5 @@
 	gpgSign = true
 [tag]
 	forceSignAnnotated = true
+[merge]
+	conflictstyle = diff3
