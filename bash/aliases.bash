@@ -125,9 +125,11 @@ function f {
 # clone a github repo and then cd into it
 function gc {
   local repo=${1#*github.com/}
-  repo=${repo%.git}
-  hub clone --recursive "$repo" "$HOME/src/$repo"
-  cd "$HOME/src/$repo"
+  local dir="$HOME/src/$repo"
+
+  dir=${dir%.git}
+  hub clone --recursive "$1" "$dir"
+  cd "$dir"
 }
 
 function current_branch {
