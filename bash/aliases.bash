@@ -278,6 +278,10 @@ function vs {
   vim `(git ls-files --modified --cached --other --exclude-standard | sort | uniq) | selecta`
 }
 
+function mvs {
+  mvim `(git ls-files --modified --cached --other --exclude-standard | sort | uniq) | selecta`
+}
+
 # bundle open selecta
 function bs {
   local path=$(eval echo $(cat .bundle/config | grep BUNDLE_PATH | awk '{print $2}'))
