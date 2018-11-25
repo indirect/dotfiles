@@ -131,6 +131,10 @@ function gc {
   cd "$dir"
 }
 
+function httpd {
+  ruby -run -e httpd -- . -p "${1:-2000}"
+}
+
 function current_branch {
   status=$(git status 2> /dev/null)
 
