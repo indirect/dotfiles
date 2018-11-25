@@ -36,7 +36,7 @@
 	nuke-all = "!git reset --hard HEAD && git clean -fd"
 	pending = "!git --no-pager log --pretty=format:'%Cblue%ar%Creset\t%s' origin/master..master && echo"
 	punch = push --force
-	prl = !git log --format=%B -n 1 | hub pull-request -b "$((git branch | egrep 'development|main' || echo 'master') | tr -d ' ')" -F -
+	prl = pull-request-last-commit
 	rc = commit --amend -C HEAD
 	recommit = commit --amend -C HEAD
 	review = !git-review
