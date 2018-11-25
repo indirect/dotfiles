@@ -1,0 +1,30 @@
+#!/bin/bash
+# checkout a GitHub pull request as a local branch
+
+if [[ -n "$1" ]]; then
+  echo "$1"
+  if [[ ! $(git config remote.origin.fetch | grep "refs/remotes/origin/pr") ]]; then
+    TEMP_FILE="$(mktemp "${TMPDIR:-/tmp}/gpr.XXXXXX")"
+    echo '+refs/pull/*/head:refs/remotes/origin/pr/*' > "$TEMP_FILE"
+    git config --get-all remote.origin.fetch | grep -v 'refs/remotes/origin/pr/\*$' >> "$TEMP_FILE"
+    git config --unset-all remote.origin.fetch
+    cat "$TEMP_FILE" | while read LINE
+    do
+      git config --add remote.origin.fetch "$LINE"
+    done
+    rm "$TEMP_FILE"
+  fi
+
+  set -x
+  git remote update origin
+  git checkout "pr/$1"
+else
+  if which hub > /dev/null; then
+    if [[ -e "$(git branch --list main)" ]]; then
+      base="main"
+    else
+      base="master"
+    fi
+    hub pull-request -b "$base"
+  fi
+fi
