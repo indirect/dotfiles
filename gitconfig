@@ -41,6 +41,7 @@
 	recommit = commit --amend -C HEAD
 	review = !git-review
 	rup = remote update -p
+	sign = "!f() { git rebase \"${1:-$((git branch | egrep 'latest|development|main' || echo 'master') | sed 's|* |origin/|' | awk '{print $1}')}\" --exec 'git commit --amend --no-edit -n -S'; }; f"
 	sha = log -1 --pretty=format:%H
 	st = status -sb
 	sta = stash
