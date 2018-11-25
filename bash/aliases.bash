@@ -47,6 +47,7 @@ alias untarz="tar xzfj"
 alias wget-site='wget -m -p -c -k --user-agent="" -e robots=off --wait 1'
 alias youtube-dl-playlist='youtube-dl -U; youtube-dl -f 38/37/22/18 -o "%(autonumber)s %(title)s.%(ext)s"' # M4V from YouTube page or playlist URL
 alias youtube-dl-m4v='youtube-dl -U; youtube-dl -f 38/37/22/18 -o "%(title)s.%(ext)s"' # M4V from YouTube page or playlist URL
+alias youtube-dl-audio='youtube-dl -U; youtube-dl -f bestaudio --embed-thumbnail --add-metadata'
 
 # alias last and save
 # use `als c NAME` to chop off the last argument (for filenames/patterns)
