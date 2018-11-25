@@ -1,0 +1,25 @@
+$if Bash
+  # Magic space for expansion of auto-completions
+  Space: magic-space
+  
+  # Make up and down search the command history for completions
+  "\e[A": history-search-backward
+  "\e[B": history-search-forward
+  
+  # Meta-o to add options to the last command
+  "\M-o": "\C-p\C-a\M-f "
+  
+  # Complete things ignoring case
+  set completion-ignore-case on
+  
+  # / after dirs and * after executables
+  set visible-stats on
+  
+  # Immediately show all options if a complete is ambiguous
+  set show-all-if-ambiguous on
+  # Cycle ambiguous completions with meta-s
+  "\M-s": menu-complete
+  
+  # do not autocomplete dotfiles unless you are autocompleting a dot
+  set match-hidden-files Off
+$endif
