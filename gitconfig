@@ -84,3 +84,5 @@
 	program = bpb
 [commit]
 	gpgSign = true
+[tag]
+	forceSignAnnotated = true
