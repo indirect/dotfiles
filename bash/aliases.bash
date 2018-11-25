@@ -3,7 +3,6 @@ alias ...='cd .. ; cd ..; ls'
 alias ..='cd ..; ls'
 alias b='bundle exec'
 alias bis='bip --standalone --jobs 0'
-alias bttm="echo show Setup:/Network/BackToMyMac | scutil | sed -n 's/.* : *\(.*\).$/\1/p'"
 alias cdb='cd $OLDPWD'
 alias cpan="perl -MCPAN -e shell"
 alias cpd="pwd | pbcopy"
