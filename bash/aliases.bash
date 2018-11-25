@@ -38,7 +38,6 @@ alias mux="tmux-named"
 alias md="open -a Marked"
 alias mdwtf='sudo fs_usage -w -f filesys mdworker'
 alias pngfix='pngcrush -rem cHRM -rem gAMA -rem iCCP -rem sRGB'
-alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
 alias rbcrm='find . -name "*.rbc" -exec rm \{} \;'
 alias rl='less log/development.log'
 alias unbz2="bunzip2"
