@@ -1,0 +1,275 @@
+if &shell =~# 'fish$'
+    set shell=bash
+endif
+
+runtime macros/matchit.vim " Enable matchit for textobj-rubyblock
+execute pathogen#infect()
+
+set nocompatible          " We're running Vim, not Vi!
+set laststatus=2          " Always show status at window bottom
+set encoding=utf-8        " Use UTF-8 internally, not latin1
+set wildmode=longest,list " Bash-like tab completion for ex
+set history=10000         " Remember many ex commands
+set noswapfile            " No swap files, no swap file warnings
+set scrolloff=3           " Keep a few lines visible around cursor
+set showmatch             " Flash matching brackets and parens
+set nrformats=            " Zero-lead numbers are decimal, not octal
+set showcmd               " Show partial commands
+set noshowmode            " Don't show default normal/insert message
+set shm+=I                " Don't show intro message
+set number                " Turn on line numbers
+set winheight=5
+set winminheight=5        " Never shrink splits below 5 lines
+set winheight=30          " Try for 30 line splits on focus
+set winwidth=15
+set winminwidth=15        " Never shrink splits below 15 columns
+set winwidth=80           " Try for 80 column splits on focus
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip " Ignore un-editable files
+
+set backupdir=~/.vim/backup// " Backup files in case of crashes
+set directory=~/.vim/swap//   " Swap files for saving atomically
+
+set undofile              " Save undo history across close/open
+set undodir=~/.vim/undo// " Where to save undo histories
+set undolevels=1000       " How many undos
+set undoreload=10000      " Number of lines to save for undo
+
+syntax on                 " Enable syntax highlighting
+filetype on               " Enable filetype detection
+filetype indent on        " Enable filetype-specific indenting
+filetype plugin on        " Enable filetype-specific plugins
+
+
+""""""""""""""""
+" COLOR SCHEME "
+""""""""""""""""
+set background=dark
+
+if &background == "light"
+  " airline can't autodetect
+  let g:airline_solarized_bg = 'light'
+  " solarized doesn't detect gutter color
+  highlight LineNr ctermfg=grey ctermbg=white
+else
+  " highlight LineNr ctermfg=10 ctermbg=0
+  " highlight LineNr ctermfg=10
+endif
+
+if has("gui_running")
+  set gcr=a:blinkon0 " Stop blinking the cursor ahhhhh
+  set guifont=Menlo\ for\ Powerline:h16 " It's better, really
+  colorscheme made-of-code
+else
+  let g:solarized_termtrans = 1
+  colorscheme solarized
+endif
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'powerlineish'
+
+let g:netrw_dirhistmax = 0
+let g:commentary_map_backslash = 0
+
+let mapleader = " "
+let maplocalleader = " "
+" nnoremap <Space> :
+
+" Leave insert mode on jj
+inoremap jj <Esc>
+
+" mapping to make movements operate on 1 screen line in wrap mode
+function! ScreenMovement(movement)
+  if &wrap
+    return "g" . a:movement
+  else
+    return a:movement
+  endif
+endfunction
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
+
+" Save on Return, but not inside quickfix windows
+nnoremap <CR> :w<CR>
+augroup allow_cr_in_quickfix
+  autocmd!
+  autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+augroup END
+
+" Remove search highlight and redraw screen on ^L
+" nnoremap <C-l> :<C-u>nohlsearch<CR><C-l>
+
+nnoremap <Leader>ve :e $MYVIMRC<CR>
+augroup reload_vimrc
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+  autocmd BufWritePost $MYVIMRC AirlineRefresh
+augroup END
+
+" Force all .md files to be markdown, not modula2
+augroup markdown_filetype
+  autocmd!
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+augroup END
+
+" <Leader>p to paste from the OS X clipboard without paste indent
+nnoremap <Leader>p :read!pbpaste<CR>
+
+" ,r to execute the current buffer as ruby, but only if unmapped
+function! RubyScratch()
+  if &filetype ==# ""
+    :set filetype=ruby
+    :setlocal ts=2 sts=2 sw=2
+  endif
+  :write !ruby
+endfunction
+if &filetype ==# ""
+  nnoremap <Leader>r :call RubyScratch()<CR>
+  " nnoremap <Leader>r :set filetype=ruby <bar> :setlocal ts=2 sts=2 sw=2 <bar> :write !ruby<CR>
+endif
+
+" <Leader><Leader> to jump to the last edited file
+nnoremap <Leader><Leader> <C-^>
+
+" select previous paste with gV
+noremap gV `[v`]
+
+let g:ctrlp_use_caching = 0
+" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+
+let g:path_to_matcher = expand('<sfile>:p:h') . "/.bin/matcher"
+
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files . -co --exclude-standard']
+
+let g:ctrlp_match_func = { 'match': 'GoodMatch' }
+
+function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
+
+  " Create a cache file if not yet exists
+  let cachefile = ctrlp#utils#cachedir().'/matcher.cache'
+  if !( filereadable(cachefile) && a:items == readfile(cachefile) )
+    call writefile(a:items, cachefile)
+  endif
+  if !filereadable(cachefile)
+    return []
+  endif
+
+  " a:mmode is currently ignored. In the future, we should probably do
+  " something about that. the matcher behaves like "full-line".
+  let cmd = g:path_to_matcher.' --limit '.a:limit.' --manifest '.cachefile.' '
+  if !( exists('g:ctrlp_dotfiles') && g:ctrlp_dotfiles )
+    let cmd = cmd.'--no-dotfiles '
+  endif
+  let cmd = cmd.a:str
+
+  return split(system(cmd), "\n")
+
+endfunction
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OPEN FILES IN DIRECTORY OF CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+
+" Current file without extension
+cnoremap %$ <C-R>=expand('%:t')<cr>
+
+" Highlight colors in CSS files
+let g:colorizer_auto_filetype='css,scss,sass'
+
+" Save buffers on swap or unfocus
+augroup save_on_unfocus
+  autocmd!
+  autocmd BufLeave,FocusLost * silent! wall
+augroup END
+
+" Strip trailing whitespace on save
+fun! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
+
+augroup strip_whitespace_on_save
+  autocmd!
+  autocmd FileType c,cpp,css,ruby,python,json,javascript,css,scss,html,haml,erb,bash,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+  " or strip on save for any kind of file:
+  " autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+augroup END
+
+" Open all folds on file open
+"autocmd FileType * exe "normal zR"
+
+" Open the current file in Marked 2
+nnoremap <leader>m :silent !open -a Marked\ 2.app '%:p'<cr>
+
+" Search for selected text.
+" http://vim.wikia.com/wiki/VimTip171
+let s:save_cpo = &cpo | set cpo&vim
+if !exists('g:VeryLiteral')
+  let g:VeryLiteral = 0
+endif
+function! s:VSetSearch(cmd)
+  let old_reg = getreg('"')
+  let old_regtype = getregtype('"')
+  normal! gvy
+  if @@ =~? '^[0-9a-z,_]*$' || @@ =~? '^[0-9a-z ,_]*$' && g:VeryLiteral
+    let @/ = @@
+  else
+    let pat = escape(@@, a:cmd.'\')
+    if g:VeryLiteral
+      let pat = substitute(pat, '\n', '\\n', 'g')
+    else
+      let pat = substitute(pat, '^\_s\+', '\\s\\+', '')
+      let pat = substitute(pat, '\_s\+$', '\\s\\*', '')
+      let pat = substitute(pat, '\_s\+', '\\_s\\+', 'g')
+    endif
+    let @/ = '\V'.pat
+  endif
+  normal! gV
+  call setreg('"', old_reg, old_regtype)
+endfunction
+vnoremap <silent> * :<C-U>call <SID>VSetSearch('/')<CR>/<C-R>/<CR>
+vnoremap <silent> # :<C-U>call <SID>VSetSearch('?')<CR>?<C-R>/<CR>
+vmap <kMultiply> *
+nmap <silent> <Plug>VLToggle :let g:VeryLiteral = !g:VeryLiteral
+  \\| echo "VeryLiteral " . (g:VeryLiteral ? "On" : "Off")<CR>
+if !hasmapto("<Plug>VLToggle")
+  nmap <unique> <Leader>vl <Plug>VLToggle
+endif
+let &cpo = s:save_cpo | unlet s:save_cpo
+
+" Generate documentation tags automatically
+silent! helptags ALL
+
+" Enable handlebars shortcuts
+let g:mustache_abbreviations = 1
+" Disable handlebars text objects (ie and ae conflict with vim-textobj-entire)
+let g:mustache_operators = 0
+
+" store all project tags in a global directory instead of per-project
+let g:gutentags_cache_dir = expand('<sfile>:p:h') . "/.vim/tags/"
+
+" set all .jsx files to be both JS and JSX
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
