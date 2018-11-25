@@ -15,9 +15,9 @@ shopt -s histappend
 if [[ ! "$PROMPT_COMMAND" =~ "history -a; history -n" ]]; then
   export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 fi
-# guarantee that iTerm won't try to run update_terminal_cwd
-if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
-  export PROMPT_COMMAND=$(echo $PROMPT_COMMAND | sed -e 's/update_terminal_cwd; //')
+# guarantee that non-Apple terminals won't try to run update_terminal_cwd
+if ! type -t update_terminal_cwd > /dev/null; then
+  export PROMPT_COMMAND=$(echo $PROMPT_COMMAND | sed -e 's/; update_terminal_cwd//')
 fi
 
 # bash completion settings (actually, these are readline settings)
