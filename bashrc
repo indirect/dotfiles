@@ -7,9 +7,6 @@ export LC_CTYPE=en_US.UTF-8
 # fix boxen's credential helper location
 export BOXEN_GIT_CREDENTIAL_FALLBACK=$(which git-credential-osxkeychain)
 
-# Local and homebrew path
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-
 # Personal bins in dropbox and dotfiles
 export PATH="$HOME/Dropbox/bin:$HOME/.bin:$PATH"
 
