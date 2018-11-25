@@ -10,5 +10,8 @@ export BOXEN_GIT_CREDENTIAL_FALLBACK=$(which git-credential-osxkeychain)
 # Personal bins in dropbox and dotfiles
 export PATH="$HOME/Dropbox/bin:$HOME/.bin:$PATH"
 
-# Cargo bins path
+# Rustup and cargo bins path
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# set up fzf autocompletion
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
