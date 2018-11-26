@@ -6,7 +6,6 @@ brew "heroku"
 brew "htop-osx"
 brew "hub"
 brew "indirect/tap/bpb"
-brew "indirect/tap/clac"
 brew "nodenv"
 brew "nodenv/nodenv/nodenv-package-json-engine"
 brew "postgresql", restart_service: :changed
