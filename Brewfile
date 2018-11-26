@@ -56,6 +56,7 @@ cask "superduper"
 cask "textmate"
 cask "transmit"
 cask "vlc"
+cask "yujitach-menumeters"
 
 mas "Day One", id: 1055511498
 mas "Due", id: 524373870
