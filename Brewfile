@@ -1,8 +1,12 @@
+tap "indirect/tap"
+tap "heroku/brew"
+tap "nodenv/nodenv"
+
 brew "autojump"
 brew "bash-completion"
 brew "chruby"
 brew "git"
-brew "heroku"
+brew "heroku/brew/heroku"
 brew "htop-osx"
 brew "hub"
 brew "indirect/tap/bpb"
