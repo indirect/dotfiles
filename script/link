@@ -1,10 +1,18 @@
 #!/usr/bin/env ruby
 require "fileutils"
 
+excludes = %w[
+  Brewfile
+  LICENSE
+  README.md
+  rubocop.yml
+  script
+  ssh
+]
+
 home = File.expand_path("~")
 glob = File.expand_path("../../*", __FILE__)
 old_dotfiles = File.join(home, "old_dotfiles")
-excludes = %w[LICENSE README.md rubocop.yml ssh script]
 
 Dir[glob].each do |path|
   file = File.basename(path)
