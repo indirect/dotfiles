@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Named variables are much more flexible
-name="$1"
+name="${1:-main}"
 
 # Make sure we got a session name to create or join
 [[ -n "$name" ]] || { echo "Usage: tmux-named [SESSION_NAME]"; exit; }
