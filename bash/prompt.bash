@@ -41,8 +41,8 @@ function exit_status {
 function ruby_status {
   case $RUBY_VERSION in
     "") printf "◽️ ";;
-    2.4.?) printf "💠 ";;
-    2.3.?) printf "🔹 ";;
+    2.5.?) printf "💠 ";;
+    2.4.?) printf "🔹 ";;
     2.[0-9].?) printf "🔸 ";;
     1.9.?) printf "🔺 ";;
     1.8.?) printf "🔻 ";;
