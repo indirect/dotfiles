@@ -28,6 +28,7 @@ brew "wget"
 
 cask "1password"
 cask "acorn"
+cask "aerial"
 cask "alfred"
 cask "backblaze"
 cask "bartender"
