@@ -11,7 +11,7 @@ export HISTCONTROL=ignorespace
 export HISTSIZE=10000
 # append to history file when logging out, don't overwrite
 shopt -s histappend
-# after every command, write then read .bash_history, disabled because it seems to already be set by autojump or something else
+# after every command, write then read .bash_history
 if [[ ! "$PROMPT_COMMAND" =~ "history -a; history -n" ]]; then
   export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 fi
