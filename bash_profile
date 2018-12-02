@@ -15,6 +15,14 @@ shopt -s histappend
 if [[ ! "$PROMPT_COMMAND" =~ "history -a; history -n" ]]; then
   export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 fi
+#if [[ "$TMUX" ]]; then
+#  if [[ ! "$PROMPT_COMMAND" =~ "_update_ssh_auth" ]]; then
+#    function _update_ssh_auth {
+#      eval "$(tmux show-environment -sg SSH_AUTH_SOCK)"
+#    }
+#    export PROMPT_COMMAND="_update_ssh_auth; $PROMPT_COMMAND"
+#  fi
+#fi
 # guarantee that non-Apple terminals won't try to run update_terminal_cwd
 if ! type -t update_terminal_cwd > /dev/null; then
   export PROMPT_COMMAND=$(echo $PROMPT_COMMAND | sed -e 's/; update_terminal_cwd//')
