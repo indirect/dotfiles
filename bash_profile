@@ -52,6 +52,6 @@ if [[ -t 0 && -z "$NONINTERACTIVE" ]]; then
   stty -ixon # Disable ^S and ^Q for flow control so vim can use them
   echo -n "" # clear the screen
   echo; echo
-  fortune horse_ebooks | ponysay -b round 1> >(sed 's/^/     /')
+  fortune /usr/local/share/games/horse_fortunes | ponysay -b round 1> >(sed 's/^/     /')
   echo; echo
 fi
