@@ -2,7 +2,6 @@
 require "fileutils"
 
 excludes = %w[
-  Brewfile
   LICENSE
   README.md
   rubocop.yml
