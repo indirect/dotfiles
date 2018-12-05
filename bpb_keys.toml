@@ -1,0 +1,7 @@
+[public]
+key = "5373b1ccc46af267b8e7dab5392eecdea13de78b03e5cb21e2f956d891b20939"
+userid = "André Arko <andre@arko.net>"
+timestamp = 1534364503
+
+[secret]
+program = "bpb-key"
