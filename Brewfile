@@ -57,6 +57,7 @@ cask "marked"
 cask "name-mangler"
 cask "omnifocus"
 cask "omnigraffle"
+cask "screens"
 cask "sequel-pro"
 cask "skype"
 cask "slack"
@@ -73,7 +74,6 @@ mas "Due", id: 524373870
 mas "GIF Brewery", id: 1081413713
 mas "Gapplin", id: 768053424
 mas "Reeder", id: 880001334
-mas "Screens VNC", id: 446107677
 mas "Simplenote", id: 692867256
 mas "Sip", id: 507257563
 mas "Soulver", id: 413965349
