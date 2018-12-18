@@ -1,0 +1,35 @@
+Host *
+  AddKeysToAgent yes
+  ForwardAgent yes
+  ForwardX11 no
+
+# Home
+Host home
+  Port 2222
+  Hostname  home.arko.net
+  User andre
+  RequestTTY force
+  RemoteCommand ~/.bin/tmux-named main
+
+# Home plus VNC and SMB forwarded to localhost
+Host homefwd
+  Port 2222
+  Hostname  home.arko.net
+  User andre
+  # Screen sharing / VNC
+  LocalForward  5901 localhost:5900
+  # SMB on localhost:4455
+  LocalForward  4455 localhost:445
+  # Get a TTY for tmux
+  RequestTTY force
+  # Join the main tmux session
+  RemoteCommand ~/.bin/tmux-named main
+
+# Personal
+Host arko
+  Hostname arko.net
+  User andre
+
+# AWS
+Host *.compute-1.amazonaws.com
+  StrictHostKeyChecking no
