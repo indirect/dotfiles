@@ -1,0 +1,93 @@
+#!/usr/bin/env ruby
+if ARGV.include?("-h") || ARGV.include?("--help")
+  puts <<-DOC.lines.map(&:strip).join("\n")
+    USAGE: #{File.basename(__FILE__)} [NUM]
+    Downloads the latest jwz mixtape (or number NUM) into ~/Downloads,
+    converts the video files into music files, sets metadata tags,
+    and then adds the correctly-tagged music files to iTunes.
+  DOC
+  exit 1
+end
+
+%w[atomicparsley youtube-dl MP4Box id3v2].each do |tool|
+  next if system("which #{tool} > /dev/null")
+  puts "You need #{tool} installed! Press enter to install it."
+  gets
+  system("brew install #{tool}")
+end
+
+require "shellwords"
+require "bundler/inline"
+gemfile do
+  source "https://rubygems.org"
+  gem "http"
+  gem "addressable"
+  gem "oga"
+end
+
+def e(str)
+  Shellwords.escape(str)
+end
+
+def run(cmd)
+  puts "+ " << cmd
+  system(cmd)
+end
+
+res = HTTP.get("https://www.dnalounge.com/webcast/mixtapes/")
+doc = Oga.parse_html(res.body)
+
+mixtapes = doc.xpath('//b[text()="Watch"]').map do |link|
+  [link.parent.parent.css("B").first.text, link.parent.attr("HREF").value]
+end.to_h
+
+if ARGV.any?
+  name = "jwz mixtape #{ARGV.first.tr('0', 'Ø')}"
+  youtube_url = mixtapes[name] || abort("No mixtape named '#{name}'!")
+else
+  name, youtube_url = mixtapes.first
+end
+
+tape_row = doc.css(".mixbox b").find{|e| e.text == name }.parent.parent
+track_text = tape_row.css(".mixtbox").text.force_encoding("UTF-8")
+tracklist = track_text.strip.split("\n").map do |line|
+  line.match(/(?<number>\d\d) (?<artist>.*?) -- (?<title>.*?) \((?<year>\d{4})\)/u)
+end.compact
+
+add_to_itunes = Dir.glob(File.expand_path("~/Music/iTunes/iTunes\ Media/Automatically\ Add\ to\ iTunes*")).first
+dir = File.expand_path("~/Downloads/#{name.tr('Ø', '0')}")
+FileUtils.mkdir_p(dir)
+Dir.chdir(dir)
+
+run "youtube-dl -U"
+run 'youtube-dl -f best -o "%(autonumber)s %(title)s.%(ext)s" "' << youtube_url << '"'
+
+Dir.mktmpdir do |path|
+  tmpdir = path.encode('UTF-8')
+  File.write "vhs.png", HTTP.get("http://f.cl.ly/items/3h2g0g0n0K0f1b46051F/vhs.png").body
+
+  Dir["*.mp4"].each_with_index do |f, i|
+    t = tracklist.fetch(i)
+    fa = File.join(tmpdir, File.basename(f, File.extname(f)) + ".m4a")
+    system("MP4Box -add #{e(f)}#audio #{e(fa)}") || abort("Audio extraction failed")
+
+    system("AtomicParsley #{e(fa)} \
+         --artist #{e(t[:artist])}\
+         --title #{e(t[:title])}\
+         --album #{e(name)}\
+         --year #{e(t[:year])}\
+         --tracknum #{t[:number]}/#{tracklist.size} \
+         --albumArtist jwz \
+         --artwork vhs.png \
+         --overWrite".squeeze(" ")) ||
+      abort("Tagging failed")
+
+    FileUtils.mv(fa, add_to_itunes)
+  end
+end
+
+puts name
+puts
+puts tracklist
+puts
+puts "All done! Added #{name} to iTunes. Videos are saved at #{dir}."
