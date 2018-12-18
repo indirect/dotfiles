@@ -1,2 +1,2 @@
-let b:ale_linter_aliases = ['javascript']
-let b:ale_fixer_aliases = ['javascript']
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace', 'eslint', 'prettier']
+let b:ale_linter_aliases = ['css']
