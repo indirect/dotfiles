@@ -4,7 +4,9 @@
 defaults write org.shiftitapp.ShiftIt multipleActionsCycleWindowSizes YES
 
 # Open the Backblaze installer and get it set up, too
-open -a "/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app"
+if [[ ! -d /Library/PreferencePanes/BackblazeBackup.prefPane ]]; then
+  open -a "/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app"
+fi
 
 # Install rustup, cargo, and rust nightly
 if [[ ! -d ~/.cargo ]]; then
