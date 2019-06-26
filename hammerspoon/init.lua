@@ -7,13 +7,17 @@ spoon.SpoonInstall.use_syncinstall = true
 Install=spoon.SpoonInstall
 
 hs.window.animationDuration = 0.0
+-- https://github.com/matthewfallshaw/miro-windows-manager/
 Install:andUse("MiroWindowsManager", {
   hotkeys = {
-    up = {hyper, "Up"},
-    right = {hyper, "Right"},
-    down = {hyper, "Down"},
-    left = {hyper, "Left"},
-    fullscreen = {hyper, "m"}
+    up          = {hyper, "Up"},
+    right       = {hyper, "Right"},
+    down        = {hyper, "Down"},
+    left        = {hyper, "Left"},
+    fullscreen  = {hyper, "M"},
+    center      = {hyper, "C"},
+    move        = {hyper, "'"},
+    resize      = {hyper, "A" }
   }
 })
 
@@ -93,11 +97,7 @@ Install:andUse("MenubarFlag",
 --                }
 -- )
 
-Install:andUse("FadeLogo",
-               {
-                 config = {
-                   default_run = 1.0,
-                 },
-                 start = true
-               }
-)
+hs.hotkey.bind(hyper, "R", function()
+  hs.reload()
+end)
+hs.alert.show("Config loaded")
