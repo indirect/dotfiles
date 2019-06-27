@@ -126,6 +126,8 @@ setmetatable(obj._originalPositionStore.fullscreen, {__mode = 'kv'})  -- weak ta
 
 obj._lastSeq = {}
 obj._lastFullscreenSeq = nil
+obj._startDir = nil
+obj._lastTime = nil
 
 
 -- ### Utilities
@@ -256,6 +258,7 @@ end
 function obj:go(move)
   local cell = frontmostCell()
   local seq = self:currentSeq(move)  -- current sequence index or 0 if out of sequence
+  local growDim = self:growDim(move) -- the current move is opposite direction of the last move
 
   logger.d("We're at ".. move .." sequence ".. tostring(seq) .." (".. cell.string ..")")
 
@@ -263,6 +266,11 @@ function obj:go(move)
   logger.d("Updating seq to " .. tostring(seq + 1) .." (size: ".. tostring(self.sizes[seq + 1]) ..")")
 
   self:setToSeq(move, seq + 1)
+
+  if growDim then
+    self:growFully(growDim)
+  end
+
   return self
 end
 
@@ -351,6 +359,31 @@ function obj:currentSeq(side)
       return 0
     end
   end
+
+-- if you start in one direction, you can cycle that direction and the opposite
+-- dimension as much as you want. but for a few seconds after you start resizing,
+-- if you hit the _opposite_ direction of your starting direction, it grows fully
+function obj:growDim(side)
+  local sinceLast = self._lastTime and (os.time() - self._lastTime) or 0
+  local grow = true
+
+  logger.d("sinceLast ".. sinceLast)
+  if sinceLast > 2 then
+    -- if it's been a while, set start dir and always grow fully
+    self._startDir = side
+  else
+    -- if it hasn't been a while, only grow fully if we reversed direction
+    grow = self._startDir == self._directionsRel[side].opp
+    -- update to the new start direction if we reversed
+    self._startDir = grow and side or self._startDir
+  end
+
+  self._lastTime = os.time()
+
+  local oppDim = (self._directionsRel[side].dim == "h") and "w" or "h"
+  logger.d("should grow ".. tostring(grow) .." opposite dimension ".. tostring(oppDim))
+  return grow and oppDim or nil
+end
 
 -- Set sequence for `move`
 function obj:setToSeq(move, seq)
