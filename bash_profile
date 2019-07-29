@@ -51,6 +51,8 @@ for file in ~/.bash/*.{sh,bash}; do
   [[ -r "$file" ]] && [[ "$file" != *"conflicted"* ]] && source "$file";
 done
 
+chruby $DEFAULT_RUBY_VERSION
+
 # Load machine-local env if it exists
 [[ -r "~/.bash_local" ]] && source "~/.bash_local"
 
