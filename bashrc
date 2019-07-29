@@ -12,3 +12,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # set up fzf autocompletion
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export RUBY_VERSION=2.6.3
