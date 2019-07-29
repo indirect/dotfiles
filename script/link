@@ -31,7 +31,7 @@ end
 
 puts "linking ssh/config"
 `[[ -d ~/.ssh ]] || ( mkdir ~/.ssh && chmod 0700 ~/.ssh )`
-`[[ -L ~/.ssh/config ]] || ln -s #{File.expand_path "ssh"} #{File.join(home, ".ssh/config")}`
+`[[ -L ~/.ssh/config ]] || ln -s #{File.expand_path "ssh/config"} #{File.join(home, ".ssh/config")}`
 
 dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
 parent_dir = File.expand_path("../..", __FILE__)
