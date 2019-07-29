@@ -56,6 +56,7 @@ cask "kindle"
 cask "little-snitch"
 cask "macvim"
 cask "marked"
+cask "menumeters"
 cask "name-mangler"
 cask "omnifocus"
 cask "omnigraffle"
@@ -69,7 +70,6 @@ cask "superduper"
 cask "textmate"
 cask "transmit"
 cask "vlc"
-cask "yujitach-menumeters"
 
 mas "Day One", id: 1055511498
 mas "Due", id: 524373870
