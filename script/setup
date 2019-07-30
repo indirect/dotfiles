@@ -3,5 +3,4 @@
 puts "linking dotfiles..."
 system File.join(__dir__, "link")
 
-puts "configuring..."
-system File.join(__dir__, "configure")
+puts "Don't forget to run ~/.dotfiles/script/after-setup once the strap is complete!"
