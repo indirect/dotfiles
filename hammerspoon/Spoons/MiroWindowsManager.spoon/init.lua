@@ -46,6 +46,12 @@ local logger = hs.logger.new(obj.name)
 obj._logger = logger  -- make logger available so users can turn up the volume!
 logger.i("Loading ".. obj.name)
 
+-- Internal function used to find our location, so we know where to load files from
+local function script_path()
+    local str = debug.getinfo(2, "S").source:sub(2)
+    return str:match("(.*/)")
+end
+obj.spoonPath = script_path()
 
 -- ## Public variables
 
@@ -68,12 +74,11 @@ obj.fullScreenSizes = {1, 2, 'c'}
 
 -- Comment: Lots of work here to save users a little work. Previous versions required users to call
 -- MiroWindowsManager:start() every time they changed GRID. The metatable work here watches for those changes and does the work :start() would have done.
-package.path = package.path..";Spoons/".. ... ..".spoon/?.lua"
-require('extend_GRID').extend(obj, logger)
+dofile(obj.spoonPath..'./extend_GRID.lua').extend(obj, logger)
 
 --- MiroWindowsManager.GRID
 --- Variable
---- The screen's grid size.  
+--- The screen's grid size.
 --- Make sure that the numbers in MiroWindowsManager.sizes and MiroWindowsManager.fullScreenSizes divide h and w to give integers.
 obj.GRID = { w = 24, h = 24, margins = hs.geometry.point(0,0) }
 function obj.GRID.cell()
