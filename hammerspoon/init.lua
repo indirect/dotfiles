@@ -3,12 +3,16 @@ shift_hyper = {"cmd","alt","ctrl","shift"}
 col = hs.drawing.color.x11
 
 hs.loadSpoon("SpoonInstall")
-spoon.SpoonInstall.use_syncinstall = true
-Install=spoon.SpoonInstall
+Install = spoon.SpoonInstall
+Install.repos.indirect = {
+   url = "https://github.com/indirect/miro-windows-manager",
+   desc = "indirect's window manager",
+}
+Install.use_syncinstall = true
 
 hs.window.animationDuration = 0.0
--- https://github.com/matthewfallshaw/miro-windows-manager/
 Install:andUse("MiroWindowsManager", {
+  repo = "indirect",
   hotkeys = {
     up          = {hyper, "Up"},
     right       = {hyper, "Right"},
