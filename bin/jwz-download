@@ -60,13 +60,14 @@ FileUtils.mkdir_p(dir)
 Dir.chdir(dir)
 
 run "youtube-dl -U"
-run 'youtube-dl -f best -o "%(autonumber)s %(title)s.%(ext)s" "' << youtube_url << '"'
+run 'youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4" -o "%(autonumber)s %(title)s.%(ext)s" "' << youtube_url << '"'
 
 Dir.mktmpdir do |path|
   tmpdir = path.encode('UTF-8')
   File.write "vhs.png", HTTP.get("http://f.cl.ly/items/3h2g0g0n0K0f1b46051F/vhs.png").body
+  # FileUtils.cp(File.expand_path("~/vhs.png"), "vhs.png")
 
-  Dir["*.mp4"].each_with_index do |f, i|
+  Dir["*.mp4"].sort.each_with_index do |f, i|
     t = tracklist.fetch(i)
     fa = File.join(tmpdir, File.basename(f, File.extname(f)) + ".m4a")
     system("MP4Box -add #{e(f)}#audio #{e(fa)}") || abort("Audio extraction failed")
@@ -84,6 +85,8 @@ Dir.mktmpdir do |path|
 
     FileUtils.mv(fa, add_to_itunes)
   end
+  # Copy the results back to downloads for inspection:
+  # FileUtils.mv(tmpdir, File.expand_path("~/Downloads"))
 end
 
 puts name
