@@ -14,7 +14,6 @@ alias dus='du -ks * | sort -rn' # Lists the size of all the folders and files
 alias emacs="emacs -nw"
 alias fs='foreman start'
 alias g='grep -i' #case insensitive grep
-alias gb="git branch -v"
 alias gba="git branch -va --color | grep -v 'remotes/origin/pr'"
 alias gbl="git branch -vv --color | grep -v '\[.*\/.*\] '"
 alias gbr="git branch -vr --color | grep -v 'origin/HEAD'"
@@ -282,12 +281,12 @@ function mvs {
   mvim `(git ls-files --modified --cached --other --exclude-standard | sort | uniq) | selecta`
 }
 
-# bundle open selecta
-function bs {
-  local path=$(eval echo $(cat .bundle/config | grep BUNDLE_PATH | awk '{print $2}'))
-  local arch=$(ruby -e 'print "#{RUBY_ENGINE}/#{RbConfig::CONFIG["ruby_version"]}"')
-  local gems="$path/$arch/gems"
-  vim "$gems/$((cd $gems && find * \! \( -type d \)) | selecta)"
+function gb {
+  if [[ -z "$1" ]]; then
+    git branch -v
+  else
+    git branch | grep -v "^*" | fzf -f "$1" | head -n1 | xargs git checkout
+  fi
 }
 
 # bundler test-case named $@
@@ -317,4 +316,12 @@ function wallpaper {
 
 function mate {
   mvim "$@"
+}
+
+# bundle open selecta
+function bs {
+  local path=$(eval echo $(cat .bundle/config | grep BUNDLE_PATH | awk '{print $2}'))
+  local arch=$(ruby -e 'print "#{RUBY_ENGINE}/#{RbConfig::CONFIG["ruby_version"]}"')
+  local gems="$path/$arch/gems"
+  vim "$gems/$((cd $gems && find * \! \( -type d \)) | selecta)"
 }

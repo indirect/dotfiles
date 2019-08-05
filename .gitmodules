@@ -37,3 +37,6 @@
 [submodule "vim/bundle/vim-unimpaired"]
 	path = vim/bundle/vim-unimpaired
 	url = http://github.com/tpope/vim-unimpaired
+[submodule "vim/bundle/vim-ripgrep"]
+	path = vim/bundle/vim-ripgrep
+	url = https://github.com/jremmen/vim-ripgrep
