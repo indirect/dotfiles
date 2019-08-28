@@ -34,3 +34,7 @@ Host arko
 # AWS
 Host *.compute-1.amazonaws.com
   StrictHostKeyChecking no
+
+Host github.com
+  Hostname ssh.github.com
+  Port 443
