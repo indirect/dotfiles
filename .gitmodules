@@ -40,3 +40,18 @@
 [submodule "vim/bundle/vim-ripgrep"]
 	path = vim/bundle/vim-ripgrep
 	url = https://github.com/jremmen/vim-ripgrep
+[submodule "vim/bundle/vim-autoread"]
+	path = vim/bundle/vim-autoread
+	url = https://github.com/djoshea/vim-autoread
+[submodule "vim/bundle/vim-textobj-ruby"]
+	path = vim/bundle/vim-textobj-ruby
+	url = https://github.com/rhysd/vim-textobj-ruby
+[submodule "vim/bundle/vim-to-github"]
+	path = vim/bundle/vim-to-github
+	url = https://github.com/tonchis/vim-to-github
+[submodule "vim/bundle/vim-rails"]
+	path = vim/bundle/vim-rails
+	url = https://github.com/tpope/vim-rails
+[submodule "vim/bundle/vim-dispatch"]
+	path = vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch
