@@ -22,6 +22,7 @@
 	files = "!git ls-files --modified --cached --other --exclude-standard | sort | uniq"
 	fixup = commit --amend --reuse-message=HEAD
 	ff = merge --ff-only
+	gone = "!f() { git branch -v | grep -v '*' | grep '\\[gone\\]' | awk '{print $1}' | xargs git branch -d; }; f"
 	head = diff HEAD^ HEAD
 	hunk = add -p
 	ignored = "!git ls-files --others --exclude-standard"
