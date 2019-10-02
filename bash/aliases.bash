@@ -117,7 +117,7 @@ function dbundle2 {
 }
 
 function f {
-  find . -iname '*'"$1"'*'
+  find . -not \( -path ./.git -prune \) -not \( -path ./.bundle -prune \) -iname '*'"$1"'*'
 }
 
 # clone a github repo and then cd into it
