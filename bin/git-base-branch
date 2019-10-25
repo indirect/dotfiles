@@ -1,3 +1,3 @@
 #!/bin/bash
 
-(git branch | egrep 'latest|development|main' || echo 'master') | awk '{ print $1 }'
+(git branch | egrep 'latest|development|main|dev' || echo 'master') | awk '{ print $1 }'
