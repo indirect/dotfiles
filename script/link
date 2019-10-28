@@ -7,6 +7,7 @@ excludes = %w[
   rubocop.yml
   script
   ssh
+  support
 ]
 
 home = File.expand_path("~")
