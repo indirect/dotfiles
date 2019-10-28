@@ -76,7 +76,7 @@ mas "Day One", id: 1055511498
 mas "Due", id: 524373870
 mas "GIF Brewery", id: 1081413713
 mas "Gapplin", id: 768053424
-mas "Reeder", id: 880001334
+mas "Reeder", id: 1449412482
 mas "Simplenote", id: 692867256
 mas "Sip", id: 507257563
 mas "Soulver", id: 413965349
