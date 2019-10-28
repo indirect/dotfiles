@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Pull all the submodules
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null 2>&1 && pwd )"
+
 (
-  cd $DIR/..
+  cd $ROOT
   git submodule update --init
 )
 
@@ -25,4 +26,12 @@ if [[ ! -d ~/.cargo ]]; then
   curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path --default-toolchain nightly
 fi
 
-echo "configuration complete"
+# Install Terminal theme
+THEME=$(cat "$ROOT/support/terminal/Solarized Dark.plist")
+plutil -replace "Window Settings.Solarized Dark" -xml "$THEME" \
+  ~/Library/Preferences/com.apple.Terminal.plist 
+defaults write com.apple.Terminal "Default Window Settings" -string "Solarized Dark"
+defaults write com.apple.Terminal "Startup Window Settings" -string "Solarized Dark"
+
+echo "configuration complete, restart your Terminal"
+osascript -e 'tell application "Terminal" to quit'
