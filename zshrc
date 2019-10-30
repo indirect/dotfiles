@@ -34,13 +34,20 @@ for func in $(ls ~/.zsh/functions); do
 done
 
 # Load autocompletion
-autoload compinit && compinit
+autoload -Uz compinit && compinit
 
 # Load bash autocompletions
 if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
-  autoload bashcompinit && bashcompinit
+  autoload -Uz bashcompinit && bashcompinit
   source  "/usr/local/etc/profile.d/bash_completion.sh"
 fi
 
-# Load bash shortcuts and completions
+# partial completion suggestions
+zstyle ':completion:*' list-suffixes
+zstyle ':completion:*' expand prefix suffix
+
+# case insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+# Load bash shortcuts and functions
 source ~/.bash/aliases.bash
