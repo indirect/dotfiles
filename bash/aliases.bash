@@ -135,14 +135,14 @@ function httpd {
 }
 
 function current_branch {
-  status=$(git status 2> /dev/null)
+  git_status=$(git status 2> /dev/null)
 
   # Bail if status failed, not a git repo
   if [[ $? -ne 0 ]]; then return 1; fi
 
   # Try to get the branch from the status we already have
-  if [[ $status =~ "# On branch (.*?) " ]]; then
-    name="${BASH_REMATCH[1]}"
+  if [[ $git_status =~ "On branch ([[:print:]]*)" ]]; then
+    name="$match[1]"
   fi
 
   # Check the output of `branch` next
