@@ -11,8 +11,7 @@ end
 
 %w[atomicparsley youtube-dl MP4Box id3v2].each do |tool|
   next if system("which #{tool} > /dev/null")
-  puts "You need #{tool} installed! Press enter to install it."
-  gets
+  puts "You need #{tool} installed! Installing it now."
   system("brew install #{tool}")
 end
 
