@@ -54,7 +54,13 @@ tracklist = track_text.strip.split("\n").map do |line|
 end.compact
 
 add_to_itunes = Dir.glob(File.expand_path("~/Music/iTunes/iTunes\ Media/Automatically\ Add\ to\ iTunes*")).first
-dir = File.expand_path("~/Downloads/#{name.tr('Ø', '0')}")
+
+if File.directory?("/Volumes/Media/Music/jwz mixtapes")
+  base = "/Volumes/Media/Music/jwz mixtapes"
+else
+  base = File.expand_path("~/Downloads")
+end
+dir = File.join(base, name.tr('Ø', '0'))
 FileUtils.mkdir_p(dir)
 Dir.chdir(dir)
 
