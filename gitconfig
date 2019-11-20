@@ -94,3 +94,5 @@
 	autoStash = true
 [credential]
 	helper = osxkeychain
+[protocol]
+	version = 2
