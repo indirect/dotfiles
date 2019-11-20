@@ -33,14 +33,18 @@ for func in $(ls ~/.zsh/functions); do
   autoload $func
 done
 
-# Load autocompletion
-autoload -Uz compinit && compinit
-
 # Load bash autocompletions
 if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
   autoload -Uz bashcompinit && bashcompinit
   source  "/usr/local/etc/profile.d/bash_completion.sh"
 fi
+
+# Load zsh autocompletion
+autoload -Uz compinit && compinit
+fpath+=/usr/local/share/zsh/site-functions
+for func in $(ls /usr/local/share/zsh/site-functions); do
+  autoload $func
+done
 
 # partial completion suggestions
 zstyle ':completion:*' list-suffixes
