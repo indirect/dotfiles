@@ -21,6 +21,12 @@ if [[ ! -d /Library/PreferencePanes/BackblazeBackup.prefPane ]]; then
   open -a "/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app"
 fi
 
+# Open the Little Snitch installer
+if [[ -e $(ls /usr/local/Caskroom/little-snitch/*/*.dmg) ]]; then
+  hdiutil attach /usr/local/Caskroom/little-snitch/*/*.dmg
+  open /Volumes/Little\ Snitch*/Little\ Snitch\ Installer.app
+fi
+
 # Install rustup, cargo, and rust nightly
 if [[ ! -d ~/.cargo ]]; then
   curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path --default-toolchain nightly
@@ -29,7 +35,7 @@ fi
 # Install Terminal theme
 THEME=$(cat "$ROOT/support/terminal/Solarized Dark.plist")
 plutil -replace "Window Settings.Solarized Dark" -xml "$THEME" \
-  ~/Library/Preferences/com.apple.Terminal.plist 
+  ~/Library/Preferences/com.apple.Terminal.plist
 defaults write com.apple.Terminal "Default Window Settings" -string "Solarized Dark"
 defaults write com.apple.Terminal "Startup Window Settings" -string "Solarized Dark"
 
