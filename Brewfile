@@ -73,6 +73,7 @@ cask "textmate"
 cask "transmit"
 cask "vlc"
 
+mas "1Blocker", id: 1107421413
 mas "Day One", id: 1055511498
 mas "Due", id: 524373870
 mas "GIF Brewery", id: 1081413713
