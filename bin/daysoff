@@ -1,0 +1,84 @@
+#!/usr/bin/env ruby
+
+# Cloud City needs 1200 hours to be in the black on employing me. With 10 weeks
+# of PTO and 2 weeks of vacation per year, that means I need to bill an average
+# of 30 hours per week. To reach 30 billable hours, I need to average 6 hours
+# per workday.
+
+# Unfortunately, Cloud City doesn't always provide billable work. As a result,
+# the only way to track that I have figured out that makes sense is to assume
+# 30 logged hours per week, both billed and unbilled, as the ultimate goal.
+YEARLY_HOURS = 1200.to_f
+EXPECTED_HOURS_PER_DAY = 6.to_f
+
+require "bundler/inline"
+gemfile do
+  source "https://rubygems.org"
+  gem "http"
+  gem "pry"
+end
+
+
+def harvest_req(url)
+  @acct ||= %x(security find-internet-password -s "ccd.harvestapp.com")[/"acct"<blob>="(.*)"/, 1] || ""
+  @pass ||= %x(security find-internet-password -s "ccd.harvestapp.com" -w).chomp
+
+  if @acct.empty? || @pass.empty?
+    puts "security add-internet-password -s 'ccd.harvestapp.com' -a '202855' -w"
+    abort "Add your Harvest personal access token to the keychain as an internet password!"
+  end
+
+  HTTP.auth("Bearer #{@pass}").
+    headers("Harvest-Account-ID" => @acct).
+    headers("Content-Type" => "application/json").
+    get(url).parse
+end
+
+def api_url(path)
+  "https://api.harvestapp.com/api/v2/#{path}"
+end
+
+def time_entries(user, year_start, year_end)
+  entries = []
+  page = 1
+
+  while page
+    next_page = api_url("time_entries.json?user_id=#{user}&page=#{page}&per_page=100" +
+                        "&from=#{year_start.iso8601}&to=#{year_end.iso8601}")
+    response = harvest_req(next_page)
+    entries.push(*response["time_entries"])
+    page = response["next_page"]
+  end
+
+  entries
+end
+
+today = Date.today
+year_end = Date.new(today.year, 12, 31)
+remaining_weekdays = (today..year_end).reject{|d| [0,6].include?(d.wday) }.size
+year_start = Date.new(today.year, 1, 1)
+
+user = harvest_req(api_url("users/me"))["id"]
+report = time_entries(user, year_start, year_end)
+
+# We've added a Harvest "project" to track PTO. It's not getting used super
+# consistently, but there are at least a few entries in there, so let's make
+# sure any hours entered as PTO will not be counted as worked time, either
+# billed or unbilled.
+PTO_PROJECT_ID = 11169073
+report.reject!{|e| e["project"]["id"] == PTO_PROJECT_ID }
+
+binding.pry
+hours_logged = report.map{|e| e["hours"] }.inject(:+)
+hours_billed = report.select{|e| e["billable"] }.map{|e| e["hours"] }.inject(:+)
+hours_unbilled = report.reject{|e| e["billable"] }.map{|e| e["hours"] }.inject(:+)
+remaining_hours = YEARLY_HOURS - hours_billed - hours_unbilled
+remaining_work_days = remaining_hours / EXPECTED_HOURS_PER_DAY
+remaining_days_off = (remaining_weekdays - remaining_work_days).round(2)
+
+puts "In calendar year #{today.year}, you have:"
+puts "#{hours_logged.round} hours logged"
+puts "#{hours_billed.round} hours of billed work"
+puts "#{hours_unbilled.round} hours of unbilled work"
+puts "#{remaining_work_days.round} expected workdays left"
+puts "#{remaining_days_off.round} days of PTO left"
