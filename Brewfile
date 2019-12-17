@@ -86,3 +86,4 @@ mas "The Unarchiver", id: 425424353
 mas "Tweetbot", id: 557168941
 mas "Ulysses", id: 623795237
 mas "XScope", id: 889428659
+mas "Paprika", id: 1303222628
