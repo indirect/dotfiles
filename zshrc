@@ -32,6 +32,16 @@ if (type -P src-hilite-lesspipe.sh &>/dev/null); then
   export LESSOPEN="| $(which src-hilite-lesspipe.sh) %s"
 fi
 
+export PAGER="less" # page with less not more
+export EDITOR="vim"
+export BROWSER="open" # opens URLs in the default OS X browser
+export LESS="-XFRf" # Fix less to not clear screen on exit, show color
+export CLICOLOR=true # ls with color
+export RI="-f ansi" # ri with color
+
+# switch edit mode back to emacs despite EDITOR being vim
+bindkey -e
+
 # Load functions from ~/.zsh/functions
 fpath+=~/.zsh/functions
 for func in $(ls ~/.zsh/functions); do
