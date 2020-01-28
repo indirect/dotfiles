@@ -38,8 +38,7 @@
     # os_icon               # os identifier
     ruby
     dir                     # current directory
-    # vcs                   # git status
-    indirect_git
+    vcs                     # git status
     # prompt_char           # prompt symbol
   )
 
@@ -365,7 +364,7 @@
     if (( $1 )); then
       # Styling for up-to-date Git status.
       local       meta='%244F'  # grey foreground
-      local      clean='%76F'   # green foreground
+      local      clean='%2F'   # green foreground
       local   modified='%178F'  # yellow foreground
       local  untracked='%39F'   # blue foreground
       local conflicted='%196F'  # red foreground
@@ -378,10 +377,23 @@
       local conflicted='%244F'  # grey foreground
     fi
 
+    local status_color
+    if (( VCS_STATUS_NUM_UNTRACKED )); then
+      status_color='%3F' # yellow
+    elif (( VCS_STATUS_COMMITS_AHEAD && VCS_STATUS_COMMITS_BEHIND )); then
+      status_color='%1F' # red
+    elif (( VCS_STATUS_COMMITS_AHEAD )); then
+      status_color='%6F' # cyan
+    elif (( VCS_STATUS_COMMITS_BEHIND )); then
+      status_color='%5F' # magenta
+    else
+      status_color='%2F' # green
+    fi
+
     local res
     local where  # branch or tag
     if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
-      res+="${clean}${POWERLEVEL9K_VCS_BRANCH_ICON}"
+      res+="${status_color}${POWERLEVEL9K_VCS_BRANCH_ICON}"
       where=${(V)VCS_STATUS_LOCAL_BRANCH}
     elif [[ -n $VCS_STATUS_TAG ]]; then
       res+="${meta}#"
@@ -391,11 +403,18 @@
     # If local branch name or tag is at most 32 characters long, show it in full.
     # Otherwise show the first 12 … the last 12.
     (( $#where > 32 )) && where[13,-13]="…"
-    res+="${clean}${where//\%/%%}"  # escape %
+    res+="${status_color}${where//\%/%%}"  # escape %
 
     # Display the current Git commit if there is no branch or tag.
     # Tip: To always display the current Git commit, remove `[[ -z $where ]] &&` from the next line.
-    [[ -z $where ]] && res+="${meta}@${clean}${VCS_STATUS_COMMIT[1,8]}"
+    # [[ -z $where ]] && res+="${meta}@${status_color}${VCS_STATUS_COMMIT[1,8]}"
+    if [[ -z $where ]]; then
+      local name
+      name=$(command git name-rev --name-only --no-undefined --always HEAD)
+      name="${name#tags/}"
+      name="${name#remotes/}"
+      res+="${status_color}${(V)name}"
+    fi
 
     # Show tracking branch name if it differs from local branch.
     if [[ -n ${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH} ]]; then
@@ -1108,50 +1127,6 @@
     esac
     
     p10k segment -f 015 -i "$icon"
-  }
-
-  function prompt_indirect_git() {
-    local git_status_out
-    local branch_exp
-    local name
-
-    git_status_out=$($GIT status 2> /dev/null)
-
-    # Bail if status failed, not a git repo
-    if [[ $? -ne 0 ]]; then
-      return 1
-    fi
-
-    # Try to get the branch from the status we already have
-    if [[ "$git_status_out" =~ "On branch ([[:print:]]*)" ]]; then
-      name=$match[2]
-    fi
-
-    # Check the output of `branch` next
-    if [[ -z "$name" ]]; then
-      name=$($GIT branch | grep '^*' | cut -b3- | grep -v '^(')
-    fi
-
-    # Fall back on name-rev
-    if [[ -z "$name" ]]; then
-      name=$($GIT name-rev --name-only --no-undefined --always HEAD)
-      name="${name#tags/}"
-      name="${name#remotes/}"
-    fi
-
-    if [[ "$git_status_out" != *"nothing to commit"* ]]; then
-      gitcolor=yellow
-    elif [[ "$git_status_out" == *"branch is ahead"* ]]; then
-      gitcolor=cyan
-    elif [[ "$git_status_out" == *"branch is behind"* ]]; then
-      gitcolor=magenta
-    elif [[ "$git_status_out" == *"diverged"* ]]; then
-      gitcolor=red
-    else
-      gitcolor=green
-    fi
-
-    p10k segment -t "%F{$gitcolor}$name%f"
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
