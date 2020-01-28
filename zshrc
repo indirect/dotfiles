@@ -56,9 +56,5 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 # Load bash shortcuts and functions
 source ~/.bash/aliases.bash
 
-# Load chruby
-source ~/.bash/chruby.bash
-chruby 2.6.5
-
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
