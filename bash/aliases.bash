@@ -274,11 +274,13 @@ function vpi {
 
 # vim file selecta
 function vs {
-  vim `(git ls-files --modified --cached --other --exclude-standard | sort | uniq) | selecta`
+  vim $(fzf)
+  # vim `(git ls-files --modified --cached --other --exclude-standard | sort | uniq) | selecta`
 }
 
 function mvs {
-  mvim `(git ls-files --modified --cached --other --exclude-standard | sort | uniq) | selecta`
+  mvim $(fzf)
+  # mvim `(git ls-files --modified --cached --other --exclude-standard | sort | uniq) | selecta`
 }
 
 function gb {
