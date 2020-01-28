@@ -27,6 +27,11 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+# Use source-highlight if it's installed
+if (type -P src-hilite-lesspipe.sh &>/dev/null); then
+  export LESSOPEN="| $(which src-hilite-lesspipe.sh) %s"
+fi
+
 # Load functions from ~/.zsh/functions
 fpath+=~/.zsh/functions
 for func in $(ls ~/.zsh/functions); do
