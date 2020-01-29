@@ -34,17 +34,13 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
-# Use source-highlight if it's installed
-if (type -P src-hilite-lesspipe.sh &>/dev/null); then
-  export LESSOPEN="| $(which src-hilite-lesspipe.sh) %s"
-fi
-
 export PAGER="less" # page with less not more
 export EDITOR="vim"
 export BROWSER="open" # opens URLs in the default OS X browser
 export LESS="-XFRf" # Fix less to not clear screen on exit, show color
 export CLICOLOR=true # ls with color
 export RI="-f ansi" # ri with color
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # switch edit mode back to emacs despite EDITOR being vim
 bindkey -e
@@ -85,6 +81,15 @@ source ~/.bash/aliases.bash
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+alias ls=exa
+alias ll='exa -ll'
+alias la='exa -la'
+alias less=bat
+alias cat=bat
+
+
+### Last: prompt and live highlighting
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/src/romkatv/powerlevel10k/powerlevel10k.zsh-theme
