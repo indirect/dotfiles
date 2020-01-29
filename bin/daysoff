@@ -68,10 +68,9 @@ report = time_entries(user, year_start, year_end)
 PTO_PROJECT_ID = 11169073
 report.reject!{|e| e["project"]["id"] == PTO_PROJECT_ID }
 
-binding.pry
-hours_logged = report.map{|e| e["hours"] }.inject(:+)
-hours_billed = report.select{|e| e["billable"] }.map{|e| e["hours"] }.inject(:+)
-hours_unbilled = report.reject{|e| e["billable"] }.map{|e| e["hours"] }.inject(:+)
+hours_logged = report.map{|e| e["hours"] }.inject(0, :+)
+hours_billed = report.select{|e| e["billable"] }.map{|e| e["hours"] }.inject(0, :+)
+hours_unbilled = report.reject{|e| e["billable"] }.map{|e| e["hours"] }.inject(0, :+)
 remaining_hours = YEARLY_HOURS - hours_billed - hours_unbilled
 remaining_work_days = remaining_hours / EXPECTED_HOURS_PER_DAY
 remaining_days_off = (remaining_weekdays - remaining_work_days).round(2)
