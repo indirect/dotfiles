@@ -1,8 +1,3 @@
-# Load chruby
-source ~/.bash/chruby.bash
-export DEFAULT_RUBY_VERSION=2.6.5
-chruby $DEFAULT_RUBY_VERSION
-
 # Keep go's installed files out of the way
 export GOPATH=$HOME/.go
 

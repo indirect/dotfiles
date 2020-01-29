@@ -68,6 +68,11 @@ for func in $(ls /usr/local/share/zsh/site-functions); do
   autoload $func
 done
 
+# Load chruby
+source ~/.bash/chruby.bash
+export DEFAULT_RUBY_VERSION=2.6.5
+chruby $DEFAULT_RUBY_VERSION
+
 # partial completion suggestions
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
