@@ -295,7 +295,7 @@
   typeset -g POWERLEVEL9K_DIR_NOT_WRITABLE_VISUAL_IDENTIFIER_EXPANSION='∅'
 
   # Custom prefix.
-  typeset -g POWERLEVEL9K_DIR_PREFIX=' '
+  typeset -g POWERLEVEL9K_DIR_PREFIX=
 
   # POWERLEVEL9K_DIR_CLASSES allows you to specify custom icons for different directories.
   # It must be an array with 3 * N elements. Each triplet consists of:
@@ -1116,17 +1116,20 @@
 
   function prompt_ruby() {
     case $RUBY_VERSION in
-      "") icon="◽️ ";;
-      2.7.?) icon="💠 ";;
-      2.6.?) icon="🔹 ";;
-      2.[4-5].?) icon="🔸 ";;
-      2.[0-3].?) icon="🔺 ";;
-      1.9.?) icon="🔻 ";;
-      1.8.?) icon="🔻 ";;
-      *) icon="❓ ($RUBY_VERSION) ";;
+      "") icon="◽️";;
+      2.6.?) icon="💠";;
+      2.6.?) icon="🔹";;
+      2.[4-5].?) icon="🔸";;
+      2.[0-3].?) icon="🔺";;
+      1.[8-9].?) icon="🔻";;
+      *) icon="❓ ($RUBY_VERSION)";;
     esac
     
     p10k segment -f 015 -i "$icon"
+  }
+
+  function instant_prompt_ruby() {
+    p10k segment -i "◽️"
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
