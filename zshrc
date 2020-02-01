@@ -37,23 +37,29 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # switch edit mode back to emacs despite EDITOR being vim
 bindkey -e
 
-# Load functions from ~/.zsh/functions
-fpath+=~/.zsh/functions
-for func in $(ls ~/.zsh/functions); do
-  autoload $func
+# Load Bash external packages
+autoload -Uz bashcompinit && bashcompinit
+bash_packages=(
+  /usr/local/etc/profile.d/autojump.sh
+  /usr/local/etc/profile.d/bash_completion.sh
+)
+for file in $bash_packages; do
+  [[ -f $file ]] && source $file
 done
 
-# Load bash autocompletions
-if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
-  autoload -Uz bashcompinit && bashcompinit
-  source  "/usr/local/etc/profile.d/bash_completion.sh"
-fi
-
-# Load zsh autocompletion
+# Load zsh functions, autocomplete and local
 autoload -Uz compinit && compinit
-fpath+=/usr/local/share/zsh/site-functions
-for func in $(ls /usr/local/share/zsh/site-functions); do
-  autoload $func
+function_paths=(
+  /usr/local/share/zsh/site-functions
+  ~/.zsh/functions
+)
+for function_path in $function_paths; do
+  if [[ ! (($fpath[(Ie)$function_path])) ]]; then
+    fpath+=$function_path
+    for func in $(ls $function_path); do
+      autoload $func
+    done
+  fi
 done
 
 # Load chruby
@@ -71,9 +77,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 # Load bash shortcuts and functions
 source ~/.bash/aliases.bash
 
-# autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
 alias cat=bat
 alias l=exa
 alias la='exa -la --git'
@@ -81,6 +84,13 @@ alias less=bat
 alias ll='exa -ll --git'
 alias lt='exa -T'
 
+external_packages=(
+  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+)
+for file in $external_packages; do
+  [[ -f $file ]] && source $file
+done
 
 # prefix search history with up and down
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
@@ -108,5 +118,3 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/src/romkatv/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
