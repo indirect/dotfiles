@@ -26,14 +26,6 @@ WORDCHARS=${WORDCHARS/\/}
 # Show substitutions before running them
 setopt HIST_VERIFY
 
-# Up and down to search
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
-
 export PAGER="less" # page with less not more
 export EDITOR="vim"
 export BROWSER="open" # opens URLs in the default OS X browser
@@ -90,7 +82,28 @@ alias ll='exa -ll --git'
 alias lt='exa -T'
 
 
-### Last: prompt and live highlighting
+# prefix search history with up and down
+if [[ "${terminfo[kcuu1]}" != "" ]]; then
+    autoload -U up-line-or-beginning-search
+    zle -N up-line-or-beginning-search
+    bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+fi
+if [[ "${terminfo[kcud1]}" != "" ]]; then
+    autoload -U down-line-or-beginning-search
+    zle -N down-line-or-beginning-search
+    bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+fi
+
+# this somehow fixes the prefix search for up and down
+if (( $+terminfo[smkx] && $+terminfo[rmkx] )); then
+  function enable-term-application-mode() { echoti smkx }
+  function disable-term-application-mode() { echoti rmkx }
+  zle -N enable-term-application-mode
+  zle -N disable-term-application-mode
+  autoload -Uz add-zle-hook-widget
+  add-zle-hook-widget line-init enable-term-application-mode
+  add-zle-hook-widget line-finish disable-term-application-mode
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/src/romkatv/powerlevel10k/powerlevel10k.zsh-theme
