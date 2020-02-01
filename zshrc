@@ -82,11 +82,12 @@ source ~/.bash/aliases.bash
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-alias ls=exa
-alias ll='exa -ll'
-alias la='exa -la'
-alias less=bat
 alias cat=bat
+alias l=exa
+alias la='exa -la --git'
+alias less=bat
+alias ll='exa -ll --git'
+alias lt='exa -T'
 
 
 ### Last: prompt and live highlighting
