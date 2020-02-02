@@ -16,7 +16,7 @@ if [[ ! "$(heroku plugins)" == *"heroku-run-localjs"* ]]; then
   heroku plugins:install heroku-run-localjs
 fi
 
-# Open the Backblaze installer and get it set up, too
+# Open the Backblaze installer
 if [[ ! -d /Library/PreferencePanes/BackblazeBackup.prefPane ]]; then
   open -a "/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app"
 fi
@@ -30,6 +30,11 @@ fi
 # Install rustup, cargo, and rust nightly
 if [[ ! -d ~/.cargo ]]; then
   curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path --default-toolchain nightly
+fi
+
+# Copy youtube-dl to local bin so it can self-update
+if [[ -f /usr/local/bin/youtube-dl ]]; then
+  cp /usr/local/bin/youtube-dl ~/.bin/
 fi
 
 # Install Terminal theme
