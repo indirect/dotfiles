@@ -47,19 +47,20 @@ for file in $bash_packages; do
   [[ -f $file ]] && source $file
 done
 
-# Load zsh functions, autocomplete and local
+# Load zsh autocompletions
 autoload -Uz compinit && compinit
 function_paths=(
   /usr/local/share/zsh/site-functions
+  ~/.zsh/completion
   ~/.zsh/functions
 )
 for function_path in $function_paths; do
-  if [[ ! (($fpath[(Ie)$function_path])) ]]; then
-    fpath+=$function_path
-    for func in $(ls $function_path); do
-      autoload $func
-    done
-  fi
+  (($fpath[(Ie)$function_path])) || fpath+=$function_path
+done
+
+# Autoload zsh functions
+for func in $(ls ~/.zsh/functions); do
+  autoload $func
 done
 
 # Load chruby
