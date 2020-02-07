@@ -1,0 +1,43 @@
+/* Put this in ~/Library/KeyBindings/DefaultKeyBinding.dict */
+/* Based on a file from @eventualbuddha */
+{
+	/* Modifier keys: start with C-m */
+	"^m" = {
+		"^ "    = ("insertText:", "\U2423");  /* C-space space */
+
+		"^e"    = ("insertText:", "\U21A9");  /* C-e     return */
+		"e"     = ("insertText:", "\U2305");  /* e       enter */
+
+		"^t"    = ("insertText:", "\U21E5");  /* C-t     tab */
+		"t"     = ("insertText:", "\U21E4");  /* t       backtab */
+
+		"^d"    = ("insertText:", "\U232B");  /* C-d     delete */
+		"d"     = ("insertText:", "\U2326");  /* d       forward delete */
+
+		"^a"    = ("insertText:", "\U2318");  /* C-a     command (apple) */
+		"^o"    = ("insertText:", "\U2325");  /* C-o     option */
+		"^c"    = ("insertText:", "\U2303");  /* C-c     control */
+		"^s"    = ("insertText:", "\U21E7");  /* C-s     shift */
+		"s"     = ("insertText:", "\U21EA");  /* s       caps lock */
+
+		"^b"    = ("insertText:", "\U2190");  /* C-b     solid left */
+		"^f"    = ("insertText:", "\U2192");  /* C-f     solid right */
+		"^p"    = ("insertText:", "\U2191");  /* C-p     solid up */
+		"^n"    = ("insertText:", "\U2193");  /* C-n     solid down */
+		"b"     = ("insertText:", "\U21E0");  /* f       dotted left */
+		"f"     = ("insertText:", "\U21E2");  /* b       dotted right */
+		"p"     = ("insertText:", "\U21E1");  /* p       dotted up */
+		"n"     = ("insertText:", "\U21E3");  /* n       dotted down */
+
+		"^-"    = ("insertText:", "\U2708");  /* C--     airplane */
+		"^8"    = ("insertText:", "\U2605");  /* C-8     star */
+
+		"^h"    = ("insertText:", "\U2196");  /* C-h     home */
+		"h"     = ("insertText:", "\U2198");  /* h       end */
+		"^u"    = ("insertText:", "\U21DE");  /* C-u     page up */
+		"u"     = ("insertText:", "\U21DF");  /* u       page down */
+
+		"^x"    = ("insertText:", "\U238B");  /* C-x     escape */
+		"x"     = ("insertText:", "\U23CF");  /* x       eject */
+	};
+}

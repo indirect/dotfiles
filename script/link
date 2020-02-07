@@ -34,6 +34,10 @@ puts "linking ssh/config"
 `[[ -d ~/.ssh ]] || ( mkdir ~/.ssh && chmod 0700 ~/.ssh )`
 `[[ -L ~/.ssh/config ]] || ln -s #{File.expand_path "ssh/config"} #{File.join(home, ".ssh/config")}`
 
+puts "linking KeyBindings"
+`[[ -d ~/Library/KeyBindings ]] && mv ~/Library/KeyBindings ~/OldKeyBindings`
+`[[ -L ~/Library/KeyBindings ]] && ln -s #{File.expand_path "support/KeyBindings"} ~/Library/KeyBindings`
+
 dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
 parent_dir = File.expand_path("../..", __FILE__)
 unless dotfiles_dir == parent_dir
