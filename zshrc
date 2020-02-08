@@ -65,7 +65,7 @@ done
 
 # Load chruby
 source ~/.bash/chruby.bash
-export DEFAULT_RUBY_VERSION=2.6.5
+export DEFAULT_RUBY_VERSION=2.7.0
 chruby $DEFAULT_RUBY_VERSION
 
 # partial completion suggestions
