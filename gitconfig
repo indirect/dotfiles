@@ -31,7 +31,7 @@
 	lc = log ORIG_HEAD.. --stat --no-merges
 	lg = log --all --graph --decorate --oneline --simplify-by-decoration
 	llog = log --date=local
-	ls = "!git log --date=relative --pretty='format:%C(yellow)%h%C(reset) %G? %C(blue)%>(14,trunc)%ad %C(green)%<(19)%aN%C(reset)%s%C(red)% gD% D' | awk -F '[ ]' -v black=\"$(tput setaf 0)\" -v yellow=\"$(tput setaf 3)\" -v green=\"$(tput setaf 2)\" -v red=\"$(tput setaf 1)\" '{ sub(/[GUX]/, green \"&\", $2); sub(/[YR]/, yellow \"&\", $2); sub(/[EN]/, black \"&\", $2); sub(/[B]/, red \"&\", $2); print $0; fflush() }' | less"
+	ls = "!git log --date=relative --pretty='format:%C(yellow)%h%C(reset) %G? %C(blue)%>(14,trunc)%ad %C(green)%<(19)%aN%C(reset)%s%C(red)% gD% D'"
 	msg = !"git log -1 --oneline | cut -d ' ' -f 2-"
 	noff = merge --no-ff
 	nuke = "!git reset --hard HEAD"
