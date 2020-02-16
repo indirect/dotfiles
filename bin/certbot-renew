@@ -1,0 +1,4 @@
+#!/bin/bash
+
+perl -e 'sleep int(rand(36000))'
+(date && /usr/local/bin/certbot renew --nginx) >> /usr/local/var/log/certbot.log
