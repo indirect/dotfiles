@@ -82,7 +82,7 @@ function bi {
 
 function bip {
   if [[ -f Gemfile.lock ]] && [[ $(tail -n 2 Gemfile.lock | tr "\n" " ") == "BUNDLED WITH    2"* ]]; then
-    bundle install "$@"
+    bundle config set path .bundle --local && bundle install "$@"
   else
     GEM_REQUIREMENT_BUNDLER="~> 1.0" bundle install --path .bundle "$@"
   fi
