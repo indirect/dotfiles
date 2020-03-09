@@ -1,0 +1,16 @@
+set -vx
+local current_branch=$(current_branch)
+local upstream=$(git config branch.$current_branch.remote)
+
+if [[ -z "$upstream" ]]; then
+  if [[ "$1" == "-f" ]]; then
+    local flags="-uf"
+    local remote="${2-origin}"
+  else
+    local remote="${1-origin}"
+  fi
+
+  git push "${flags--u}" "$remote" "$current_branch"
+else
+  git push "$@"
+fi
