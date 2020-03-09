@@ -99,7 +99,7 @@ function bs {
   local path=$(eval echo $(cat .bundle/config | grep BUNDLE_PATH | awk '{print $2}'))
   local arch=$(ruby -e 'print "#{RUBY_ENGINE}/#{RbConfig::CONFIG["ruby_version"]}"')
   local gems="$path/$arch/gems"
-  vim "$gems/$( (cd "$gems" && find . \! \( -type d \)) | selecta)"
+  vim "$gems/$( (cd "$gems" && find . \! \( -type d \)) | fzf)"
 }
 
 function dbundle {
@@ -272,15 +272,13 @@ function vpi {
   cd -
 }
 
-# vim file selecta
+# vim file
 function vs {
   vim $(fzf)
-  # vim `(git ls-files --modified --cached --other --exclude-standard | sort | uniq) | selecta`
 }
 
 function mvs {
   mvim $(fzf)
-  # mvim `(git ls-files --modified --cached --other --exclude-standard | sort | uniq) | selecta`
 }
 
 function gb {
@@ -314,16 +312,4 @@ function man {
 function wallpaper {
   osascript -e 'tell application "Finder" to set desktop picture to POSIX file "$1"'
   killall Dock
-}
-
-function mate {
-  mvim "$@"
-}
-
-# bundle open selecta
-function bs {
-  local path=$(eval echo $(cat .bundle/config | grep BUNDLE_PATH | awk '{print $2}'))
-  local arch=$(ruby -e 'print "#{RUBY_ENGINE}/#{RbConfig::CONFIG["ruby_version"]}"')
-  local gems="$path/$arch/gems"
-  vim "$gems/$((cd $gems && find * \! \( -type d \)) | selecta)"
 }
