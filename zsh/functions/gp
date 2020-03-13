@@ -1,4 +1,3 @@
-set -vx
 local current_branch=$(current_branch)
 local upstream=$(git config branch.$current_branch.remote)
 

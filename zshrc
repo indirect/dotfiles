@@ -77,6 +77,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 
 # Load bash shortcuts and functions
 source ~/.bash/aliases.bash
+unfunction gp
 
 alias cat=bat
 alias l=exa
