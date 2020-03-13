@@ -47,6 +47,12 @@ for file in $bash_packages; do
   [[ -f $file ]] && source $file
 done
 
+# Load bash shortcuts and functions
+source ~/.bash/aliases.bash
+
+# Remove bash functions we don't want
+unfunction gp
+
 # Load zsh autocompletions
 autoload -Uz compinit && compinit
 function_paths=(
@@ -75,10 +81,7 @@ zstyle ':completion:*' expand prefix suffix
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
-# Load bash shortcuts and functions
-source ~/.bash/aliases.bash
-unfunction gp
-
+# oreutils aliases
 alias cat=bat
 alias l=exa
 alias la='exa -la --git'
