@@ -1,0 +1,20 @@
+roll="$[$RANDOM % 100]"
+
+case "${roll}" in
+
+  <0-25>)
+    timeout 3 cmatrix -u 2; clear
+    ;;
+
+  <26-50>)
+    timeout 4 cbeams -o; clear
+    ;;
+
+  <90-99>)
+    timeout 6 sl; clear
+    ;;
+
+  *)
+    command clear
+    ;;
+esac
