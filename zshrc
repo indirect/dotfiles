@@ -74,6 +74,9 @@ source ~/.bash/chruby.bash
 export DEFAULT_RUBY_VERSION=2.7.0
 chruby $DEFAULT_RUBY_VERSION
 
+# RubyGems.org staging and production access via kubectl
+export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
+
 # partial completion suggestions
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
