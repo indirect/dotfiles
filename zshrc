@@ -40,7 +40,6 @@ bindkey -e
 # Load Bash external packages
 autoload -Uz bashcompinit && bashcompinit
 bash_packages=(
-  /usr/local/etc/profile.d/autojump.sh
   /usr/local/etc/profile.d/bash_completion.sh
 )
 for file in $bash_packages; do
@@ -68,6 +67,10 @@ done
 for func in $(ls ~/.zsh/functions); do
   autoload $func
 done
+
+# Zoxide is like autojump or z
+eval "$(zoxide init zsh)"
+alias j=z
 
 # Load chruby
 source ~/.bash/chruby.bash
