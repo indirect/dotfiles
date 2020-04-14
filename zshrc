@@ -80,6 +80,10 @@ chruby $DEFAULT_RUBY_VERSION
 # RubyGems.org staging and production access via kubectl
 export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 
+# Google Cloud CLI
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
 # partial completion suggestions
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
