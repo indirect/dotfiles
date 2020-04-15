@@ -54,7 +54,6 @@ cask "firefox"
 cask "google-chrome"
 cask "hammerspoon"
 cask "handbrake"
-cask "harvest"
 cask "imageoptim"
 cask "indirect/tap/gitx-gitx"
 cask "karabiner-elements"
@@ -92,3 +91,4 @@ mas "Tweetbot", id: 1384080005
 mas "Ulysses", id: 1225570693
 mas "XScope", id: 889428659
 mas "Paprika", id: 1303222628
+mas "Harvest", id: 506189836
