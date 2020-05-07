@@ -53,7 +53,7 @@ tracklist = track_text.strip.split("\n").map do |line|
   line.match(/(?<number>\d\d) (?<artist>.*?) -- (?<title>.*?) \((?<year>\d{4})\)/u)
 end.compact
 
-add_to_itunes = Dir.glob(File.expand_path("~/Music/iTunes/iTunes\ Media/Automatically\ Add\ to\ iTunes*")).first
+add_to_itunes = Dir.glob(File.expand_path("~/Music/*/*/Automatically\ Add\ to\ *")).first || raise("oh no can't add to itunes")
 
 if File.directory?("/Volumes/Media/Music/jwz mixtapes")
   base = "/Volumes/Media/Music/jwz mixtapes"
