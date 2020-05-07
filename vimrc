@@ -340,3 +340,8 @@ let g:gutentags_cache_dir = expand('<sfile>:p:h') . "/.vim/tags/"
 
 " set all .jsx files to be both JS and JSX
 autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+
+inoremap <M-o>       <Esc>o
+inoremap <C-j>       <Down>
+let g:ragtag_global_maps = 1
+
