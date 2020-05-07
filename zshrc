@@ -115,6 +115,15 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
+# Keep go's installed files out of the way
+export GOPATH=$HOME/.go
+
+# Rustup and cargo bins
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Personal bins in dropbox and dotfiles
+export PATH="$HOME/.bin:$HOME/Dropbox/bin:$PATH"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/src/romkatv/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
