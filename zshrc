@@ -74,7 +74,7 @@ alias j=z
 
 # Load chruby
 source ~/.bash/chruby.bash
-export DEFAULT_RUBY_VERSION=2.7.0
+export DEFAULT_RUBY_VERSION=2.7.1
 chruby $DEFAULT_RUBY_VERSION
 
 # RubyGems.org staging and production access via kubectl
