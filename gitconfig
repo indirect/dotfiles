@@ -62,6 +62,7 @@
 [core]
 	legacyheaders = false
 	excludesfile = ~/.gitignore
+	pager = "delta --theme='Solarized (dark)'"
 [push]
 	default = simple
 [repack]
@@ -96,3 +97,5 @@
 	helper = osxkeychain
 [protocol]
 	version = 2
+[interactive]
+	diffFilter = delta --color-only

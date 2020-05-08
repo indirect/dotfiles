@@ -29,10 +29,10 @@ setopt HIST_VERIFY
 export PAGER="less" # page with less not more
 export EDITOR="vim"
 export BROWSER="open" # opens URLs in the default OS X browser
-export LESS="-XFRf" # Fix less to not clear screen on exit, show color
+export LESS="-XRF" # Fix less to not clear screen on exit, show color, exit if < 1 screen
 export CLICOLOR=true # ls with color
 export RI="-f ansi" # ri with color
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat for manpages
 
 # switch edit mode back to emacs despite EDITOR being vim
 bindkey -e
