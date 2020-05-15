@@ -37,21 +37,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat for manpages
 # switch edit mode back to emacs despite EDITOR being vim
 bindkey -e
 
-# Load Bash external packages
-autoload -Uz bashcompinit && bashcompinit
-bash_packages=(
-  /usr/local/etc/profile.d/bash_completion.sh
-)
-for file in $bash_packages; do
-  [[ -f $file ]] && source $file
-done
-
-# Load bash shortcuts and functions
-source ~/.bash/aliases.bash
-
-# Remove bash functions we don't want
-unfunction gp
-
 # Load zsh autocompletions
 autoload -Uz compinit && compinit
 function_paths=(
