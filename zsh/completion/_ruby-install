@@ -1,0 +1,8 @@
+#compdef ruby-install
+
+compadd $(ruby-install | tail -n+2 | ruby -e '
+ARGF.read.lines.each do |l|
+  next @name = l.tr(":", "").strip if l.include?(":")
+  puts "#{@name}-#{l.strip}"
+end
+')
