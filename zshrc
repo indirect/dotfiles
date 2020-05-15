@@ -53,6 +53,9 @@ for func in $(ls ~/.zsh/functions); do
   autoload $func
 done
 
+# Load zsh aliases
+source ~/.zsh/aliases.zsh
+
 # Zoxide is like autojump or z
 eval "$(zoxide init zsh)"
 alias j=z
