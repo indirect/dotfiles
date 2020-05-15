@@ -1,2 +1,2 @@
 youtube-dl -U
-youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4" $@
+youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" $@
