@@ -1,1 +1,4 @@
-youtube-dl $@
+echo "assuming you want video"
+autoload ydlv
+set -vx
+ydlv $@
