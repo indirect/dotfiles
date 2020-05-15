@@ -38,17 +38,12 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat for manpages
 bindkey -e
 
 # Load zsh autocompletions
+fpath+=/usr/local/share/zsh/site-functions
+fpath+=~/.zsh/completion
 autoload -Uz compinit && compinit
-function_paths=(
-  /usr/local/share/zsh/site-functions
-  ~/.zsh/completion
-  ~/.zsh/functions
-)
-for function_path in $function_paths; do
-  (($fpath[(Ie)$function_path])) || fpath+=$function_path
-done
 
 # Autoload zsh functions
+fpath+=~/.zsh/functions
 for func in $(ls ~/.zsh/functions); do
   autoload $func
 done
