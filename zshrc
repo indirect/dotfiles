@@ -39,6 +39,7 @@ bindkey -e
 
 # Load zsh autocompletions
 fpath+=/usr/local/share/zsh/site-functions
+fpath+=~/.zsh/plugins/mac-zsh-completions/completions
 fpath+=~/.zsh/completion
 autoload -Uz compinit && compinit
 
