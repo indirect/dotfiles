@@ -1,5 +1,5 @@
-if [[ -f Gemfile.lock ]] && [[ $(tail -n 2 Gemfile.lock | tr "\n" " ") == "BUNDLED WITH    2"* ]]; then
-  bundle config set path .bundle --local && bundle install "$@"
-else
+if [[ -f Gemfile.lock ]] && [[ $(tail -n 2 Gemfile.lock | tr "\n" " ") == "BUNDLED WITH    1"* ]]; then
   GEM_REQUIREMENT_BUNDLER="~> 1.0" bundle install --path .bundle "$@"
+else
+  bundle config set path .bundle --local && bundle install "$@"
 fi
