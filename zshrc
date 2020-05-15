@@ -57,7 +57,7 @@ eval "$(zoxide init zsh)"
 alias j=z
 
 # Load chruby
-source ~/.bash/chruby.bash
+source ~/.zsh/chruby.zsh
 export DEFAULT_RUBY_VERSION=2.7.1
 chruby $DEFAULT_RUBY_VERSION
 
