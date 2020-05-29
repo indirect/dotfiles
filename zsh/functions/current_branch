@@ -1,0 +1,23 @@
+git_status=$(git status 2> /dev/null)
+
+# Bail if status failed, not a git repo
+if [[ $? -ne 0 ]]; then return 1; fi
+
+# Try to get the branch from the status we already have
+if [[ $git_status =~ "On branch ([[:print:]]*)" ]]; then
+  name="$match[1]"
+fi
+
+# Check the output of `branch` next
+if [[ -z "$name" ]]; then
+  name=$(git branch | grep '^*' | cut -b3- | grep -v '^(')
+fi
+
+# Fall back on name-rev
+if [[ -z "$name" ]]; then
+  name=$(git name-rev --name-only --no-undefined --always HEAD)
+  name="${name#tags/}"
+  name="${name#remotes/}"
+fi
+
+echo "$name"

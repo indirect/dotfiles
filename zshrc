@@ -75,14 +75,7 @@ zstyle ':completion:*' expand prefix suffix
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
-# oreutils aliases
-alias cat=bat
-alias l=exa
-alias la='exa -la --git'
-alias less=bat
-alias ll='exa -ll --git'
-alias lt='exa -T'
-
+# brew packages
 external_packages=(
   /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

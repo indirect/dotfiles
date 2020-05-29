@@ -1,0 +1,3 @@
+local path="$HOME/src/indirect/testcases/$@"
+mkdir -p "$path"
+cd "$path"

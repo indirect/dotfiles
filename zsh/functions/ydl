@@ -1,4 +1,6 @@
-echo "assuming you want video"
-autoload ydlv
-set -vx
-ydlv $@
+if [[ "$1" == *"youtube.com"* ]]; then
+  autoload ydlv
+  ydlv $@
+else
+  youtube-dl $@
+fi

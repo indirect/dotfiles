@@ -1,0 +1,1 @@
+ps wwwaux | egrep -i "($1|%CPU)" | grep -v grep

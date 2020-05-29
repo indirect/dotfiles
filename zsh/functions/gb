@@ -1,0 +1,5 @@
+if [[ -z "$1" ]]; then
+  git branch -v
+else
+  git branch | grep -v "^*" | fzf -f "$1" | head -n1 | xargs git checkout
+fi
