@@ -1,0 +1,12 @@
+wget \
+    --mirror \
+    --page-requisites \
+    --html-extension \
+    --continue \
+    --convert-links \
+    --execute "robots=off" \
+    --span-hosts \
+    --user-agent="" \
+    --wait 1 \
+    --random-wait \
+    "http://$@"

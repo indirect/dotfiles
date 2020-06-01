@@ -32,4 +32,3 @@ alias rc="bin/rails console"
 alias s="bin/rspec"
 alias unbz2="bunzip2"
 alias ungzip="gzip -d"
-alias wget-site='wget -m -p -c -k --user-agent="" -e robots=off --wait 1'
