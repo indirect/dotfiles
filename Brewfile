@@ -29,6 +29,9 @@ brew "zsh-syntax-highlighting"
 tap "ajeetdsouza/zoxide"
 brew "ajeetdsouza/zoxide/zoxide"
 
+tap "eth-p/software"
+brew "eth-p/software/bat-extras"
+
 tap "heroku/brew"
 brew "heroku/brew/heroku"
 
