@@ -30,5 +30,6 @@ alias mdwtf='sudo fs_usage -w -f filesys mdworker'
 alias mux="tmux-named"
 alias rc="bin/rails console"
 alias s="bin/rspec"
+alias tree="exa --tree"
 alias unbz2="bunzip2"
 alias ungzip="gzip -d"
