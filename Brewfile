@@ -88,6 +88,7 @@ mas "Due", id: 524373870
 mas "GIF Brewery", id: 1081413713
 mas "Gapplin", id: 768053424
 mas "Harvest", id: 506189836
+mas "Instapaper Save for Safari", id: 1481302432
 mas "Linea Link", id: 1233368267
 mas "Paprika", id: 1303222628
 mas "Reeder", id: 1449412482
