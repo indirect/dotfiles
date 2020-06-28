@@ -102,5 +102,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.bin:$HOME/Dropbox/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source ~/src/romkatv/powerlevel10k/powerlevel10k.zsh-theme
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
