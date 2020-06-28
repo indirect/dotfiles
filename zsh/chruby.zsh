@@ -1,5 +1,5 @@
-# Reload chruby by running
-# `chruby reload`
+# `chruby reload` to reload chruby's installed rubies
+# `chruby install X.Y` to invoke `ruby-install ruby X.Y`
 
 function reload_chruby {
   # base chruby function, aliased to original_chruby
@@ -10,6 +10,9 @@ function reload_chruby {
     # chruby wrapper that includes reloading available rubies
     function chruby {
       if [[ $1 == "reload" ]]; then
+        reload_chruby
+      elif [[ $1 == "install" ]]; then
+        ruby-install ruby "$2"
         reload_chruby
       else
         original_chruby "$@"
