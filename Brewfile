@@ -83,6 +83,9 @@ mas "Day One", id: 1055511498
 mas "Due", id: 524373870
 mas "GIF Brewery", id: 1081413713
 mas "Gapplin", id: 768053424
+mas "Harvest", id: 506189836
+mas "Linea Link", id: 1233368267
+mas "Paprika", id: 1303222628
 mas "Reeder", id: 1449412482
 mas "Simplenote", id: 692867256
 mas "Sip", id: 507257563
@@ -91,6 +94,3 @@ mas "The Unarchiver", id: 425424353
 mas "Tweetbot", id: 1384080005
 mas "Ulysses", id: 1225570693
 mas "XScope", id: 889428659
-mas "Paprika", id: 1303222628
-mas "Harvest", id: 506189836
-mas "Linea Link", id: 1233368267
