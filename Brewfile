@@ -105,3 +105,4 @@ mas "Tweetbot", id: 1384080005
 mas "Twitter", id: 1482454543
 mas "Ulysses", id: 1225570693
 mas "XScope", id: 889428659
+mas "Paprika", id: 1303222628

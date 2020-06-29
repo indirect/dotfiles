@@ -528,7 +528,8 @@
       "indirect/tap/bpb": null,
       "indirect/tap/horse_fortunes": null,
       "nodenv/nodenv/nodenv-package-json-engine": null,
-      "romkatv/powerlevel10k/powerlevel10k": null
+      "romkatv/powerlevel10k/powerlevel10k": null,
+      "eth-p/software/bat-extras": null
     },
     "tap": {
       "ajeetdsouza/zoxide": {
@@ -538,13 +539,16 @@
         "revision": "2fbdd513b72119e373505ef0c9047a8090cae7d6"
       },
       "indirect/tap": {
-        "revision": "a2f076ef0178ff24f5f240ad08b7e4b50c4c1335"
+        "revision": "f245198a79b64080dab288e6f0709f78376b6267"
       },
       "nodenv/nodenv": {
         "revision": "2ad96de94b7aa4c813f3f331105eb69ca926ae81"
       },
       "romkatv/powerlevel10k": {
         "revision": "06ad7f48760247bbb5fed8b8764e1fdc461ed8a2"
+      },
+      "eth-p/software": {
+        "revision": "83a44aeb53bbd94197ead0531ad14539897d8264"
       }
     },
     "cask": {
@@ -781,6 +785,18 @@
         "options": {
           "full_name": "vlc"
         }
+      },
+      "google-cloud-sdk": {
+        "version": "latest",
+        "options": {
+          "full_name": "google-cloud-sdk"
+        }
+      },
+      "notion": {
+        "version": "2.0.7",
+        "options": {
+          "full_name": "notion"
+        }
       }
     },
     "mas": {
@@ -792,44 +808,17 @@
         "id": "1055511498",
         "version": "4.15.2"
       },
-      "Due": {
-        "id": "524373870",
-        "version": "1.5.1"
-      },
+      "Due": null,
       "GIF Brewery": null,
-      "Gapplin": {
-        "id": "768053424",
-        "version": "1.6.2"
-      },
-      "Harvest": {
-        "id": "506189836",
-        "version": "2.2.2"
-      },
-      "Linea Link": {
-        "id": "1233368267",
-        "version": "2.8"
-      },
+      "Gapplin": null,
+      "Harvest": null,
+      "Linea Link": null,
       "Paprika": null,
-      "Reeder": {
-        "id": "1449412482",
-        "version": "4.2.5"
-      },
-      "Simplenote": {
-        "id": "692867256",
-        "version": "1.10.0"
-      },
-      "Sip": {
-        "id": "507257563",
-        "version": "4.5.2"
-      },
-      "Soulver": {
-        "id": "413965349",
-        "version": "2.7.1"
-      },
-      "The Unarchiver": {
-        "id": "425424353",
-        "version": "4.2.2"
-      },
+      "Reeder": null,
+      "Simplenote": null,
+      "Sip": null,
+      "Soulver": null,
+      "The Unarchiver": null,
       "Tweetbot": {
         "id": "1384080005",
         "version": "3.3.3"
@@ -851,7 +840,7 @@
       "big_sur": {
         "HOMEBREW_VERSION": "2.4.2",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "ef2659e099e52c11116f5e3d5fde6daf36de6c7f",
+        "Homebrew/homebrew-core": "96eed7401b8a9017c9bc2048c5051896c4ec9539",
         "CLT": "",
         "Xcode": "12.0",
         "macOS": "10.16"
