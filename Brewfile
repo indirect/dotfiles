@@ -96,6 +96,7 @@ mas "Harvest", id: 506189836
 mas "Instapaper Save for Safari", id: 1481302432
 mas "Linea Link", id: 1233368267
 mas "Paprika", id: 1303222628
+mas "Paprika", id: 1303222628
 mas "Reeder", id: 1449412482
 mas "Simplenote", id: 692867256
 mas "Sip", id: 507257563
@@ -105,4 +106,3 @@ mas "Tweetbot", id: 1384080005
 mas "Twitter", id: 1482454543
 mas "Ulysses", id: 1225570693
 mas "XScope", id: 889428659
-mas "Paprika", id: 1303222628

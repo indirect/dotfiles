@@ -808,17 +808,44 @@
         "id": "1055511498",
         "version": "4.15.2"
       },
-      "Due": null,
+      "Due": {
+        "id": "524373870",
+        "version": "1.5.1"
+      },
       "GIF Brewery": null,
-      "Gapplin": null,
-      "Harvest": null,
-      "Linea Link": null,
+      "Gapplin": {
+        "id": "768053424",
+        "version": "1.6.2"
+      },
+      "Harvest": {
+        "id": "506189836",
+        "version": "2.2.2"
+      },
+      "Linea Link": {
+        "id": "1233368267",
+        "version": "2.8"
+      },
       "Paprika": null,
-      "Reeder": null,
-      "Simplenote": null,
-      "Sip": null,
-      "Soulver": null,
-      "The Unarchiver": null,
+      "Reeder": {
+        "id": "1449412482",
+        "version": "4.2.5"
+      },
+      "Simplenote": {
+        "id": "692867256",
+        "version": "1.10.0"
+      },
+      "Sip": {
+        "id": "507257563",
+        "version": "4.5.2"
+      },
+      "Soulver": {
+        "id": "413965349",
+        "version": "2.7.1"
+      },
+      "The Unarchiver": {
+        "id": "425424353",
+        "version": "4.2.2"
+      },
       "Tweetbot": {
         "id": "1384080005",
         "version": "3.3.3"
