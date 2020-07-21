@@ -1,0 +1,23 @@
+softTabs = true
+tabSize = 2
+saveOnBlur = true
+
+# show linebreaks so trailing spaces are visible
+showInvisibles = true
+# but hide spaces
+invisiblesMap = "~ "
+
+softWrap = true
+# wrapColumn = 80 | "Use Window Frame"
+showWrapColumn = true
+
+exclude = '{$exclude,.git,build,doc/*,log/*.log,tmp/*,vendor/bundle*,node_modules,bower_components,public/packs*}'
+excludeInFolderSearch = '{$exclude,*.png,*.jpg,*.gif,*.ttf,*.eot,*.otf,*.svg,*.swf}'
+
+include = '{$include,.travis.yml}'
+
+# speed up refreshing the drawer after file changes
+fileBrowserDocumentStatus = false
+
+[ *.rb ]
+fileType = 'source.ruby'
