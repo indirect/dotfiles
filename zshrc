@@ -37,6 +37,13 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat for manpages
 # switch edit mode back to emacs despite EDITOR being vim
 bindkey -e
 
+# partial completion suggestions
+zstyle ':completion:*' list-suffixes
+zstyle ':completion:*' expand prefix suffix
+
+# case insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
 # Load zsh autocompletions
 fpath+=/usr/local/share/zsh/site-functions
 fpath+=~/.zsh/plugins/mac-zsh-completions/completions
@@ -49,8 +56,17 @@ for func in $(ls ~/.zsh/functions); do
   autoload $func
 done
 
-# Load zsh aliases
-source ~/.zsh/aliases.zsh
+packages=(
+  ~/.zsh/aliases.zsh
+  ~/.zsh/chruby.zsh
+  /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+  /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+)
+for file in $packages; do
+  [[ -f $file ]] && source $file
+done
 
 # Zoxide is like autojump or z
 if which zoxide > /dev/null; then
@@ -59,32 +75,8 @@ if which zoxide > /dev/null; then
 fi
 
 # Load chruby
-source ~/.zsh/chruby.zsh
 export DEFAULT_RUBY_VERSION=2.7.1
 chruby $DEFAULT_RUBY_VERSION
-
-# RubyGems.org staging and production access via kubectl
-export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
-
-# Google Cloud CLI
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
-# partial completion suggestions
-zstyle ':completion:*' list-suffixes
-zstyle ':completion:*' expand prefix suffix
-
-# case insensitive path-completion
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-
-# brew packages
-external_packages=(
-  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-)
-for file in $external_packages; do
-  [[ -f $file ]] && source $file
-done
 
 # prefix search history with up and down
 autoload -U up-line-or-beginning-search
@@ -94,14 +86,14 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
+# RubyGems.org staging and production access via kubectl
+export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
+
 # Keep go's installed files out of the way
 export GOPATH=$HOME/.go
 
-# Rustup and cargo bins
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# Personal bins in dropbox and dotfiles
-export PATH="$HOME/.bin:$HOME/Dropbox/bin:$PATH"
+# Personal and rust bins
+export PATH="$HOME/.bin:$HOME/.cargo/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
