@@ -53,8 +53,10 @@ done
 source ~/.zsh/aliases.zsh
 
 # Zoxide is like autojump or z
-eval "$(zoxide init zsh)"
-alias j=z
+if which zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+  alias j=z
+fi
 
 # Load chruby
 source ~/.zsh/chruby.zsh
