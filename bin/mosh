@@ -1,0 +1,13 @@
+#!/bin/bash
+
+MOSH="/usr/local/bin/mosh"
+SERVER="--server=/usr/local/bin/mosh-server"
+
+case "$1" in
+home)
+  "$MOSH" "$SERVER" --ssh="ssh -p 2222" home.arko.net ~/.bin/tmux-named main
+  ;;
+*)
+  "$MOSH" "$SERVER" "$@"
+  ;;
+esac
