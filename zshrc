@@ -59,6 +59,7 @@ done
 packages=(
   ~/.zsh/aliases.zsh
   ~/.zsh/chruby.zsh
+  ~/.zsh/fzf.zsh
   /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
   /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
   /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
