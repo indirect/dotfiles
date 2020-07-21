@@ -23,7 +23,7 @@
 	fixup = commit --amend --reuse-message=HEAD
 	ff = merge --ff-only
 	gone = "!f() { git branch -v | grep -v '*' | grep '\\[gone\\]' | awk '{print $1}' | xargs git branch -D; }; f"
-	head = diff HEAD^ HEAD
+	head = "!f() { git log -1; git diff HEAD^ HEAD; }; f"
 	hunk = add -p
 	ignored = "!git ls-files --others --exclude-standard"
 	info = remote show origin
