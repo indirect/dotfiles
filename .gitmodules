@@ -82,3 +82,6 @@
 [submodule "zsh/plugins/mac-zsh-completions"]
 	path = zsh/plugins/mac-zsh-completions
 	url = https://github.com/scriptingosx/mac-zsh-completions
+[submodule "vim/bundle/vim-polyglot"]
+	path = vim/bundle/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
