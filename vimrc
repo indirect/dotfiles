@@ -1,7 +1,3 @@
-if &shell =~# 'fish$'
-    set shell=bash
-endif
-
 runtime macros/matchit.vim " Enable matchit for textobj-rubyblock
 execute pathogen#infect()
 
