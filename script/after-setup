@@ -40,6 +40,13 @@ fi
 # Install Menlo for Powerline, etc
 cp support/fonts/* ~/Library/Fonts/
 
+# Set up git signing
+echo "You need to use Keychain Access to copy the 'bpb key' keychain entry from iCloud to your login keychain."
+echo "When you're done, come back and push enter."
+read
+bpb print | gpg --import
+echo $(gpg --list-keys --fingerprint | grep "andre@arko.net" -B 1 | head -1 | tr -d '[:space:]'):6: | gpg --import-ownertrust
+
 # Install Terminal theme
 THEME=$(cat "$ROOT/support/terminal/Solarized Dark Menlo.terminal")
 plutil -replace "Window Settings.Solarized Dark" -xml "$THEME" \

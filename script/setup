@@ -3,8 +3,8 @@
 puts "linking dotfiles..."
 system File.join(__dir__, "link")
 
+puts "##" * 40
+puts
 puts "Don't forget to run ~/.dotfiles/script/after-setup once the strap is complete!"
-
-puts "You'll also need to copy the 'bpb key' keychain entry from the iCloud to login, then run:"
-puts %{  bpb print | gpg --import}
-puts %{  echo $(gpg --list-keys --fingerprint | grep "andre@arko.net" -B 1 | head -1 | tr -d '[:space:]'):6: | gpg --import-ownertrust}
+puts
+puts "##" * 40
