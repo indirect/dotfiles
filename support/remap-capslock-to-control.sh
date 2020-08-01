@@ -1,20 +1,18 @@
 #!/bin/bash
+
+# Remap (internal, at least) capslock to control. Really.
+# hidutil & values from https://developer.apple.com/library/archive/technotes/tn2450/_index.html
+#   (via https://dchakarov.com/blog/macbook-remap-keys/)
+
+caps_lock="30064771129" # 0x700000039
+left_ctrl="30064771300" # 0x7000000E0
+
 set -vx
+# remap immediately (will expire on logout)
+hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":'"$caps_lock"',"HIDKeyboardModifierMappingDst":'"$left_ctrl"'}]}'
+set +vx
 
-# Remap capslock to control. Really.
-#
-# list of keyboards plugged in to this computer
+# configure remap for future logins (settings are per-vendor/product ID, applied by the OS)
 keyboard_ids=$(ioreg -c AppleHSSPIInterface -r | grep -E 'idVendor|idProduct' | awk '{print $4}' | tac | paste -s -d '-\n' - | sort | uniq)
-
-# check if the keyboards are already remapped
-echo $keyboard_ids | xargs -I{} sh -c 'defaults -currentHost read -g "com.apple.keyboard.modifiermapping.{}-0" | grep "Dst = 30064771300" > /dev/null'
-
-if [[ $? -ne 0 ]]; then
-  # remap the keyboards
-  echo $keyboard_ids | xargs -I{} defaults -currentHost write -g "com.apple.keyboard.modifiermapping.{}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771300</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771129</integer></dict>"
-fi
-
-mapping=$(hidutil property --get "UserKeyMapping")
-if [[ "$mapping" == "(null)" ]]; then
-  hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}'
-fi
+set -vx
+echo $keyboard_ids | xargs -I{} defaults -currentHost write -g "com.apple.keyboard.modifiermapping.{}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>$left_ctrl</integer><key>HIDKeyboardModifierMappingSrc</key><integer>$caps_lock</integer></dict>"
