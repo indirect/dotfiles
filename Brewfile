@@ -23,11 +23,9 @@ brew "source-highlight"
 brew "ssh-copy-id"
 brew "tmux"
 brew "wget"
+brew "zoxide"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
-
-tap "ajeetdsouza/zoxide"
-brew "ajeetdsouza/zoxide/zoxide"
 
 tap "eth-p/software"
 brew "eth-p/software/bat-extras"
