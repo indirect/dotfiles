@@ -41,7 +41,7 @@ fi
 cp support/fonts/* ~/Library/Fonts/
 
 # Install Terminal theme
-THEME=$(cat "$ROOT/support/terminal/Solarized Dark.plist")
+THEME=$(cat "$ROOT/support/terminal/Solarized Dark Menlo.terminal")
 plutil -replace "Window Settings.Solarized Dark" -xml "$THEME" \
   ~/Library/Preferences/com.apple.Terminal.plist
 defaults write com.apple.Terminal "Default Window Settings" -string "Solarized Dark"
