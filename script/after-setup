@@ -37,6 +37,9 @@ if [[ -f /usr/local/bin/youtube-dl ]]; then
   cp /usr/local/bin/youtube-dl ~/.bin/
 fi
 
+# Install Menlo for Powerline, etc
+cp support/fonts/* ~/Library/Fonts/
+
 # Install Terminal theme
 THEME=$(cat "$ROOT/support/terminal/Solarized Dark.plist")
 plutil -replace "Window Settings.Solarized Dark" -xml "$THEME" \
