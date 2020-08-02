@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require "csv"
+require "time"
+
+def payee(r)
+  case r["Type"]
+  when "Payment"
+   r["Amount (total)"][0] == "-" ? r["To"] : r["From"]
+  when "Charge"
+    r["Amount (total)"][0] == "-" ? r["From"] : r["To"]
+  when "Standard Transfer"
+    r["Destination"]
+  else
+  end
+end
+
+def date(r)
+  Time.parse(r["Datetime"]).to_date.iso8601
+end
+
+infile = ARGV.first || "venmo_statement.csv"
+outfile = File.basename(infile, File.extname(infile)) + "_ynab4.csv"
+
+CSV.open(outfile, "wb") do |out|
+  out << %w[Date Payee Memo Amount]
+
+  CSV.foreach(infile, headers: true) do |r|
+    next unless r["ID"]
+
+    if r["Funding Source"]
+      out << [date(r), r["Funding Source"], nil, r["Amount (total)"].gsub(/\A-/, "+")]
+    end
+
+    out << [
+      date(r),
+      payee(r),
+      r["Note"],
+      r["Amount (total)"]
+    ]
+  end
+end
