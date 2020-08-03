@@ -38,6 +38,9 @@ puts "linking KeyBindings"
 `[[ -d ~/Library/KeyBindings ]] && mv ~/Library/KeyBindings ~/OldKeyBindings`
 `[[ -L ~/Library/KeyBindings ]] && ln -s #{File.expand_path "support/KeyBindings"} ~/Library/KeyBindings`
 
+puts "linking oh-my-tmux config"
+`[[ -L ~/.tmux.conf ]] || ln -s #{File.expand_path "support/tmux/.tmux.conf"} #{File.join(home, ".tmux.conf")}`
+
 dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
 parent_dir = File.expand_path("../..", __FILE__)
 unless dotfiles_dir == parent_dir
