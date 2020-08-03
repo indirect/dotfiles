@@ -179,8 +179,8 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=' ⧉ #S '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} ,#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,} , #{?#{==:#{username},root},#[fg=red],}#{username}#[inherit] | #{hostname} '
+tmux_conf_theme_status_left=' ⧉ #{hostname} '
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} ,#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,} , #{?#{==:#{username},root},#[fg=red],}#{username}#[inherit] | #S '
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000' # black
@@ -304,7 +304,7 @@ bind -r n next-window     # select next window
 bind -r C-p previous-window # select previous window
 bind -r C-n next-window     # select next window
 
-if-shell 'test -n "$SSH_CLIENT"' \
-  "tmux_conf_theme_status_left_bg='#ff00af' \
-  tmux_conf_theme_status_left=' ⧉ #{hostname} ' \
-  tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} ,#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,} , #{?#{==:#{username},root},#[fg=red],}#{username}#[inherit] | #S ' "
+%if #{!=:#{SSH_CONNECTION},Finn}
+  tmux_conf_theme_status_left_bg='#ff00af'
+  tmux_conf_theme_status_left_fg='#ffffff'
+%endif
