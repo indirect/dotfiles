@@ -292,3 +292,8 @@ bind C-s send-prefix
 
 # move status line to top
 #set -g status-position top
+
+unbind C-h
+unbind C-l
+bind -r p previous-window # select previous window
+bind -r n next-window     # select next window
