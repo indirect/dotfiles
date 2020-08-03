@@ -287,7 +287,7 @@ set -g history-limit 10000
 
 # replace C-b/C-a with C-s
 unbind C-b
-set -g prefix2
+set -ug prefix2
 unbind C-a
 set -g prefix C-s
 bind C-s send-prefix
