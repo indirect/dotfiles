@@ -295,5 +295,9 @@ bind C-s send-prefix
 
 unbind C-h
 unbind C-l
+unbind C-n
+unbind C-p
 bind -r p previous-window # select previous window
 bind -r n next-window     # select next window
+bind -r C-p previous-window # select previous window
+bind -r C-n next-window     # select next window
