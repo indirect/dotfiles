@@ -319,3 +319,6 @@ bind -n S-Pagedown send-keys Pagedown
 
 # allow tmux to bleed backscroll into the native terminal app for selection/copying
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+
+# disable escape delay
+set -sg escape-time 0
