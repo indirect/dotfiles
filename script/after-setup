@@ -47,6 +47,9 @@ fi
 # remap capslock to control
 $ROOT/support/remap-capslock-to-control.sh
 
+# add dvorak to keyboard layouts
+defaults import com.apple.HIToolbox $ROOT/support/defaults/com.apple.HIToolbox.plist
+
 # Install Menlo for Powerline, etc
 cp support/fonts/* ~/Library/Fonts/
 
