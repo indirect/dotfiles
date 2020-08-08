@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require "fileutils"
 
-excludes = %w[
+EXCLUDES = %w[
   LICENSE
   README.md
   rubocop.yml
@@ -10,36 +10,46 @@ excludes = %w[
   support
 ]
 
-home = File.expand_path("~")
-glob = File.expand_path("../../*", __FILE__)
-old_dotfiles = File.join(home, "old_dotfiles")
+def link(from:, to:, prefix: "", dupes_to: "~/old_dotfiles")
+  srcdir = File.expand_path(*from)
+  destdir = File.expand_path(*to)
+  dupes_to = File.expand_path(dupes_to)
 
-Dir[glob].each do |path|
-  file = File.basename(path)
-  next if excludes.include?(file)
-  target = File.join(home, ".#{file}")
-  if File.symlink?(target)
-    print "removing link #{file}... "
-    FileUtils.rm(target)
-  elsif File.exist?(target)
-    print "moving #{file} to #{old_dotfiles}... "
-    FileUtils.mkdir_p(old_dotfiles) unless File.exist?(old_dotfiles)
-    FileUtils.mv target, File.join(old_dotfiles, file)
+  glob = File.join(srcdir, "*")
+  Dir[glob].each do |path|
+    file = File.basename(path)
+    next if EXCLUDES.include?(file)
+
+    target = File.join(destdir, "#{prefix}#{file}")
+    if File.symlink?(target)
+      print "removing link #{file}... "
+      FileUtils.rm(target)
+    elsif File.exist?(target)
+      print "moving #{file} to #{dupes_to}... "
+      FileUtils.mkdir_p(dupes_to) unless File.exist?(dupes_to)
+      FileUtils.mv target, File.join(dupes_to, file)
+    end
+
+    puts "linking #{file}"
+    `ln -s #{path} #{target}`
   end
-  puts "linking #{file}"
-  `ln -s #{path} #{target}`
 end
+
+link(from: ["../..", __FILE__], to: "~", prefix: ".")
 
 puts "linking ssh/config"
 `[[ -d ~/.ssh ]] || ( mkdir ~/.ssh && chmod 0700 ~/.ssh )`
-`[[ -L ~/.ssh/config ]] || ln -s #{File.expand_path "ssh/config"} #{File.join(home, ".ssh/config")}`
+`[[ -L ~/.ssh/config ]] || ln -s #{File.expand_path "ssh/config"} #{File.expand_path("~/.ssh/config")}`
 
 puts "linking KeyBindings"
 `[[ -d ~/Library/KeyBindings ]] && mv ~/Library/KeyBindings ~/OldKeyBindings`
 `[[ -L ~/Library/KeyBindings ]] && ln -s #{File.expand_path "support/KeyBindings"} ~/Library/KeyBindings`
 
+puts "linking Preferences"
+link(from: ["../../support/Preferences", __FILE__], to: "~/Library/Preferences")
+
 puts "linking oh-my-tmux config"
-`[[ -L ~/.tmux.conf ]] || ln -s #{File.expand_path "support/tmux/.tmux.conf"} #{File.join(home, ".tmux.conf")}`
+`[[ -L ~/.tmux.conf ]] || ln -s #{File.expand_path "support/tmux/.tmux.conf"} #{File.expand_path("~/.tmux.conf")}`
 
 dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
 parent_dir = File.expand_path("../..", __FILE__)
