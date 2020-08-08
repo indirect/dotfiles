@@ -18,7 +18,7 @@ fi
 
 # Open the Backblaze installer
 if [[ ! -d /Library/PreferencePanes/BackblazeBackup.prefPane ]]; then
-  open -a "/usr/local/Caskroom/backblaze/latest/Backblaze Installer.app"
+  open -a /usr/local/Caskroom/backblaze/*/Backblaze\ Installer.app
 fi
 
 # Open the Little Snitch installer
