@@ -304,7 +304,15 @@ bind -r n next-window     # select next window
 bind -r C-p previous-window # select previous window
 bind -r C-n next-window     # select next window
 
+# change host bg color if on a remote connection
 %if "#{!=:#{SSH_CONNECTION},}"
   tmux_conf_theme_status_left_bg='#ff00af'
   tmux_conf_theme_status_left_fg='#ffffff'
 %endif
+
+# jump into backscroll on pageup
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+bind -n Pageup if-shell "$is_vim" "send-keys Pageup" "copy-mode -u; send-keys Pageup"
+bind -n S-Pageup if-shell "$is_vim" "send-keys Pageup" "copy-mode -u; send-keys Pageup"
+bind -n S-Pagedown send-keys Pagedown
