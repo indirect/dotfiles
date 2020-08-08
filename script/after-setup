@@ -32,6 +32,13 @@ if [[ ! -d ~/.cargo ]]; then
   curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path --default-toolchain nightly
 fi
 
+# Install the current default Ruby version
+eval $(grep DEFAULT_RUBY_VERSION= zshrc)
+if [[ ! -d "$HOME/.rubies/ruby-$DEFAULT_RUBY_VERSION" ]]; then
+  chruby install "$DEFAULT_RUBY_VERSION"
+  chruby reload
+fi
+
 # Copy youtube-dl to local bin so it can self-update
 if [[ -f /usr/local/bin/youtube-dl ]]; then
   cp /usr/local/bin/youtube-dl ~/.bin/
