@@ -316,3 +316,6 @@ is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
 bind -n Pageup if-shell "$is_vim" "send-keys Pageup" "copy-mode -u; send-keys Pageup"
 bind -n S-Pageup if-shell "$is_vim" "send-keys Pageup" "copy-mode -u; send-keys Pageup"
 bind -n S-Pagedown send-keys Pagedown
+
+# allow tmux to bleed backscroll into the native terminal app for selection/copying
+set -g terminal-overrides 'xterm*:smcup@:rmcup@'
