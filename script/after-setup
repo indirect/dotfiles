@@ -44,6 +44,9 @@ if [[ -f /usr/local/bin/youtube-dl ]]; then
   cp /usr/local/bin/youtube-dl ~/.bin/
 fi
 
+# remap capslock to control
+$ROOT/support/remap-capslock-to-control.sh
+
 # Install Menlo for Powerline, etc
 cp support/fonts/* ~/Library/Fonts/
 
