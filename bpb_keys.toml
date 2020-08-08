@@ -4,4 +4,4 @@ userid = "André Arko <andre@arko.net>"
 timestamp = 1534364503
 
 [secret]
-program = "bpb-key"
+program = "/Users/andre/.bin/bpb-key"
