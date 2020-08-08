@@ -87,13 +87,17 @@ cask "transmit"
 cask "vlc"
 
 mas "1Blocker", id: 1107421413
+mas "Apple Developer", id: 640199958
+mas "Boop", id: 1518425043
 mas "Day One", id: 1055511498
 mas "Due", id: 524373870
 mas "GIF Brewery", id: 1081413713
 mas "Gapplin", id: 768053424
 mas "Harvest", id: 506189836
 mas "Instapaper Save for Safari", id: 1481302432
+mas "Keys for Safari", id: 1494642810
 mas "Linea Link", id: 1233368267
+mas "Meeter", id: 1510445899
 mas "Paprika", id: 1303222628
 mas "Paprika", id: 1303222628
 mas "Reeder", id: 1449412482
@@ -101,7 +105,9 @@ mas "Simplenote", id: 692867256
 mas "Sip", id: 507257563
 mas "Soulver", id: 413965349
 mas "The Unarchiver", id: 425424353
+mas "ToothFairy", id: 1191449274
 mas "Tweetbot", id: 1384080005
 mas "Twitter", id: 1482454543
 mas "Ulysses", id: 1225570693
 mas "XScope", id: 889428659
+mas "Xcode", id: 497799835
