@@ -56,7 +56,10 @@ echo $(gpg --list-keys --fingerprint | grep "andre@arko.net" -B 1 | head -1 | tr
 
 # Open the stuff that needs to be configured
 open -a "Alfred 4"
+open -a "Bartender 3"
 open -a "Dropbox"
+open -a "Due"
+open -a "SoundSource"
 open -a "Hammerspoon"
 open -a "Keyboard Maestro"
 open -a "MenuMeters"
