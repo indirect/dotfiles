@@ -54,6 +54,13 @@ read
 bpb print | gpg --import
 echo $(gpg --list-keys --fingerprint | grep "andre@arko.net" -B 1 | head -1 | tr -d '[:space:]'):6: | gpg --import-ownertrust
 
+# Open the stuff that needs to be configured
+open -a "Alfred 4"
+open -a "Dropbox"
+open -a "Hammerspoon"
+open -a "Keyboard Maestro"
+open -a "MenuMeters"
+
 # Install Terminal theme
 THEME=$(cat "$ROOT/support/terminal/Solarized Dark Menlo.terminal")
 plutil -replace "Window Settings.Solarized Dark" -xml "$THEME" \
