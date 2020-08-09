@@ -86,6 +86,9 @@ cask "textmate"
 cask "transmit"
 cask "vlc"
 
+cask "indirect/tap/font-menlo-nerd-font-p10k"
+cask "indirect/tap/font-sf-mono-nerd-font"
+
 mas "1Blocker", id: 1107421413
 mas "Apple Developer", id: 640199958
 mas "Boop", id: 1518425043
