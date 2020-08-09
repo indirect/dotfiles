@@ -53,7 +53,7 @@ endif
 
 if has("gui_running")
   set gcr=a:blinkon0 " Stop blinking the cursor ahhhhh
-  set guifont=MenloForPowerline-Regular:h14
+  set guifont=Menlo-NF-Regular:h14
   colorscheme made-of-code
 else
   let g:solarized_termtrans = 1
