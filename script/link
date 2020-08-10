@@ -6,6 +6,7 @@ EXCLUDES = %w[
   Brewfile.lock.json
   LICENSE
   README.md
+  config
   rubocop.yml
   script
   ssh
@@ -56,6 +57,9 @@ link_file(from: "ssh/config", to: "~/.ssh/config")
 
 puts "linking KeyBindings"
 link_file(from: "support/KeyBindings", to: "~/Library/KeyBindings")
+
+puts "linking .configs"
+link(from: "config", to: "~/.config")
 
 puts "linking Preferences"
 link(from: "support/Preferences", to: "~/Library/Preferences")
