@@ -849,6 +849,12 @@
         "options": {
           "full_name": "indirect/tap/font-menlo-nerd-font-p10k"
         }
+      },
+      "fork": {
+        "version": "1.0.96.1",
+        "options": {
+          "full_name": "fork"
+        }
       }
     },
     "mas": {
