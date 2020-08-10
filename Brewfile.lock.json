@@ -194,22 +194,22 @@
         }
       },
       "git-delta": {
-        "version": "0.4.0",
+        "version": "0.4.1",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/git-delta-0.4.0.catalina.bottle.tar.gz",
-              "sha256": "9e62a85823ec58d4c6bf993f93438e36b73337df39252d4b41a1a2e9b9d910b5"
+              "url": "https://homebrew.bintray.com/bottles/git-delta-0.4.1.catalina.bottle.tar.gz",
+              "sha256": "d963089b08030f60e813d1d42ba505ee0874a40050d8ca9fc0dd3e1772b464cf"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/git-delta-0.4.0.mojave.bottle.tar.gz",
-              "sha256": "76dc159a257bdac33542c3c8acd2517f2a7aba152d2ec614d17f44cb797d8360"
+              "url": "https://homebrew.bintray.com/bottles/git-delta-0.4.1.mojave.bottle.tar.gz",
+              "sha256": "c09ae0331cccd3007eb3b0420efbd78008a252b19048ea359c76a524c5207a3a"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/git-delta-0.4.0.high_sierra.bottle.tar.gz",
-              "sha256": "978cdcec12f9d5deb82dd546b103c1c975bf420dfed25a699aad4994f77a29ae"
+              "url": "https://homebrew.bintray.com/bottles/git-delta-0.4.1.high_sierra.bottle.tar.gz",
+              "sha256": "9e3514f8c1203ab8119c3a670ada98b08f30139c2308e920cdb131c26e7e66fb"
             }
           }
         }
@@ -573,7 +573,7 @@
         "revision": "73895eaeed3fb0b3cd90d3dfddb8cfe4178084b1"
       },
       "indirect/tap": {
-        "revision": "f245198a79b64080dab288e6f0709f78376b6267"
+        "revision": "440d0261640cbcec425e0e1604dde7d350811b11"
       },
       "nodenv/nodenv": {
         "revision": "e4ce3a87c35336c3d3b8209db80fc25b0722afa4"
@@ -831,6 +831,24 @@
         "options": {
           "full_name": "notion"
         }
+      },
+      "font-meslo-nerd-font-p10k": {
+        "version": "54fbc18ea84d15807f921146c1689539b62a6061",
+        "options": {
+          "full_name": "indirect/tap/font-meslo-nerd-font-p10k"
+        }
+      },
+      "font-sf-mono-nerd-font": {
+        "version": "15.0d5e1",
+        "options": {
+          "full_name": "indirect/tap/font-sf-mono-nerd-font"
+        }
+      },
+      "font-menlo-nerd-font-p10k": {
+        "version": "ebd007bf58b8b58f2901e7ea6479efc0f0aae710",
+        "options": {
+          "full_name": "indirect/tap/font-menlo-nerd-font-p10k"
+        }
       }
     },
     "mas": {
@@ -925,9 +943,9 @@
         "macOS": "10.16"
       },
       "catalina": {
-        "HOMEBREW_VERSION": "2.4.9-319-ge0ffc45",
+        "HOMEBREW_VERSION": "2.4.9-336-g264de96",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "b32b411c56af9e76e699616b7c7408b98466edc4",
+        "Homebrew/homebrew-core": "6eb30ff0120677dee0e9e37dbe64628df9b574bd",
         "CLT": "11.5.0.0.1.1588476445",
         "Xcode": "11.6",
         "macOS": "10.15.6"
