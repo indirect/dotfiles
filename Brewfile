@@ -44,6 +44,9 @@ brew "nodenv/nodenv/nodenv-package-json-engine"
 tap "romkatv/powerlevel10k"
 brew "romkatv/powerlevel10k/powerlevel10k"
 
+tap "puma/puma"
+brew "puma/puma/puma-dev"
+
 cask "1password"
 cask "acorn"
 cask "alfred"
