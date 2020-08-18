@@ -1,6 +1,7 @@
 alias ...="cd .. ; cd ..; ls"
 alias ..="cd ..; ls"
 alias b="bundle exec"
+alias dc="docker-compose"
 alias dsrm="find . -name ".DS_Store" -exec rm \{} \;"
 alias f="fd"
 alias g="grep -i" #case insensitive grep
