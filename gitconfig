@@ -99,3 +99,5 @@
 	version = 2
 [interactive]
 	diffFilter = delta --color-only
+[pull]
+	rebase = true
