@@ -50,6 +50,10 @@ $ROOT/support/remap-capslock-to-control.sh
 # add dvorak to keyboard layouts
 defaults import com.apple.HIToolbox $ROOT/support/defaults/com.apple.HIToolbox.plist
 
+# Set up bottom-left corner to sleep display
+defaults write com.apple.dock wvous-bl-corner -int 10
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
 # set up puma-dev
 sudo puma-dev -setup
 puma-dev -install
