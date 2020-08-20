@@ -13,6 +13,7 @@ brew "htop-osx"
 brew "hub"
 brew "jq"
 brew "magic-wormhole"
+brew "mosh"
 brew "nodenv"
 brew "ponysay"
 brew "postgresql", restart_service: :changed
