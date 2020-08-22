@@ -48,6 +48,9 @@ brew "romkatv/powerlevel10k/powerlevel10k"
 tap "puma/puma"
 brew "puma/puma/puma-dev"
 
+tap "smudge/smudge"
+brew "nightlight"
+
 cask "1password"
 cask "acorn"
 cask "alfred"

@@ -54,6 +54,9 @@ defaults import com.apple.HIToolbox $ROOT/support/defaults/com.apple.HIToolbox.p
 defaults write com.apple.dock wvous-bl-corner -int 10
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
+# turn on night shift
+nightlight schedule start
+
 # set up puma-dev
 sudo puma-dev -setup
 puma-dev -install
