@@ -28,7 +28,7 @@ CSV.open(outfile, "wb") do |out|
   CSV.foreach(infile, headers: true) do |r|
     next unless r["ID"]
 
-    if r["Funding Source"]
+    if r["Funding Source"] && r["Funding Source"] != "Venmo balance"
       out << [date(r), r["Funding Source"], nil, r["Amount (total)"].gsub(/\A-/, "+")]
     end
 
