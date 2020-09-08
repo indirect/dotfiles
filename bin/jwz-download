@@ -80,7 +80,7 @@ Dir.mktmpdir do |path|
     system("AtomicParsley #{e(fa)} \
          --artist #{e(t[:artist])}\
          --title #{e(t[:title])}\
-         --album #{e(name)}\
+         --album #{e(name.tr('Ø', '0'))}\
          --year #{e(t[:year])}\
          --tracknum #{t[:number]}/#{tracklist.size} \
          --albumArtist jwz \
