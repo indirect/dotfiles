@@ -55,11 +55,7 @@ end.compact
 
 add_to_itunes = Dir.glob(File.expand_path("~/Music/*/*/Automatically\ Add\ to\ *")).first || raise("oh no can't add to itunes")
 
-if File.directory?("/Volumes/Media/Music/jwz mixtapes")
-  base = "/Volumes/Media/Music/jwz mixtapes"
-else
-  base = File.expand_path("~/Downloads")
-end
+base = File.expand_path("~/Downloads")
 dir = File.join(base, name.tr('Ø', '0'))
 FileUtils.mkdir_p(dir)
 Dir.chdir(dir)
@@ -92,6 +88,10 @@ Dir.mktmpdir do |path|
   end
   # Copy the results back to downloads for inspection:
   # FileUtils.mv(tmpdir, File.expand_path("~/Downloads"))
+end
+
+if File.directory?("/Volumes/Media/Music/jwz mixtapes")
+  FileUtils.cp_r(dir, "/Volumes/Media/Music/jwz mixtapes")
 end
 
 puts name
