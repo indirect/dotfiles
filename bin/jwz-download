@@ -70,6 +70,8 @@ Dir.mktmpdir do |path|
 
   Dir["*.mp4"].sort.each_with_index do |f, i|
     t = tracklist.fetch(i)
+    FileUtils.mv(f, f.gsub("+", "-")) if f.include?("+")
+    f = f.gsub("+", "-")
     fa = File.join(tmpdir, File.basename(f, File.extname(f)) + ".m4a")
     system("MP4Box -add #{e(f)}#audio #{e(fa)}") || abort("Audio extraction failed")
 
