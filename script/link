@@ -49,30 +49,34 @@ def link(from:, to:, prefix: "")
   end
 end
 
-link(from: ".", to: "~", prefix: ".")
+if ARGV.empty?
+  link(from: ".", to: "~", prefix: ".")
 
-puts "linking ssh/config"
-`[[ -d ~/.ssh ]] || ( mkdir ~/.ssh && chmod 0700 ~/.ssh )`
-link_file(from: "ssh/config", to: "~/.ssh/config")
+  puts "linking ssh/config"
+  `[[ -d ~/.ssh ]] || ( mkdir ~/.ssh && chmod 0700 ~/.ssh )`
+  link_file(from: "ssh/config", to: "~/.ssh/config")
 
-puts "linking KeyBindings"
-link_file(from: "support/KeyBindings", to: "~/Library/KeyBindings")
+  puts "linking KeyBindings"
+  link_file(from: "support/KeyBindings", to: "~/Library/KeyBindings")
 
-puts "linking .configs"
-link(from: "config", to: "~/.config")
+  puts "linking .configs"
+  link_file(from: "config/karabiner", to: "~/.config/karabiner")
 
-puts "linking Preferences"
-link(from: "support/Preferences", to: "~/Library/Preferences")
+  puts "linking Preferences"
+  link(from: "support/Preferences", to: "~/Library/Preferences")
 
-puts "linking oh-my-tmux config"
-`[[ -L ~/.tmux.conf ]] || ln -s #{File.expand_path "support/tmux/.tmux.conf"} #{File.expand_path("~/.tmux.conf")}`
+  puts "linking oh-my-tmux config"
+  `[[ -L ~/.tmux.conf ]] || ln -s #{File.expand_path "support/tmux/.tmux.conf"} #{File.expand_path("~/.tmux.conf")}`
 
-dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
-parent_dir = File.expand_path("../..", __FILE__)
-unless dotfiles_dir == parent_dir
-  puts "moving dotfiles checkout..."
-  `[[ -d ~/src/indirect ]] || mkdir -p ~/src/indirect`
-  `[[ -d ~/src/indirect/dotfiles ]] || mv ~/.dotfiles ~/src/indirect/dotfiles`
-  `[[ -d ~/.dotfiles ]] && rm -rf ~/.dotfiles`
-  `[[ -L ~/.dotfiles ]] || ln -s ~/src/indirect/dotfiles ~/.dotfiles`
+  dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
+  parent_dir = File.expand_path("../..", __FILE__)
+  unless dotfiles_dir == parent_dir
+    puts "moving dotfiles checkout..."
+    `[[ -d ~/src/indirect ]] || mkdir -p ~/src/indirect`
+    `[[ -d ~/src/indirect/dotfiles ]] || mv ~/.dotfiles ~/src/indirect/dotfiles`
+    `[[ -d ~/.dotfiles ]] && rm -rf ~/.dotfiles`
+    `[[ -L ~/.dotfiles ]] || ln -s ~/src/indirect/dotfiles ~/.dotfiles`
+  end
+else
+  link_file from: ARGV.fetch(0), to: ARGV.fetch(1)
 end
