@@ -80,7 +80,7 @@ if which zoxide > /dev/null; then
 fi
 
 # Load chruby
-export DEFAULT_RUBY_VERSION=2.7.1
+export DEFAULT_RUBY_VERSION=3.0.0
 chruby $DEFAULT_RUBY_VERSION
 
 # prefix search history with up and down
