@@ -111,7 +111,6 @@ mas "Keys for Safari", id: 1494642810
 mas "Linea Link", id: 1233368267
 mas "Meeter", id: 1510445899
 mas "Paprika", id: 1303222628
-mas "Paprika", id: 1303222628
 mas "Reeder", id: 1449412482
 mas "Simplenote", id: 692867256
 mas "Sip", id: 507257563
