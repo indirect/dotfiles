@@ -1117,10 +1117,10 @@
   function prompt_ruby() {
     case $RUBY_VERSION in
       "") icon="◽️";;
-      2.7.?) icon="💠";;
-      2.6.?) icon="🔹";;
-      2.[4-5].?) icon="🔸";;
-      2.[0-3].?) icon="🔺";;
+      3.0.?) icon="💠";;
+      2.7.?) icon="🔹";;
+      2.[5-6].?) icon="🔸";;
+      2.[0-4].?) icon="🔺";;
       1.[8-9].?) icon="🔻";;
       *) icon="❓ ($RUBY_VERSION)";;
     esac
