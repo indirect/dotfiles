@@ -51,10 +51,6 @@ function ruby_status {
 }
 
 function dotfiles_status_colorize {
-  if [[ "us-aarko" == "$HOSTNAME" ]]; then
-    printf $1; return;
-  fi
-
   dotfiles="$HOME/src/indirect/dotfiles"
   status_color "$($GIT --git-dir=$dotfiles/.git --work-tree=$dotfiles status 2> /dev/null)"
   printf $1
