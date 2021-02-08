@@ -44,8 +44,12 @@ zstyle ':completion:*' expand prefix suffix
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
+# set up homebrew
+export BREW_PREFIX=$([[ "$(arch)" == "arm64" ]] && echo "/opt/homebrew" || echo "/usr/local")
+[[ "$PATH" != "*$BREW_PREFIX/bin*" ]] && export PATH="$BREW_PREFIX/bin:$PATH"
+
 # Load zsh autocompletions
-fpath+=/usr/local/share/zsh/site-functions
+fpath+="$BREW_PREFIX/share/zsh/site-functions"
 fpath+=~/.zsh/plugins/mac-zsh-completions/completions
 fpath+=~/.zsh/completion
 autoload -Uz compinit && compinit
@@ -60,10 +64,10 @@ packages=(
   ~/.zsh/aliases.zsh
   ~/.zsh/chruby.zsh
   ~/.zsh/fzf.zsh
-  /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-  /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  "$BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+  "$BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+  "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 )
 for file in $packages; do
   [[ -f $file ]] && source $file
@@ -97,5 +101,5 @@ export GOPATH=$HOME/.go
 export PATH="$HOME/.bin:$HOME/.cargo/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source "$BREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
