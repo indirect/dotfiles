@@ -44,16 +44,6 @@ zstyle ':completion:*' expand prefix suffix
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
-# set up homebrew
-export BREW_PREFIX=$([[ "$(arch)" == "arm64" ]] && echo "/opt/homebrew" || echo "/usr/local")
-[[ "$PATH" != "*$BREW_PREFIX/bin*" ]] && export PATH="$BREW_PREFIX/bin:$PATH"
-
-# Load zsh autocompletions
-fpath+="$BREW_PREFIX/share/zsh/site-functions"
-fpath+=~/.zsh/plugins/mac-zsh-completions/completions
-fpath+=~/.zsh/completion
-autoload -Uz compinit && compinit
-
 # Autoload zsh functions
 fpath+=~/.zsh/functions
 for func in $(ls ~/.zsh/functions); do
@@ -61,7 +51,9 @@ for func in $(ls ~/.zsh/functions); do
 done
 
 packages=(
+  ~/.zsh/homebrew.zsh
   ~/.zsh/aliases.zsh
+  ~/.zsh/autocompletions.zsh
   ~/.zsh/chruby.zsh
   ~/.zsh/fzf.zsh
   "$BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
@@ -78,10 +70,6 @@ if which zoxide > /dev/null; then
   eval "$(zoxide init zsh)"
   alias j=z
 fi
-
-# Load chruby
-export DEFAULT_RUBY_VERSION=3.0.0
-chruby $DEFAULT_RUBY_VERSION
 
 # prefix search history with up and down
 autoload -U up-line-or-beginning-search
