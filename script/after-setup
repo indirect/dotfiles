@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+export BREW_PREFIX=$(brew --prefix)
+
 # Pull all the submodules
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null 2>&1 && pwd )"
 
@@ -18,13 +21,7 @@ fi
 
 # Open the Backblaze installer
 if [[ ! -d /Library/PreferencePanes/BackblazeBackup.prefPane ]]; then
-  open -a /usr/local/Caskroom/backblaze/*/Backblaze\ Installer.app
-fi
-
-# Open the Little Snitch installer
-if [[ -e $(ls /usr/local/Caskroom/little-snitch/*/*.dmg) ]]; then
-  hdiutil attach /usr/local/Caskroom/little-snitch/*/*.dmg
-  open /Volumes/Little\ Snitch*/Little\ Snitch\ Installer.app
+  open -a "$BREW_PREFIX/Caskroom/backblaze/*/*.app"
 fi
 
 # Install rustup, cargo, and rust nightly
@@ -40,8 +37,8 @@ if [[ ! -d "$HOME/.rubies/ruby-$DEFAULT_RUBY_VERSION" ]]; then
 fi
 
 # Copy youtube-dl to local bin so it can self-update
-if [[ -f /usr/local/bin/youtube-dl ]]; then
-  cp /usr/local/bin/youtube-dl ~/.bin/
+if [[ -f "$BREW_PREFIX/bin/youtube-dl" ]]; then
+  cp "$BREW_PREFIX/bin/youtube-dl" ~/.bin/
 fi
 
 # remap capslock to control
@@ -70,14 +67,16 @@ echo $(gpg --list-keys --fingerprint | grep "andre@arko.net" -B 1 | head -1 | tr
 
 # Open the stuff that needs to be configured
 open -a "Alfred 4"
-open -a "Bartender 3"
+open -a "Bartender 4"
 open -a "Dropbox"
 open -a "Due"
-open -a "SoundSource"
 open -a "Hammerspoon"
+open -a "Hookshot"
 open -a "Karabiner-Elements"
 open -a "Keyboard Maestro"
+open -a "Little Snitch"
 open -a "MenuMeters"
+open -a "SoundSource"
 
 # Install Terminal theme
 THEME=$(cat "$ROOT/support/terminal/Solarized Dark Menlo NF.terminal")
