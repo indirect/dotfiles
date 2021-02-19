@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MOSH="/usr/local/bin/mosh"
+MOSH="${BREW_PREFIX-:/usr/local}/bin/mosh"
 SERVER="--server=/usr/local/bin/mosh-server"
 
 case "$1" in
