@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[[ -e "$HOME/.zsh/homebrew.zsh" ]] && . "$HOME/.zsh/homebrew.zsh"
+
 MOSH="${BREW_PREFIX-:/usr/local}/bin/mosh"
 SERVER="--server=/usr/local/bin/mosh-server"
 
