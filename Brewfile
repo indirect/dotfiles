@@ -52,6 +52,7 @@ tap "smudge/smudge"
 brew "nightlight"
 
 cask "1password"
+cask "abyssoft-teleport"
 cask "acorn"
 cask "alfred"
 cask "backblaze"
