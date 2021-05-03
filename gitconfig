@@ -63,6 +63,7 @@
 	legacyheaders = false
 	excludesfile = ~/.gitignore
 	pager = "delta --theme='Solarized (dark)'"
+	attributesfile = ~/.gitattributes
 [push]
 	default = simple
 [repack]
@@ -101,3 +102,21 @@
 	diffFilter = delta --color-only
 [pull]
 	rebase = true
+[merge "npm-merge-driver"]
+	name = automatically merge npm lockfiles
+	driver = npx npm-merge-driver merge %A %O %B %P
+[merge "yarn-merge-driver"]
+        name = automatically merge yarn lockfiles
+        driver = npx npm-merge-driver merge %A %O %B %P -c yarn
+[merge "bundler-merge-driver"]
+	name = automatically merge bundler lockfiles
+	driver = npx npm-merge-driver merge %A %O %B %P -c 'bundle install'
+[merge "schema-merge-driver"]
+	name = automatically merge Rails schema files
+	driver = npx npm-merge-driver merge %A %O %B %P -c 'bin/rake db:migrate'
+[diff "rust"]
+	xfuncname = "^[ \t]*(pub|)[ \t]*((fn|struct|enum|impl|trait|mod)[^;]*)$"
+[diff "rspec"]
+	xfuncname = "^[ \t]*((RSpec|describe|context|it|before|after|around|feature|scenario|background)[ \t].*)$"
+[diff "plist"]
+	textconv = plutil -convert xml1 -o -
