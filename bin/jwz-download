@@ -65,8 +65,8 @@ run 'youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4" -o "%(autonumber)
 
 Dir.mktmpdir do |path|
   tmpdir = path.encode('UTF-8')
-  File.write "vhs.png", HTTP.get("http://f.cl.ly/items/3h2g0g0n0K0f1b46051F/vhs.png").body
-  # FileUtils.cp(File.expand_path("~/vhs.png"), "vhs.png")
+  File.write "vhs.gif", HTTP.get("https://www.dnalounge.com/webcast/vhs.gif").body
+  system "convert vhs.gif vhs.png"
 
   Dir["*.mp4"].sort.each_with_index do |f, i|
     t = tracklist.fetch(i)
