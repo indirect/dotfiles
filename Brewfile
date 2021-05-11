@@ -49,7 +49,10 @@ tap "puma/puma"
 brew "puma/puma/puma-dev"
 
 tap "smudge/smudge"
-brew "nightlight"
+brew "smudge/smudge/nightlight"
+
+tap "claui/public"
+brew "claui/public/wishfish"
 
 cask "1password"
 cask "abyssoft-teleport"
