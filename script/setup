@@ -1,10 +1,82 @@
 #!/usr/bin/env ruby
+require "fileutils"
 
-puts "linking dotfiles..."
-system File.join(__dir__, "link")
+EXCLUDES = %w[
+  Brewfile
+  Brewfile.lock.json
+  LICENSE
+  README.md
+  config
+  rubocop.yml
+  script
+  ssh
+  support
+]
 
-puts "##" * 40
-puts
-puts "Don't forget to run ~/.dotfiles/script/after-setup once the strap is complete!"
-puts
-puts "##" * 40
+DOTFILES = File.expand_path("../..", __FILE__)
+
+def link_file(from:, to:, dupes_to: "~/old_dotfiles")
+  from = File.expand_path(from, DOTFILES)
+  to = File.expand_path(to)
+  dupes_to = File.expand_path(dupes_to)
+  file = File.basename(from)
+
+  if File.symlink?(to)
+    print "removing link #{file}... "
+    FileUtils.rm(to)
+  elsif File.exist?(to)
+    print "moving #{file} to #{dupes_to}... "
+    FileUtils.mkdir_p(dupes_to) unless File.exist?(dupes_to)
+    FileUtils.mv to, File.join(dupes_to, file)
+  end
+
+  puts "linking #{file}"
+  # puts "ln -s #{from} #{to}"
+  `ln -s #{from} #{to}`
+end
+
+def link(from:, to:, prefix: "")
+  srcdir = File.expand_path(from, DOTFILES)
+  destdir = File.expand_path(to)
+
+  glob = File.join(srcdir, "*")
+  Dir[glob].each do |path|
+    file = File.basename(path)
+    next if EXCLUDES.include?(file)
+
+    target = File.join(destdir, "#{prefix}#{file}")
+    link_file(from: path, to: target)
+  end
+end
+
+if ARGV.empty?
+  link(from: ".", to: "~", prefix: ".")
+
+  puts "linking ssh/config"
+  `[[ -d ~/.ssh ]] || ( mkdir ~/.ssh && chmod 0700 ~/.ssh )`
+  link_file(from: "ssh/config", to: "~/.ssh/config")
+
+  puts "linking KeyBindings"
+  link_file(from: "support/KeyBindings", to: "~/Library/KeyBindings")
+
+  puts "linking .configs"
+  link_file(from: "config/karabiner", to: "~/.config/karabiner")
+
+  puts "linking Preferences"
+  link(from: "support/Preferences", to: "~/Library/Preferences")
+
+  puts "linking oh-my-tmux config"
+  `[[ -L ~/.tmux.conf ]] || ln -s #{File.expand_path "support/tmux/.tmux.conf"} #{File.expand_path("~/.tmux.conf")}`
+
+  dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
+  parent_dir = File.expand_path("../..", __FILE__)
+  unless dotfiles_dir == parent_dir
+    puts "moving dotfiles checkout..."
+    `[[ -d ~/src/indirect ]] || mkdir -p ~/src/indirect`
+    `[[ -d ~/src/indirect/dotfiles ]] || mv ~/.dotfiles ~/src/indirect/dotfiles`
+    `[[ -d ~/.dotfiles ]] && rm -rf ~/.dotfiles`
+    `[[ -L ~/.dotfiles ]] || ln -s ~/src/indirect/dotfiles ~/.dotfiles`
+  end
+else
+  link_file from: ARGV.fetch(0), to: ARGV.fetch(1)
+end
