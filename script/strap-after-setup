@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 export BREW_PREFIX=$(brew --prefix)
 
 # Pull all the submodules
@@ -93,4 +92,7 @@ defaults write com.apple.Terminal "Default Window Settings" -string "Solarized D
 defaults write com.apple.Terminal "Startup Window Settings" -string "Solarized Dark"
 
 echo "configuration complete, restart your Terminal"
+echo "put this at the top of /etc/pam.d/sudo
+auth       optional       $(BREW_PREFIX)/lib/pam/pam_reattach.so
+auth       sufficient     pam_tid.so"
 osascript -e 'tell application "Terminal" to quit'
