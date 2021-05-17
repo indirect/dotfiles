@@ -18,7 +18,9 @@ function reload_chruby {
         original_chruby "$@"
       fi
     }
-
+  else
+    echo "Couldn't find chruby! Looked in:"
+    echo "  $BREW_PREFIX/opt/chruby/share/chruby/chruby.sh"
   fi
 }
 
