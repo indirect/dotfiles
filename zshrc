@@ -19,6 +19,7 @@ setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
 
 # Break words on forward slash, so delete-word stops on directories
 WORDCHARS=${WORDCHARS/\/}
