@@ -103,3 +103,6 @@
 [submodule "support/tmux"]
 	path = support/tmux
 	url = https://github.com/gpakosz/.tmux
+[submodule "vim/bundle/vim-abolish"]
+	path = vim/bundle/vim-abolish
+	url = https://github.com/tpope/vim-abolish
