@@ -35,11 +35,6 @@ if [[ ! -d "$HOME/.rubies/ruby-$DEFAULT_RUBY_VERSION" ]]; then
   chruby reload
 fi
 
-# Copy youtube-dl to local bin so it can self-update
-if [[ -f "$BREW_PREFIX/bin/youtube-dl" ]]; then
-  cp "$BREW_PREFIX/bin/youtube-dl" ~/.bin/
-fi
-
 # remap capslock to control
 $ROOT/support/remap-capslock-to-control.sh
 
