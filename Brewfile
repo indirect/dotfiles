@@ -112,16 +112,24 @@ mas "Due", id: 524373870
 mas "GIF Brewery", id: 1081413713
 mas "Gapplin", id: 768053424
 mas "Harvest", id: 506189836
+mas "Hush Nag Blocker", id: 1544743900
 mas "Instapaper Save for Safari", id: 1481302432
 mas "Keys for Safari", id: 1494642810
 mas "Linea Link", id: 1233368267
 mas "Meeter", id: 1510445899
+mas "Notion Web Clipper", id: 1559269364
+mas "Omsave for Safari", id: 1514795049
 mas "Paprika", id: 1303222628
+mas "PiPifier - PiP for nearly every video", id: 1160374471
 mas "Reeder", id: 1449412482
+mas "Shareful", id: 1522267256
 mas "Simplenote", id: 692867256
 mas "Sip", id: 507257563
 mas "Soulver", id: 413965349
+mas "Tailscale", id: 1475387142
+mas "Tampermonkey", id: 1482490089
 mas "The Unarchiver", id: 425424353
+mas "Toast for Safari", id: 1465707487
 mas "ToothFairy", id: 1191449274
 mas "Tweetbot", id: 1384080005
 mas "Twitter", id: 1482454543
