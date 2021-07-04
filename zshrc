@@ -1,3 +1,10 @@
+# Set up homebrew paths
+if [[ -z "$BREW_PREFIX" ]]; then
+  export BREW_PREFIX=$([[ "$(arch)" == "arm64" ]] && echo "/opt/homebrew" || echo "/usr/local")
+  [[ "$PATH" != "*$BREW_PREFIX/bin*" ]]  && export PATH="$BREW_PREFIX/bin:$PATH"
+  [[ "$PATH" != "*$BREW_PREFIX/sbin*" ]] && export PATH="$BREW_PREFIX/sbin:$PATH"
+fi
+
 # Start every shell with a random my little horse ebooks
 fortune "$BREW_PREFIX/share/games/horse_fortunes" | ponysay -b unicode; echo
 
