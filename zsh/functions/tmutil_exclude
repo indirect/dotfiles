@@ -1,0 +1,12 @@
+# todo: recurse to parent dirs to support commands that execute in project subdirs
+DIR=$1
+DEP_FILE=$2
+
+if [ -d "$DIR" ] && [ -f "$DEP_FILE" ]; then
+  [ -f "$DIR/.metadata_never_index" ] || touch "$DIR/.metadata_never_index"
+
+  if ! tmutil isexcluded "$DIR" | grep -q '\[Excluded\]'; then
+    tmutil addexclusion "$DIR"
+    tmutil isexcluded "$DIR"
+  fi
+fi

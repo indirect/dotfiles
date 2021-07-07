@@ -1,0 +1,8 @@
+if [[ "$1" == "install" ]]; then
+  command npm "$@"
+  EXIT_CODE=$?
+  tmutil_exclude "node_modules" "package.json"
+  return $EXIT_CODE
+else
+  command npm "$@"
+fi

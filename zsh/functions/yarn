@@ -1,0 +1,8 @@
+if [[ -z "$1" ]] || [[ "$1" == "install" ]]; then
+  command yarn "$@"
+  EXIT_CODE=$?
+  tmutil_exclude "node_modules" "package.json"
+  return $EXIT_CODE
+else
+  command yarn "$@"
+fi
