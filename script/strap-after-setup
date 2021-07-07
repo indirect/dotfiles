@@ -53,6 +53,34 @@ echo "About to set up puma-dev, you'll need to enter your password"
 sudo puma-dev -setup
 puma-dev -install
 
+# don't back up xcode, dropbox, steam games
+sudo tmutil addexclusion -p \
+  /Applications/Xcode.app \
+  "$HOME/Dropbox" \
+  "$HOME/Dropbox (Personal)" \
+  "$HOME/Dropbox (Cloud City)" \
+  "$HOME/Library/Application Support/Steam/steamapps" \
+
+# don't spotlight index cache, rubies
+touch "$HOME/.cache/.metadata_never_index"
+touch "$HOME/.rubies/.metadata_never_index"
+
+# skip backup and spotlight index on existing node_modules, bundled gems and rails assets
+for pathname in ~/src/*/*/{.bundle/ruby,node_modules}; do
+  tmutil addexclusion "$pathname"
+  touch "$pathname/.metadata_never_index"
+
+  for railspath in tmp/cache public/assets public/packs public/packs-test; do
+    railsdir="$pathname/../../$railspath" 
+    if [[ -d "$railsdir" ]]; then
+      tmutil addexclusion "$railsdir"
+      touch "$railsdir/.metadata_never_index"
+    fi
+  done
+
+  tmutil isexcluded "$pathname"
+done
+
 # Set up git signing
 echo "You need to use Keychain Access to copy the 'bpb key' keychain entry from iCloud to your login keychain."
 echo "When you're done, come back and push enter."
@@ -61,10 +89,10 @@ bpb print | gpg --import
 echo $(gpg --list-keys --fingerprint | grep "andre@arko.net" -B 1 | head -1 | tr -d '[:space:]'):6: | gpg --import-ownertrust
 
 # Install licensed Onivim2
-echo "You need to use Keychain Access to copy the 'onivim2' keychain entry from iCloud to your login keychain. When you're done, come back and push enter."
-read
-export HOMEBREW_ONIVIM_SERIAL="$(security find-generic-password -s onivim2 -w)"
-brew install marblenix/onivim2/onivim2
+# echo "You need to use Keychain Access to copy the 'onivim2' keychain entry from iCloud to your login keychain. When you're done, come back and push enter."
+# read
+# export HOMEBREW_ONIVIM_SERIAL="$(security find-generic-password -s onivim2 -w)"
+# brew install marblenix/onivim2/onivim2
 
 # Open the stuff that needs to be configured
 open -a "Alfred 4"
