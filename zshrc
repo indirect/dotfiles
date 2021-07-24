@@ -1,8 +1,10 @@
+# Prevent duplicates in PATH
+typeset -U path
+
 # Set up homebrew paths
 if [[ -z "$BREW_PREFIX" ]]; then
   export BREW_PREFIX=$([[ "$(arch)" == "arm64" ]] && echo "/opt/homebrew" || echo "/usr/local")
-  [[ "$PATH" != "*$BREW_PREFIX/bin*" ]]  && export PATH="$BREW_PREFIX/bin:$PATH"
-  [[ "$PATH" != "*$BREW_PREFIX/sbin*" ]] && export PATH="$BREW_PREFIX/sbin:$PATH"
+  path=($BREW_PREFIX/bin $BREW_PREFIX/sbin $path)
 fi
 
 # Start every shell with a random my little horse ebooks
@@ -97,7 +99,7 @@ export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 export GOPATH=$HOME/.go
 
 # Personal and rust bins
-export PATH="$HOME/.bin:$HOME/.cargo/bin:$PATH"
+path=($HOME/.bin $HOME/.cargo/bin $path)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source "$BREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme"
