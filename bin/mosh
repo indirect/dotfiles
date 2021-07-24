@@ -2,7 +2,11 @@
 
 [[ -e "$HOME/.zsh/homebrew.zsh" ]] && . "$HOME/.zsh/homebrew.zsh"
 
-MOSH="${BREW_PREFIX-:/usr/local}/bin/mosh"
+if [[ -e "/opt/homebrew/bin/mosh" ]]; then
+  MOSH="/opt/homebrew/bin/mosh"
+else
+  MOSH="/usr/local/bin/mosh"
+fi
 SERVER="--server=/usr/local/bin/mosh-server"
 
 case "$1" in
