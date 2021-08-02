@@ -22,10 +22,13 @@ end
 infile = ARGV.first || "venmo_statement.csv"
 outfile = File.basename(infile, File.extname(infile)) + "_ynab4.csv"
 
+lines = File.read(infile).lines
+lines.shift until lines.first.include?("ID,")
+
 CSV.open(outfile, "wb") do |out|
   out << %w[Date Payee Memo Amount]
 
-  CSV.foreach(infile, headers: true) do |r|
+  CSV.parse(lines.join, headers: true) do |r|
     next unless r["ID"]
 
     if r["Funding Source"] && r["Funding Source"] != "Venmo balance"
