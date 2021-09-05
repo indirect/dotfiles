@@ -8,7 +8,7 @@ if [[ -z "$BREW_PREFIX" ]]; then
 fi
 
 # Start every shell with a random my little horse ebooks
-fortune "$BREW_PREFIX/share/games/horse_fortunes" | ponysay -b unicode; echo
+echo; fortune "$BREW_PREFIX/share/games/horse_fortunes" | ponysay -b unicode | pr -o 3 -t; echo
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
