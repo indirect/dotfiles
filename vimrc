@@ -21,6 +21,7 @@ set winwidth=15
 set winminwidth=15        " Never shrink splits below 15 columns
 set winwidth=80           " Try for 80 column splits on focus
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip " Ignore un-editable files
+set nomodeline            " Don't try to execute the entire file looking for modes
 
 set backupdir=~/.vim/backup// " Backup files in case of crashes
 set directory=~/.vim/swap//   " Swap files for saving atomically
