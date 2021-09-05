@@ -40,7 +40,7 @@ WORDCHARS=${WORDCHARS/\/}
 setopt HIST_VERIFY
 
 export PAGER="less" # page with less not more
-export EDITOR="vim"
+export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a Terminal"'
 export BROWSER="open" # opens URLs in the default OS X browser
 export LESS="-XRF" # Fix less to not clear screen on exit, show color, exit if < 1 screen
 export CLICOLOR=true # ls with color
