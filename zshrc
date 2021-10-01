@@ -21,6 +21,9 @@ fi
 setopt NO_CASE_GLOB
 setopt GLOB_COMPLETE
 
+# Make delete-by-word stop on punctuation like other editors
+WORDCHARS=""
+
 # Naming a directory runs cd for you
 setopt AUTO_CD
 
