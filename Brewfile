@@ -99,7 +99,6 @@ cask "transmit"
 cask "visual-studio-code"
 cask "vlc"
 
-cask "apparition47/tap/mailtrackerblocker"
 cask "homebrew/cask-versions/visual-studio-code-insiders"
 cask "indirect/tap/font-menlo-nerd-font-p10k"
 cask "indirect/tap/font-sf-mono-nerd-font"
