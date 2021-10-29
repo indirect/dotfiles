@@ -105,7 +105,6 @@ open -a "Karabiner-Elements"
 open -a "Keyboard Maestro"
 open -a "Little Snitch"
 open -a "MenuMeters"
-open -a "SoundSource"
 
 # Install Terminal theme
 THEME=$(cat "$ROOT/support/terminal/Solarized Dark Menlo NF.terminal")
