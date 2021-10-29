@@ -120,6 +120,7 @@ mas "Notion Web Clipper", id: 1559269364
 mas "Omsave for Safari", id: 1514795049
 mas "Paprika", id: 1303222628
 mas "PiPifier - PiP for nearly every video", id: 1160374471
+mas "Peakhour", id: 1241445112
 mas "Reeder 5", id: 1529448980
 mas "Shareful", id: 1522267256
 mas "Simplenote", id: 692867256
