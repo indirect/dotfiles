@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Installing Brewfile"
+brew bundle
+
 export BREW_PREFIX=$(brew --prefix)
 
 # Pull all the submodules
