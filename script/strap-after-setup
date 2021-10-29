@@ -62,8 +62,12 @@ sudo tmutil addexclusion -p \
   "$HOME/Library/Application Support/Steam/steamapps" \
 
 # don't spotlight index cache, rubies
-touch "$HOME/.cache/.metadata_never_index"
-touch "$HOME/.rubies/.metadata_never_index"
+paths=("$HOME/.cache" "$HOME/.rubies")
+for p in ${paths[@]}; do
+  mkdir -p "$p"
+  chown "$USER:staff" "$p"
+  touch "$p/.metadata_never_index"
+done
 
 # skip backup and spotlight index on existing node_modules, bundled gems and rails assets
 for pathname in ~/src/*/*/{.bundle/ruby,node_modules}; do
