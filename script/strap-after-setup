@@ -114,8 +114,10 @@ plutil -replace "Window Settings.Solarized Dark" -xml "$THEME" \
 defaults write com.apple.Terminal "Default Window Settings" -string "Solarized Dark"
 defaults write com.apple.Terminal "Startup Window Settings" -string "Solarized Dark"
 
-echo "configuration complete, restart your Terminal"
 echo "put this at the top of /etc/pam.d/sudo
 auth       optional       $(BREW_PREFIX)/lib/pam/pam_reattach.so
-auth       sufficient     pam_tid.so"
-osascript -e 'tell application "Terminal" to quit'
+auth       sufficient     pam_tid.so
+"
+
+echo "configuration complete, restart your Terminal"
+#osascript -e 'tell application "Terminal" to quit'
