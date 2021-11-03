@@ -54,6 +54,9 @@ brew "smudge/smudge/nightlight"
 tap "claui/public"
 brew "claui/public/wishfish"
 
+tap "superfly/tap"
+brew "superfly/tap/flyctl"
+
 cask "1password"
 cask "abyssoft-teleport"
 cask "acorn"
