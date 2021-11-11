@@ -110,6 +110,7 @@ mas "1Blocker", id: 1365531024
 mas "Apple Developer", id: 640199958
 mas "Boop", id: 1518425043
 mas "Day One", id: 1055511498
+mas "Deliveries", id: 290986013
 mas "Due", id: 524373870
 mas "GIF Brewery", id: 1081413713
 mas "Gapplin", id: 768053424
