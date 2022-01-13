@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+# Export a CSV from https://www.paypal.com/reports/dlog
+
+require "csv"
+require "time"
+
+def payee(r)
+  [r["Name"], r["Payment Source"], r["Type"]].find{|n| n && !n.empty? }
+  # case r["Type"]
+  # when /Payment$/
+  #  r["Amount (total)"][0] == "-" ? r["To"] : r["From"]
+  # when "Charge"
+  #   r["Amount (total)"][0] == "-" ? r["From"] : r["To"]
+  # when "Standard Transfer"
+  #   r["Destination"]
+  # else
+  # end
+end
+
+def date(r)
+  Date.strptime(r["Date"], "%m/%d/%Y").iso8601
+end
+
+infile = ARGV.first || "Download.CSV"
+outfile = File.basename(infile, File.extname(infile)) + "_ynab4.csv"
+
+lines = File.read(infile, encoding: "bom|utf-8").lines
+
+CSV.open(outfile, "wb") do |out|
+  out << %w[Date Payee Memo Amount]
+
+  CSV.parse(lines.join, headers: true) do |r|
+    out << [ date(r), payee(r), r["Item Title"], r["Net"] ]
+    out << [ date(r), payee(r), r["Item Title"], r["Fee"] ] if r["Fee"]&.to_i > 0
+  end
+end
