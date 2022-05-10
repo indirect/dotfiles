@@ -38,6 +38,7 @@ brew "heroku/brew/heroku"
 tap "indirect/tap"
 brew "indirect/tap/bpb"
 brew "indirect/tap/horse_fortunes"
+brew "indirect/tap/wishfish"
 
 tap "nodenv/nodenv"
 brew "nodenv/nodenv/nodenv-package-json-engine"
@@ -50,9 +51,6 @@ brew "puma/puma/puma-dev"
 
 tap "smudge/smudge"
 brew "smudge/smudge/nightlight"
-
-tap "claui/public"
-brew "claui/public/wishfish"
 
 tap "superfly/tap"
 brew "superfly/tap/flyctl"
