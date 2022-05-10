@@ -62,7 +62,7 @@
 [core]
 	legacyheaders = false
 	excludesfile = ~/.gitignore
-	pager = "delta --theme='Solarized (dark)'"
+	pager = "delta --syntax-theme='Solarized (dark)'"
 	attributesfile = ~/.gitattributes
 [push]
 	default = simple
