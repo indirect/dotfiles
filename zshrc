@@ -29,6 +29,9 @@ setopt AUTO_CD
 
 # Shared history across all shells, updated after every command
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
