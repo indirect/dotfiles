@@ -9,9 +9,9 @@
 # the only way to track that I have figured out that makes sense is to assume
 # 30 logged hours per week, both billed and unbilled, as the ultimate goal.
 
-# 1300 hours worked/40 weeks is 32.5 hours/week or 6.5 hours/day
-YEARLY_HOURS = 1300.to_f
-EXPECTED_HOURS_PER_DAY = 6.5
+# 1365 hours worked/40 weeks is 34.125 hours/week or 6.825 hours/day
+YEARLY_HOURS = 1365.to_f
+EXPECTED_HOURS_PER_DAY = 6.825
 
 require "bundler/inline"
 gemfile do
