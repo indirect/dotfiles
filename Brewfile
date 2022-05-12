@@ -1,5 +1,6 @@
 brew "bat"
 brew "chruby"
+brew "dust"
 brew "exa"
 brew "fd"
 brew "ffmpeg"
