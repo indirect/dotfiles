@@ -2,10 +2,10 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
 
-" Use all default ALE linters except Rubocop
-let b:ale_linters = ['brakeman', 'debride', 'rails_best_practices', 'reek', 'ruby', 'solargraph', 'sorbet', 'standardrb']
-
-let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace', 'standardrb']
+let b:ale_linters = ['brakeman', 'ruby', 'rubocop']
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace', 'rubocop']
+let g:ale_ruby_rubocop_executable = 'bin/rubocop'
+let g:ale_ruby_brakeman_executable = 'bin/brakeman'
 
 :compiler ruby
 
