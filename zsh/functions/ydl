@@ -2,5 +2,5 @@ if [[ "$1" == *"youtube.com"* ]]; then
   autoload ydlv
   ydlv $@
 else
-  youtube-dl $@
+  yt-dlp $@
 fi

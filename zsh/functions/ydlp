@@ -1,2 +1,1 @@
-youtube-dl -U
-youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" -o "%(autonumber)s %(title)s.%(ext)s" --ignore-errors $@
+ydl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" -o "%(autonumber)s %(title)s.%(ext)s" --ignore-errors $@
