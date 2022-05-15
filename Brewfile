@@ -107,6 +107,7 @@ cask "indirect/tap/font-sf-mono-nerd-font"
 
 mas "1Blocker", id: 1365531024
 mas "Apple Developer", id: 640199958
+mas "Baking Soda - Tube Cleaner", id: 1601151613
 mas "Boop", id: 1518425043
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 290986013
@@ -122,8 +123,8 @@ mas "Meeter", id: 1510445899
 mas "Notion Web Clipper", id: 1559269364
 mas "Omsave for Safari", id: 1514795049
 mas "Paprika", id: 1303222628
-mas "PiPifier - PiP for nearly every video", id: 1160374471
 mas "Peakhour", id: 1241445112
+mas "PiPifier - PiP for nearly every video", id: 1160374471
 mas "Reeder 5", id: 1529448980
 mas "Shareful", id: 1522267256
 mas "Simplenote", id: 692867256
@@ -137,5 +138,6 @@ mas "ToothFairy", id: 1191449274
 mas "Tweetbot", id: 1384080005
 mas "Twitter", id: 1482454543
 mas "Ulysses", id: 1225570693
+mas "Vinegar - Tube Cleaner", id: 1591303229
 mas "XScope", id: 889428659
 mas "Xcode", id: 497799835
