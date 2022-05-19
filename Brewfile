@@ -4,6 +4,7 @@ brew "dust"
 brew "exa"
 brew "fd"
 brew "ffmpeg"
+brew "flyctl"
 brew "fortune"
 brew "fzf"
 brew "git"
@@ -52,9 +53,6 @@ brew "puma/puma/puma-dev"
 
 tap "smudge/smudge"
 brew "smudge/smudge/nightlight"
-
-tap "superfly/tap"
-brew "superfly/tap/flyctl"
 
 cask "1password"
 cask "acorn"
