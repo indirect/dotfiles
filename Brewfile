@@ -57,12 +57,10 @@ tap "superfly/tap"
 brew "superfly/tap/flyctl"
 
 cask "1password"
-cask "abyssoft-teleport"
 cask "acorn"
 cask "alfred"
 cask "backblaze"
 cask "bartender"
-cask "bettertouchtool"
 cask "calibre"
 cask "daisydisk"
 cask "dash"
@@ -77,7 +75,6 @@ cask "google-cloud-sdk"
 cask "hammerspoon"
 cask "handbrake"
 cask "hookshot"
-cask "imageoptim"
 cask "jumpshare"
 cask "karabiner-elements"
 cask "keyboard-maestro"
@@ -92,24 +89,20 @@ cask "omnifocus"
 cask "omnigraffle"
 cask "screens"
 cask "sequel-pro"
-cask "skype"
 cask "slack"
 cask "soundsource"
 cask "steam"
 cask "superduper"
 cask "textmate"
-cask "transmit"
 cask "visual-studio-code"
 cask "vlc"
 
-cask "homebrew/cask-versions/visual-studio-code-insiders"
 cask "indirect/tap/font-menlo-nerd-font-p10k"
 cask "indirect/tap/font-sf-mono-nerd-font"
 
 mas "1Blocker", id: 1365531024
 mas "Apple Developer", id: 640199958
 mas "Baking Soda - Tube Cleaner", id: 1601151613
-mas "Boop", id: 1518425043
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 290986013
 mas "Due", id: 524373870
@@ -119,8 +112,6 @@ mas "Harvest", id: 506189836
 mas "Hush Nag Blocker", id: 1544743900
 mas "Instapaper Save for Safari", id: 1481302432
 mas "Keys for Safari", id: 1494642810
-mas "Linea Link", id: 1233368267
-mas "Meeter", id: 1510445899
 mas "Notion Web Clipper", id: 1559269364
 mas "Omsave for Safari", id: 1514795049
 mas "Paprika", id: 1303222628
@@ -134,7 +125,6 @@ mas "Soulver", id: 413965349
 mas "Tailscale", id: 1475387142
 mas "Tampermonkey", id: 1482490089
 mas "The Unarchiver", id: 425424353
-mas "Toast for Safari", id: 1465707487
 mas "ToothFairy", id: 1191449274
 mas "Tweetbot", id: 1384080005
 mas "Twitter", id: 1482454543
