@@ -50,10 +50,6 @@ def link(from:, to:, prefix: "")
 end
 
 if ARGV.empty?
-  puts "linking downloads"
-  `sudo mv ~/Downloads "~/Downloads (Old)"`
-  `ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/Downloads ~/Downloads`
-
   dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
   parent_dir = File.expand_path("../..", __FILE__)
   unless dotfiles_dir == parent_dir
