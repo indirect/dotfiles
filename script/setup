@@ -50,9 +50,6 @@ def link(from:, to:, prefix: "")
 end
 
 if ARGV.empty?
-  puts "linking oh-my-tmux config"
-  `[[ -L ~/.tmux.conf ]] || ln -s #{File.expand_path "support/tmux/.tmux.conf"} #{File.expand_path("~/.tmux.conf")}`
-
   puts "linking downloads"
   `sudo mv ~/Downloads "~/Downloads (Old)"`
   `ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/Downloads ~/Downloads`
