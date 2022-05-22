@@ -97,9 +97,6 @@
 [submodule "vim/bundle/vim-expand-region"]
 	path = vim/bundle/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region
-[submodule "support/tmux"]
-	path = support/tmux
-	url = https://github.com/gpakosz/.tmux
 [submodule "vim/bundle/vim-abolish"]
 	path = vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish
