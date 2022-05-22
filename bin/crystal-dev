@@ -1,0 +1,12 @@
+#!/bin/sh
+
+export BREW_PREFIX="${BREW_PREFIX:-$(brew --prefix)}"
+export CRYSTAL=$HOME/src/crystal-lang/crystal/.build/crystal
+
+if [[ -e "$CRYSTAL" ]]; then
+  export CRYSTAL_PATH=lib:$HOME/src/crystal-lang/crystal/src
+  export CRYSTAL_LIBRARY_PATH="$BREW_PREFIX/lib"
+  exec "$CRYSTAL" "$@"
+else
+  exec \crystal "$@"
+fi
