@@ -15,4 +15,5 @@ echo "moving dotfiles for chezmoi..."
 
 echo "applying dotfiles"
 set +v
+brew install chezmoi
 chezmoi apply
