@@ -11,7 +11,7 @@ echo "moving dotfiles for chezmoi..."
 
 # link the chezmoi ~/.local/share/chezmoi location
 [[ -d ~/.local/share ]] || mkdir -p ~/.local/share
-[[ -L ~/.local/share/chezmoi ]] || ln -s ~/.local/share/chezmoi ~/src/indirect/dotfiles
+[[ -L ~/.local/share/chezmoi ]] || ln -s ~/src/indirect/dotfiles ~/.local/share/chezmoi
 
 echo "applying dotfiles"
 set +v
