@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -vx
 echo "moving dotfiles for chezmoi..."
 
 # relocate the checkout to the usual ~/src/indirect/dotfiles location
@@ -14,6 +15,5 @@ echo "moving dotfiles for chezmoi..."
 [[ -L ~/.local/share/chezmoi ]] || ln -s ~/src/indirect/dotfiles ~/.local/share/chezmoi
 
 echo "applying dotfiles"
-set +v
 brew install chezmoi
 chezmoi apply
