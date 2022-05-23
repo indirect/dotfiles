@@ -2,17 +2,16 @@
 
 echo "moving dotfiles for chezmoi..."
 
-# relocate this checkout for chezmoi
-[[ -d ~/.local/share ]] || mkdir -p ~/.local/share
-[[ -e ~/.local/share/chezmoi ]] && rm -rf ~/.local/share/chezmoi
-[[ -d ~/.local/share/chezmoi ]] || mv ~/.dotfiles ~/.local/share/chezmoi
-
-# link the usual ~/src/indirect/dotfiles location
+# relocate the checkout to the usual ~/src/indirect/dotfiles location
 [[ -d ~/src/indirect ]] || mkdir -p ~/src/indirect
-[[ -L ~/src/indirect/dotfiles ]] || ln -s ~/.local/share/chezmoi ~/src/indirect/dotfiles
+[[ -d ~/src/indirect/dotfiles ]] || mv ~/.dotfiles ~/src/indirect/dotfiles
 
 # link the conventional .dotfiles location
-[[ -L ~/.dotfiles ]] || ln -s ~/.local/share/chezmoi ~/.dotfiles
+[[ -L ~/.dotfiles ]] || ln -s ~/src/indirect/dotfiles ~/.dotfiles
+
+# link the chezmoi ~/.local/share/chezmoi location
+[[ -d ~/.local/share ]] || mkdir -p ~/.local/share
+[[ -L ~/.local/share/chezmoi ]] || ln -s ~/.local/share/chezmoi ~/src/indirect/dotfiles
 
 echo "applying dotfiles"
 set +v
