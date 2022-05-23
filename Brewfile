@@ -1,4 +1,5 @@
 brew "bat"
+brew "chezmoi"
 brew "chruby"
 brew "dust"
 brew "exa"
