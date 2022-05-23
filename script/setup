@@ -1,64 +1,19 @@
-#!/usr/bin/env ruby
-require "fileutils"
+#!/bin/bash
 
-EXCLUDES = %w[
-  Brewfile
-  Brewfile.lock.json
-  LICENSE
-  README.md
-  config
-  rubocop.yml
-  script
-  ssh
-  support
-]
+echo "moving dotfiles for chezmoi..."
 
-DOTFILES = File.expand_path("../..", __FILE__)
+# relocate this checkout for chezmoi
+[[ -d ~/.local/share ]] || mkdir -p ~/.local/share
+[[ -e ~/.local/share/chezmoi ]] && rm -rf ~/.local/share/chezmoi
+[[ -d ~/.local/share/chezmoi ]] || mv ~/.dotfiles ~/.local/share/chezmoi
 
-def link_file(from:, to:, dupes_to: "~/old_dotfiles")
-  from = File.expand_path(from, DOTFILES)
-  to = File.expand_path(to)
-  dupes_to = File.expand_path(dupes_to)
-  file = File.basename(from)
+# link the usual ~/src/indirect/dotfiles location
+[[ -d ~/src/indirect ]] || mkdir -p ~/src/indirect
+[[ -L ~/src/indirect/dotfiles ]] || ln -s ~/.local/share/chezmoi ~/src/indirect/dotfiles
 
-  if File.symlink?(to)
-    print "removing link #{file}... "
-    FileUtils.rm(to)
-  elsif File.exist?(to)
-    print "moving #{file} to #{dupes_to}... "
-    FileUtils.mkdir_p(dupes_to) unless File.exist?(dupes_to)
-    FileUtils.mv to, File.join(dupes_to, file)
-  end
+# link the conventional .dotfiles location
+[[ -L ~/.dotfiles ]] || ln -s ~/.local/share/chezmoi ~/.dotfiles
 
-  puts "linking #{file}"
-  # puts "ln -s #{from} #{to}"
-  `ln -s #{from} #{to}`
-end
-
-def link(from:, to:, prefix: "")
-  srcdir = File.expand_path(from, DOTFILES)
-  destdir = File.expand_path(to)
-
-  glob = File.join(srcdir, "*")
-  Dir[glob].each do |path|
-    file = File.basename(path)
-    next if EXCLUDES.include?(file)
-
-    target = File.join(destdir, "#{prefix}#{file}")
-    link_file(from: path, to: target)
-  end
-end
-
-if ARGV.empty?
-  dotfiles_dir = File.expand_path("~/src/indirect/dotfiles")
-  parent_dir = File.expand_path("../..", __FILE__)
-  unless dotfiles_dir == parent_dir
-    puts "moving dotfiles checkout..."
-    `[[ -d ~/src/indirect ]] || mkdir -p ~/src/indirect`
-    `[[ -d ~/src/indirect/dotfiles ]] || mv ~/.dotfiles ~/src/indirect/dotfiles`
-    `[[ -d ~/.dotfiles ]] && rm -rf ~/.dotfiles`
-    `[[ -L ~/.dotfiles ]] || ln -s ~/src/indirect/dotfiles ~/.dotfiles`
-  end
-else
-  link_file from: ARGV.fetch(0), to: ARGV.fetch(1)
-end
+echo "applying dotfiles"
+set +v
+chezmoi apply
