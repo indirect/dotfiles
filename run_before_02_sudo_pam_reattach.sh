@@ -1,6 +1,5 @@
 #!/bin/bash
 set -euo pipefail
-IFS=$'\n\t'
 
 if grep -q pam_reattach.so /etc/pam.d/sudo; then
   exit 0

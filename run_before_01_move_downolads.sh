@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
-IFS=$'\n\t'
+
+test -L ~/Downloads && exit 0
+
 set -vx
 
 # Gotta get original ~/Downloads out of the way so we can symlink 
