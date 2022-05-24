@@ -8,11 +8,11 @@ echo "moving dotfiles for chezmoi..."
 [[ -d ~/src/indirect/dotfiles ]] || mv ~/.dotfiles ~/src/indirect/dotfiles
 
 # link the conventional .dotfiles location
-[[ -L ~/.dotfiles ]] || ln -s ~/src/indirect/dotfiles ~/.dotfiles
+[[ -L ~/.dotfiles ]] || ln -sf ~/src/indirect/dotfiles ~/.dotfiles
 
 # link the chezmoi ~/.local/share/chezmoi location
 [[ -d ~/.local/share ]] || mkdir -p ~/.local/share
-[[ -L ~/.local/share/chezmoi ]] || ln -s ~/src/indirect/dotfiles ~/.local/share/chezmoi
+[[ -L ~/.local/share/chezmoi ]] || ln -sf ~/src/indirect/dotfiles ~/.local/share/chezmoi
 
 echo "applying dotfiles"
 brew install chezmoi
