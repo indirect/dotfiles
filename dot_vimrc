@@ -59,6 +59,7 @@ if has("gui_running")
 else
   let g:solarized_termtrans = 1
   colorscheme solarized
+
   " Change cursor shape in different modes
   let &t_EI = "\033[2 q" " NORMAL  █
   let &t_SI = "\033[5 q" " INSERT  |
@@ -67,13 +68,20 @@ endif
 
 if $COLORTERM ==# 'truecolor'
   set termguicolors
-  colorscheme made-of-code
+
+  " Work around forced background color erase
+  let &t_ut=''
 
   " Correct RGB escape codes for vim inside tmux
   if !has('nvim') && $TERM ==# 'screen-256color'
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   endif
+
+  colorscheme made-of-code
+
+  " Light grey on dark grey line number gutter
+  highlight LineNr ctermbg=16 ctermfg=10
 endif
 
 let g:airline#extensions#tabline#enabled = 1
