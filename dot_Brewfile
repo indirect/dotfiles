@@ -22,6 +22,7 @@ brew "mosh"
 brew "nodenv"
 brew "ponysay"
 brew "postgresql", restart_service: :changed
+brew "prettyping"
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: :changed
 brew "ripgrep"
