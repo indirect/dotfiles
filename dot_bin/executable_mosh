@@ -1,19 +1,18 @@
 #!/bin/bash
 
-[[ -e "$HOME/.zsh/homebrew.zsh" ]] && . "$HOME/.zsh/homebrew.zsh"
-
 if [[ -e "/opt/homebrew/bin/mosh" ]]; then
   MOSH="/opt/homebrew/bin/mosh"
 else
   MOSH="/usr/local/bin/mosh"
 fi
-SERVER="--server=/usr/local/bin/mosh-server"
 
 case "$1" in
-home)
+home|poe)
+  SERVER="--server=/usr/local/bin/mosh-server"
   "$MOSH" "$SERVER" --ssh="ssh -p 2222" home.arko.me ~/.bin/tmux-named main
   ;;
 *)
+  SERVER="--server=/opt/homebrew/bin/mosh-server"
   "$MOSH" "$SERVER" "$@"
   ;;
 esac
