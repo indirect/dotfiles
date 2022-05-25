@@ -38,3 +38,8 @@ alias s="bin/rspec"
 alias tree="exa --tree"
 alias unbz2="bunzip2"
 alias ungzip="gzip -d"
+
+# kitty-only aliases
+if [[ -n "$KITTY_PID" ]]; then
+  alias ssh="kitty +kitten ssh"
+fi
