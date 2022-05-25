@@ -64,11 +64,7 @@ for func in $(ls ~/.zsh/functions); do
 done
 
 packages=(
-  ~/.zsh/homebrew.zsh
-  ~/.zsh/aliases.zsh
-  ~/.zsh/autocompletions.zsh
-  ~/.zsh/chruby.zsh
-  ~/.zsh/fzf.zsh
+  ~/.zsh/*
   "$BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
   "$BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
   "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
