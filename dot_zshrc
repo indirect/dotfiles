@@ -94,9 +94,6 @@ export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 # Keep go's installed files out of the way
 export GOPATH=$HOME/.go
 
-# Personal and rust bins
-path=($HOME/.bin $HOME/.cargo/bin $path)
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source "$BREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
