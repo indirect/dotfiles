@@ -1,0 +1,118 @@
+[".zsh/zsh-snap"]
+    type = "archive"
+    url = "https://github.com/marlonrichert/zsh-snap/archive/refs/heads/main.zip"
+    exact = true
+    stripComponents = 1
+
+[".vim/pack/alker0/chezmoi.vim"]
+    type = "git-repo"
+    url = "https://github.com/alker0/chezmoi.vim.git"
+[".vim/bundle/vim-vinegar"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-vinegar.git"
+[".vim/bundle/vim-surround"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-surround"
+[".vim/bundle/ctrlp.vim"]
+  type = "git-repo"
+  url = "https://github.com/ctrlpvim/ctrlp.vim"
+[".vim/bundle/ale"]
+  type = "git-repo"
+  url = "https://github.com/w0rp/ale"
+[".vim/bundle/vim-airline"]
+  type = "git-repo"
+  url = "https://github.com/vim-airline/vim-airline"
+[".vim/bundle/vim-airline-themes"]
+  type = "git-repo"
+  url = "https://github.com/vim-airline/vim-airline-themes"
+[".vim/bundle/vim-repeat"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-repeat"
+[".vim/bundle/vim-colors-solarized"]
+  type = "git-repo"
+  url = "https://github.com/altercation/vim-colors-solarized"
+[".vim/bundle/vim-textobj-entire"]
+  type = "git-repo"
+  url = "https://github.com/kana/vim-textobj-entire"
+[".vim/bundle/vim-textobj-user"]
+  type = "git-repo"
+  url = "https://github.com/kana/vim-textobj-user"
+[".vim/bundle/vim-commentary"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-commentary"
+[".vim/bundle/vim-fugitive"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-fugitive"
+[".vim/bundle/vim-unimpaired"]
+  type = "git-repo"
+  url = "http://github.com/tpope/vim-unimpaired"
+[".vim/bundle/vim-ripgrep"]
+  type = "git-repo"
+  url = "https://github.com/jremmen/vim-ripgrep"
+[".vim/bundle/vim-autoread"]
+  type = "git-repo"
+  url = "https://github.com/djoshea/vim-autoread"
+[".vim/bundle/vim-textobj-ruby"]
+  type = "git-repo"
+  url = "https://github.com/rhysd/vim-textobj-ruby"
+[".vim/bundle/vim-to-github"]
+  type = "git-repo"
+  url = "https://github.com/tonchis/vim-to-github"
+[".vim/bundle/vim-rails"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-rails"
+[".vim/bundle/vim-dispatch"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-dispatch"
+[".vim/bundle/typescript-vim"]
+  type = "git-repo"
+  url = "https://github.com/leafgarland/typescript-vim"
+[".vim/bundle/vim-projectionist"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-projectionist"
+[".vim/bundle/vim-sleuth"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-sleuth"
+[".vim/bundle/swift.vim"]
+  type = "git-repo"
+  url = "https://github.com/keith/swift.vim"
+[".vim/bundle/vim-ragtag"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-ragtag"
+[".vim/bundle/vim-endwise"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-endwise"
+[".vim/bundle/vim-textobj-line"]
+  type = "git-repo"
+  url = "https://github.com/kana/vim-textobj-line"
+[".vim/bundle/vim-polyglot"]
+  type = "git-repo"
+  url = "https://github.com/sheerun/vim-polyglot"
+[".vim/bundle/splitjoin.vim"]
+  type = "git-repo"
+  url = "https://github.com/AndrewRadev/splitjoin.vim"
+[".vim/bundle/vim-easy-align"]
+  type = "git-repo"
+  url = "https://github.com/junegunn/vim-easy-align"
+[".vim/bundle/vim-multiple-cursors"]
+  type = "git-repo"
+  url = "https://github.com/terryma/vim-multiple-cursors"
+[".vim/bundle/ctrlsf.vim"]
+  type = "git-repo"
+  url = "https://github.com/dyng/ctrlsf.vim"
+[".vim/bundle/vim-expand-region"]
+  type = "git-repo"
+  url = "https://github.com/terryma/vim-expand-region"
+[".vim/bundle/vim-abolish"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-abolish"
+[".vim/bundle/fzf.vim"]
+  type = "git-repo"
+  url = "https://github.com/junegunn/fzf.vim"
+[".vim/bundle/fzf"]
+  type = "git-repo"
+  url = "https://github.com/junegunn/fzf"
+[".vim/pack/themes/opt/solarized8"]
+  type = "git-repo"
+  url = "https://github.com/lifepillar/vim-solarized8"
+  
