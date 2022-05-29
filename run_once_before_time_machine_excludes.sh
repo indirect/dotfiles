@@ -3,7 +3,8 @@ set -euo pipefail
 set -vx
 
 # don't back up dropbox, steam games
-tmutil addexclusion -p \
+sudo tmutil addexclusion -p \
+  /Applications/Xcode.app \
   "$HOME/Dropbox" \
   "$HOME/Dropbox (Personal)" \
   "$HOME/Dropbox (Cloud City)" \
