@@ -11,6 +11,14 @@ fi
 # Source zshenv again after macOS /etc/zprofile nukes PATH
 source ~/.zshenv
 
+source ~/.zsh/zsh-snap/znap.zsh
+
+# znap prompt
+znap source scriptingosx/mac-zsh-completions
+# znap source marlonrichert/zsh-autocomplete
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
+
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
 setopt GLOB_COMPLETE
@@ -59,17 +67,12 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 
 # Autoload zsh functions
 fpath+=~/.zsh/functions
-for func in $(ls ~/.zsh/functions); do
+funcs=(~/.zsh/functions/*)
+for func in $funcs; do
   autoload $func
 done
 
-packages=(
-  ~/.zsh/*
-  "$BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-  "$BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-  "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-)
+packages=(~/.zsh/*)
 for file in $packages; do
   [[ -f $file ]] && source $file
 done
