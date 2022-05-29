@@ -1,118 +1,155 @@
 [".zsh/zsh-snap"]
-    type = "archive"
-    url = "https://github.com/marlonrichert/zsh-snap/archive/refs/heads/main.zip"
-    exact = true
-    stripComponents = 1
+  type = "archive"
+  url = "https://github.com/marlonrichert/zsh-snap/archive/refs/heads/main.zip"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
 
 [".vim/pack/alker0/chezmoi.vim"]
-    type = "git-repo"
-    url = "https://github.com/alker0/chezmoi.vim.git"
+  type = "git-repo"
+  url = "https://github.com/alker0/chezmoi.vim.git"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-vinegar"]
-    type = "git-repo"
-    url = "https://github.com/tpope/vim-vinegar.git"
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-vinegar.git"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-surround"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-surround"
+  refreshPeriod = "168h"
 [".vim/bundle/ctrlp.vim"]
   type = "git-repo"
   url = "https://github.com/ctrlpvim/ctrlp.vim"
+  refreshPeriod = "168h"
 [".vim/bundle/ale"]
   type = "git-repo"
   url = "https://github.com/w0rp/ale"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-airline"]
   type = "git-repo"
   url = "https://github.com/vim-airline/vim-airline"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-airline-themes"]
   type = "git-repo"
   url = "https://github.com/vim-airline/vim-airline-themes"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-repeat"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-repeat"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-colors-solarized"]
   type = "git-repo"
   url = "https://github.com/altercation/vim-colors-solarized"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-textobj-entire"]
   type = "git-repo"
   url = "https://github.com/kana/vim-textobj-entire"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-textobj-user"]
   type = "git-repo"
   url = "https://github.com/kana/vim-textobj-user"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-commentary"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-commentary"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-fugitive"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-fugitive"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-unimpaired"]
   type = "git-repo"
   url = "http://github.com/tpope/vim-unimpaired"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-ripgrep"]
   type = "git-repo"
   url = "https://github.com/jremmen/vim-ripgrep"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-autoread"]
   type = "git-repo"
   url = "https://github.com/djoshea/vim-autoread"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-textobj-ruby"]
   type = "git-repo"
   url = "https://github.com/rhysd/vim-textobj-ruby"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-to-github"]
   type = "git-repo"
   url = "https://github.com/tonchis/vim-to-github"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-rails"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-rails"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-dispatch"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-dispatch"
+  refreshPeriod = "168h"
 [".vim/bundle/typescript-vim"]
   type = "git-repo"
   url = "https://github.com/leafgarland/typescript-vim"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-projectionist"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-projectionist"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-sleuth"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-sleuth"
+  refreshPeriod = "168h"
 [".vim/bundle/swift.vim"]
   type = "git-repo"
   url = "https://github.com/keith/swift.vim"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-ragtag"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-ragtag"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-endwise"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-endwise"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-textobj-line"]
   type = "git-repo"
   url = "https://github.com/kana/vim-textobj-line"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-polyglot"]
   type = "git-repo"
   url = "https://github.com/sheerun/vim-polyglot"
+  refreshPeriod = "168h"
 [".vim/bundle/splitjoin.vim"]
   type = "git-repo"
   url = "https://github.com/AndrewRadev/splitjoin.vim"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-easy-align"]
   type = "git-repo"
   url = "https://github.com/junegunn/vim-easy-align"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-multiple-cursors"]
   type = "git-repo"
   url = "https://github.com/terryma/vim-multiple-cursors"
+  refreshPeriod = "168h"
 [".vim/bundle/ctrlsf.vim"]
   type = "git-repo"
   url = "https://github.com/dyng/ctrlsf.vim"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-expand-region"]
   type = "git-repo"
   url = "https://github.com/terryma/vim-expand-region"
+  refreshPeriod = "168h"
 [".vim/bundle/vim-abolish"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-abolish"
+  refreshPeriod = "168h"
 [".vim/bundle/fzf.vim"]
   type = "git-repo"
   url = "https://github.com/junegunn/fzf.vim"
+  refreshPeriod = "168h"
 [".vim/bundle/fzf"]
   type = "git-repo"
   url = "https://github.com/junegunn/fzf"
+  refreshPeriod = "168h"
 [".vim/pack/themes/opt/solarized8"]
   type = "git-repo"
   url = "https://github.com/lifepillar/vim-solarized8"
-  
+  refreshPeriod = "168h"
