@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+#set -euo pipefail
 set -vx
 
 # Remap (internal, at least) capslock to control. Really.
@@ -19,9 +19,11 @@ function remap() {
 
 # get internal keyboard product-vendor IDs
 keyboard_ids="$(ioreg -c AppleHSSPIInterface -r | grep -E 'idVendor|idProduct' | awk '{print $4}' | tac | paste -s -d '-\n' - | sort | uniq | awk '{print $1"-0"}')"
-for id in $keyboard_ids; do
-  remap $id
-done
+if [ -n "$keyboard_ids" ]; then
+  for id in $keyboard_ids; do
+    remap $id
+  done
+fi
 
 # found via `defaults -currentHost read | head -n25` after remapping in Keyboard.prefpane
 magic_keyboard_id="alt_handler_id-49"

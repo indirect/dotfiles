@@ -3,7 +3,7 @@ set -euo pipefail
 set -vx
 
 # Install Terminal theme
-THEME=$(cat "$ROOT/support/terminal/Solarized Dark Menlo NF.terminal")
+THEME=$(cat "$HOME/.dotfiles/support/terminal/Solarized Dark Menlo NF.terminal")
 plutil -replace "Window Settings.Solarized Dark" -xml "$THEME" \
   ~/Library/Preferences/com.apple.Terminal.plist
 defaults write com.apple.Terminal "Default Window Settings" -string "Solarized Dark"

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+# set -euo pipefail
 set -vx
 
 # Read the default ruby version out of ~/.zshrc
