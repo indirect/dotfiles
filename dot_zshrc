@@ -14,10 +14,11 @@ source ~/.zshenv
 source ~/.zsh/zsh-snap/znap.zsh
 
 # znap prompt
-znap source scriptingosx/mac-zsh-completions
+znap source romkatv/powerlevel10k
 # znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
+znap source scriptingosx/mac-zsh-completions
 
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
@@ -98,5 +99,4 @@ export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 export GOPATH=$HOME/.go
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source "$BREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
