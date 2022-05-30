@@ -11,13 +11,16 @@ sudo tmutil addexclusion -p \
   "$HOME/Library/Application Support/Steam/steamapps"
 
 # skip backup on node_modules, bundled gems and rails assets
-for pathname in ~/src/*/*/{.bundle/ruby,node_modules}; do
-  tmutil addexclusion "$pathname"
+pathnames=(~/src/*/*/{.bundle/ruby,node_modules})
+if [[ -n "$pathnames" ]]; then
+  for pathname in $pathnames; do
+    sudo tmutil addexclusion "$pathname"
 
-  for railspath in tmp/cache public/assets public/packs public/packs-test; do
-    railsdir="$pathname/../../$railspath" 
-    if [[ -d "$railsdir" ]]; then
-      tmutil addexclusion "$railsdir"
-    fi
+    for railspath in tmp/cache public/assets public/packs public/packs-test; do
+      railsdir="$pathname/../../$railspath" 
+      if [[ -d "$railsdir" ]]; then
+        sudo tmutil addexclusion "$railsdir"
+      fi
+    done
   done
-done
+fi

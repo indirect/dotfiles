@@ -11,13 +11,16 @@ for p in ${paths[@]}; do
 done
 
 # skip spotlight index on existing node_modules, bundled gems and rails assets
-for pathname in ~/src/*/*/{.bundle/ruby,node_modules}; do
-  touch "$pathname/.metadata_never_index"
+pathnames=(~/src/*/*/{.bundle/ruby,node_modules})
+if [[ -n "$pathnames" ]]; then
+  for pathname in $pathnames; do
+    touch "$pathname/.metadata_never_index"
 
-  for railspath in tmp/cache public/assets public/packs public/packs-test; do
-    railsdir="$pathname/../../$railspath" 
-    if [[ -d "$railsdir" ]]; then
-      touch "$railsdir/.metadata_never_index"
-    fi
+    for railspath in tmp/cache public/assets public/packs public/packs-test; do
+      railsdir="$pathname/../../$railspath" 
+      if [[ -d "$railsdir" ]]; then
+        touch "$railsdir/.metadata_never_index"
+      fi
+    done
   done
-done
+fi
