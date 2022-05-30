@@ -153,3 +153,7 @@
   type = "git-repo"
   url = "https://github.com/lifepillar/vim-solarized8"
   refreshPeriod = "168h"
+[".vim/bundle/NeoSolarized"]
+  type = "git-repo"
+  url = "https://github.com/overcache/NeoSolarized"
+  refreshPeriod = "168h"
