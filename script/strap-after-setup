@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+set -vx
+
+echo "setting up all dotfiles..."
+chezmoi apply

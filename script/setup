@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -euo pipefail
 set -vx
 echo "moving dotfiles for chezmoi..."
 
@@ -14,6 +14,6 @@ echo "moving dotfiles for chezmoi..."
 [[ -d ~/.local/share ]] || mkdir -p ~/.local/share
 [[ -L ~/.local/share/chezmoi ]] || ln -sf ~/src/indirect/dotfiles ~/.local/share/chezmoi
 
-echo "applying dotfiles"
+echo "setting up Brewfile"
 brew install chezmoi
-chezmoi apply
+chezmoi apply ~/.Brewfile
