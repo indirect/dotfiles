@@ -5,7 +5,7 @@ set -vx
 BREW_PREFIX="${BREW_PREFIX:-$(brew --prefix)}"
 
 if [[ ! -d /Library/PreferencePanes/BackblazeBackup.prefPane ]]; then
-    open -a "$BREW_PREFIX/Caskroom/backblaze/*/*.app"
+  open "$(echo $BREW_PREFIX/Caskroom/backblaze/*/*Installer.app)"
 fi
 
 open -a "Alfred 4"
