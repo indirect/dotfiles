@@ -22,6 +22,10 @@ znap source scriptingosx/mac-zsh-completions
 znap source bigH/git-fuzzy
 znap source MichaelAquilina/zsh-you-should-use
 
+znap fpath _kubectl 'kubectl completion  zsh'
+znap fpath _rustup  'rustup  completions zsh'
+znap fpath _cargo   'rustup  completions zsh cargo'
+
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
 setopt GLOB_COMPLETE
