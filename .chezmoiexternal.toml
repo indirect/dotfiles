@@ -1,4 +1,4 @@
-[".zsh/zsh-snap"]
+[".zsh/znap/zsh-snap"]
   type = "archive"
   url = "https://github.com/marlonrichert/zsh-snap/archive/refs/heads/main.zip"
   exact = true

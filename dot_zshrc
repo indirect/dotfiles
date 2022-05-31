@@ -11,7 +11,7 @@ fi
 # Source zshenv again after macOS /etc/zprofile nukes PATH
 source ~/.zshenv
 
-source ~/.zsh/zsh-snap/znap.zsh
+source ~/.zsh/znap/zsh-snap/znap.zsh
 
 # znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-autosuggestions
