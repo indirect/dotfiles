@@ -19,7 +19,6 @@ znap source zsh-users/zsh-syntax-highlighting
 znap source softmoth/zsh-vim-mode
 znap source zsh-users/zsh-history-substring-search
 znap source scriptingosx/mac-zsh-completions
-znap source bigH/git-fuzzy
 znap source MichaelAquilina/zsh-you-should-use
 
 znap fpath _kubectl 'kubectl completion  zsh'
