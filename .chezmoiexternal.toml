@@ -4,6 +4,8 @@
 # 02 zsh plugins
 # 03 vim plugins
 
+{{ if .server }}{{ include "server/chezmoiexternal.toml" }}{{ end }}
+
 # 00 projects
 ["src/indirect/andre.arko.net"]
   type = "git-repo"

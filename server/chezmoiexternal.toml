@@ -1,0 +1,15 @@
+["src/server/bazarr"]
+  type = "git-repo"
+  url = "https://github.com/morpheus65535/bazarr"
+["src/server/jackett"]
+  type = "git-repo"
+  url = "https://github.com/Jackett/Jackett"
+["src/server/lidarr"]
+  type = "git-repo"
+  url = "https://github.com/Lidarr/Lidarr"
+["src/server/overseerr"]
+  type = "git-repo"
+  url = "https://github.com/sct/overseerr"
+["src/server/tautulli"]
+  type = "git-repo"
+  url = "https://github.com/Tautulli/Tautulli"
