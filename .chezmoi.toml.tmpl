@@ -2,6 +2,7 @@
     name = "André Arko"
     email = "andre@arko.net"
     github = { username = "indirect" }
+    server = {{ if eq .chezmoi.hostname "gnk" }}true{{ else }}false{{ end }}
 
 [diff]
     exclude = ["scripts"]
