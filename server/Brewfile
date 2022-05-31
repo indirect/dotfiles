@@ -1,0 +1,6 @@
+cask "plex-media-server"
+cask "radarr"
+cask "sabnzbd"
+cask "softraid"
+cask "sonarr"
+cask "transmission"
