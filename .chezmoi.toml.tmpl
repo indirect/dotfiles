@@ -3,6 +3,7 @@
     email = "andre@arko.net"
     github = { username = "indirect" }
     server = {{ if eq .chezmoi.hostname "gnk" }}true{{ else }}false{{ end }}
+    brew = { prefix = "{{ if stat "/opt/homebrew" }}/opt/homebrew{{ else }}/usr/local{{ end }}" }
 
 [diff]
     exclude = ["scripts"]
