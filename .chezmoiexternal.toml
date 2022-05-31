@@ -59,7 +59,7 @@
   refreshPeriod = "168h"
 [".vim/bundle/vim-unimpaired"]
   type = "git-repo"
-  url = "http://github.com/tpope/vim-unimpaired"
+  url = "https://github.com/tpope/vim-unimpaired"
   refreshPeriod = "168h"
 [".vim/bundle/vim-ripgrep"]
   type = "git-repo"
