@@ -1,13 +1,22 @@
 # Table of Contents
+# 00 projects
 # 01 unpackaged software
 # 02 zsh plugins
 # 03 vim plugins
 
+# 00 projects
+["src/indirect/andre.arko.net"]
+  type = "git-repo"
+  url = "https://github.com/indirect/andre.arko.net"
+["src/indirect/arko.net"]
+  type = "git-repo"
+  url = "https://github.com/indirect/arko.net"
 # 01 unpackaged software
 [".local/share/git-fuzzy"]
   type = "git-repo"
   url = "https://github.com/bigH/git-fuzzy"
   refreshPeriod = "168h"
+
 # 02 zsh plugins
 [".zsh/znap/zsh-snap"]
   type = "archive"
