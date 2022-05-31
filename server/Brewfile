@@ -1,6 +1,14 @@
+brew "certbot"
+brew "indirect/tap/cronitor"
+brew "nginx", restart_service: :changed
+
+cask "handbrake"
 cask "plex-media-server"
 cask "radarr"
 cask "sabnzbd"
 cask "softraid"
 cask "sonarr"
 cask "transmission"
+
+tap "homebrew/cask-drivers"
+cask "homebrew/cask-drivers/fujitsu-scansnap-manager-ix500"
