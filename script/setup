@@ -16,4 +16,5 @@ echo "moving dotfiles for chezmoi..."
 
 echo "setting up Brewfile"
 brew install chezmoi
+chezmoi init
 chezmoi apply ~/.Brewfile
