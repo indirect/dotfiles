@@ -21,9 +21,9 @@ znap source zsh-users/zsh-history-substring-search
 znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
 
-which kubectl && znap fpath _kubectl 'kubectl completion  zsh'
-which rustup  && znap fpath _rustup  'rustup  completions zsh'
-which rustup  && znap fpath _cargo   'rustup  completions zsh cargo'
+which kubectl &> /dev/null && znap fpath _kubectl 'kubectl completion  zsh'
+which rustup  &> /dev/null && znap fpath _rustup  'rustup  completions zsh'
+which rustup  &> /dev/null && znap fpath _cargo   'rustup  completions zsh cargo'
 
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
