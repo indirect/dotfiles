@@ -13,12 +13,9 @@
 	<string>/Volumes/Downloads/Mister Rogers Neighborhood</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>cronitor</string>
-		<string>exec</string>
-		<string>0xLpu9</string>
-		<string>--</string>
-		<string>yt-dlp</string>
-		<string>https://www.misterrogers.org/watch/</string>
+		<string>bash</string>
+		<string>-c</string>
+		<string>which cronitor &amp;&amp; which yt-dlp &amp;&amp; cronitor exec 0xLpu9 -- yt-dlp https://www.misterrogers.org/watch/</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
