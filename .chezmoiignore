@@ -5,5 +5,4 @@ support
 {{- if not .server }}
 .local/LaunchDaemons
 Library/LaunchAgents
-run_after_link_daemons.sh
 {{- end }}

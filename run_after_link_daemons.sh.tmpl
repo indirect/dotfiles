@@ -1,3 +1,4 @@
+{{- if .server -}}
 #!/bin/bash
 set -euo pipefail
 set -vx
@@ -11,3 +12,4 @@ for path in $files; do
   sudo chown root:wheel "$target"
   sudo chmod 644 "$target"
 done
+{{- end -}}
