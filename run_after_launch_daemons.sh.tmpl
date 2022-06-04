@@ -10,6 +10,7 @@ for path in $files; do
   sudo cp "$HOME/.local/LaunchDaemons/$file" "$target"
   sudo chown root:wheel "$target"
   sudo chmod 644 "$target"
-  sudo launchctl list "$(basename "$target" .plist)" > /dev/null || sudo launchctl load -w "$target"
+  sudo launchctl unload "$target"
+  sudo launchctl load "$target"
 done
 {{- end -}}
