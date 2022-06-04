@@ -5,21 +5,15 @@
 	<key>EnvironmentVariables</key>
 	<dict>
 		<key>PATH</key>
-		<string>{{ .brew.prefix }}/bin:{{ .chezmoi.homeDir }}/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/usr/local/sbin</string>
+		<string>{{ .brew.prefix }}/bin:{{ .chezmoi.homeDir }}/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin</string>
 	</dict>
 	<key>Label</key>
 	<string>net.arko.certbot-renew</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>cronitor</string>
-		<string>exec</string>
-		<string>yspGST</string>
-		<string>--</string>
-		<string>certbot</string>
-		<string>renew</string>
-		<string>--nginx</string>
-		<string>--nginx-ctl</string>
-		<string>{{ .brew.prefix }}/bin/nginx</string>
+		<string>bash</string>
+		<string>-c</string>
+		<string>certbot renew --nginx --nginx-ctl {{ .brew.prefix }}/bin/nginx --work-dir {{ .brew.prefix }}/var/lib/letsencrypt --logs-dir {{ .brew.prefix }}/var/log/letsencrypt --config-dir {{ .brew.prefix }}/etc/letsencrypt</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
