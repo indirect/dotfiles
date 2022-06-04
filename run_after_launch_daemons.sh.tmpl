@@ -11,5 +11,6 @@ for path in $files; do
   sudo cp "$HOME/.local/LaunchDaemons/$file" "$target"
   sudo chown root:wheel "$target"
   sudo chmod 644 "$target"
+  sudo launchctl load -w "$target"
 done
 {{- end -}}
