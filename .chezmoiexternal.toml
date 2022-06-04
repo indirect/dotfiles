@@ -202,3 +202,7 @@
   type = "git-repo"
   url = "https://github.com/overcache/NeoSolarized"
   refreshPeriod = "168h"
+[".vim/bundle/vim-shebang"]
+  type = "git-repo"
+  url = "https://github.com/vitalk/vim-shebang"
+  refreshPeriod = "168h"
