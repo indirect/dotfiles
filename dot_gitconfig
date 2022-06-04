@@ -46,7 +46,6 @@
 	sign = "!f() { git rebase \"${1:-$((git branch | egrep 'main|master|development|latest|release' || echo 'master') | sed 's|* |origin/|' | awk '{print $1}')}\" --exec 'git commit --amend --no-edit -n -S'; }; f"
 	sha = log -1 --pretty=format:%H
 	st = status -sb
-	sta = stash
 	track = "!f(){ branch=$(git name-rev --name-only HEAD); cmd=\"git branch --set-upstream-to ${1:-origin}/${2:-$branch} $branch\"; echo $cmd; $cmd; }; f"
 	uncommit = reset --soft HEAD^
 	up = "!git fetch && git merge --ff-only"
