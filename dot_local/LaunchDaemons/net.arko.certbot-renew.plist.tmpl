@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>{{ .brew.prefix }}/bin:{{ .chezmoi.homeDir }}/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/usr/local/sbin</string>
+	</dict>
+	<key>Label</key>
+	<string>net.arko.certbot-renew</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>cronitor</string>
+		<string>exec</string>
+		<string>yspGST</string>
+		<string>--</string>
+		<string>certbot</string>
+		<string>renew</string>
+		<string>--nginx</string>
+		<string>--nginx-ctl</string>
+		<string>{{ .brew.prefix }}/bin/nginx</string>
+	</array>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>StandardErrorPath</key>
+	<string>{{ .brew.prefix }}/var/log/certbot.log</string>
+	<key>StandardOutPath</key>
+	<string>{{ .brew.prefix }}/var/log/certbot.log</string>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Hour</key>
+			<integer>1</integer>
+			<key>Minute</key>
+			<integer>43</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

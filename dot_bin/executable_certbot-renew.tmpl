@@ -1,5 +1,0 @@
-{{- if .server -}}
-#!/bin/bash
-
-(date && {{ .brew.prefix }}/bin/certbot renew --nginx --nginx-ctl {{ .brew.prefix }}/bin/nginx 2>&1) >> {{ .brew.prefix }}/var/log/certbot.log
-{{- end -}}

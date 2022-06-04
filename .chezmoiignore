@@ -2,3 +2,8 @@ LICENSE
 README.md
 script
 support
+{{- if not .server -}}
+dot_local/LaunchDaemons
+private_Library/LaunchAgents
+run_after_link_daemons.sh
+{{- end -}}
