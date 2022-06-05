@@ -13,3 +13,8 @@
 [edit]
     command = "mvim"
     args = ["-f", "--nomru", "-c", "au VimLeave * !open -a $TERM_APPLICATION"]
+
+encryption = "age"
+[age]
+    identity = "{{ .chezmoi.homeDir }}/.config/age/chezmoi_key.txt"
+    recipient = "age1jhkpvp9npqpcjztzae0f64njnesuw2nvgxzpsajge524mgzz45mqqqcyac"
