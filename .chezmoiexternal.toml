@@ -24,9 +24,9 @@
   url = "https://github.com/morpheus65535/bazarr"
   refreshPeriod = "168h"
 ["src/server/jackett"]
-  type = "git-repo"
-  url = "https://github.com/Jackett/Jackett"
-  refreshPeriod = "168h"
+  type = "archive"
+  url = "https://github.com/Jackett/Jackett/releases/download/{{ (gitHubLatestRelease "Jackett/Jackett").TagName }}/Jackett.Binaries.macOSARM64.tar.gz"
+  stripComponents = 1
 ["src/server/overseerr"]
   type = "git-repo"
   url = "https://github.com/sct/overseerr"
