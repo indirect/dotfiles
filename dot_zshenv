@@ -4,8 +4,8 @@ typeset -U path
 # Set up homebrew paths
 if [[ -z "$BREW_PREFIX" ]]; then
   export BREW_PREFIX=$([[ "$(arch)" == "arm64" ]] && echo "/opt/homebrew" || echo "/usr/local")
-  path=($BREW_PREFIX/bin $BREW_PREFIX/sbin $path)
 fi
+path=($BREW_PREFIX/bin $BREW_PREFIX/sbin $path)
 
 # Personal and rust bins
 path=($HOME/.bin $HOME/.cargo/bin $path)
