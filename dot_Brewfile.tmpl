@@ -153,10 +153,10 @@ brew "nginx", restart_service: :changed
 
 cask "handbrake"
 cask "plex-media-server"
-cask "radarr"
-cask "sabnzbd"
+cask "radarr", args: { no_quarantine: true }
+cask "sabnzbd", args: { no_quarantine: true }
 cask "softraid"
-cask "sonarr"
+cask "sonarr", args: { no_quarantine: true }
 cask "transmission"
 
 tap "homebrew/cask-drivers"
