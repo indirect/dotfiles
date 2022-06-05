@@ -3,6 +3,5 @@ README.md
 script
 support
 {{- if not .server }}
-.local/LaunchDaemons
 Library/LaunchAgents
 {{- end }}
