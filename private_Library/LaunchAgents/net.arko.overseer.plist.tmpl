@@ -1,0 +1,31 @@
+{{- if .server -}}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>net.arko.overseerr</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>{{ .brew.prefix }}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin</string>
+	</dict>
+	<key>WorkingDirectory</key>
+	<string>{{ .chezmoi.homeDir }}/src/server/overseerr</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>bash</string>
+		<string>-c</string>
+		<string>yarn install &amp;&amp; yarn start</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>{{ .brew.prefix }}/var/log/overseerr.log</string>
+	<key>StandardOutPath</key>
+	<string>{{ .brew.prefix }}/var/log/overseerr.log</string>
+</dict>
+</plist>
+{{- end }}
