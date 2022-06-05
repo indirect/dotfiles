@@ -27,10 +27,6 @@
   type = "git-repo"
   url = "https://github.com/Jackett/Jackett"
   refreshPeriod = "168h"
-["src/server/lidarr"]
-  type = "git-repo"
-  url = "https://github.com/Lidarr/Lidarr"
-  refreshPeriod = "168h"
 ["src/server/overseerr"]
   type = "git-repo"
   url = "https://github.com/sct/overseerr"
