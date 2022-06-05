@@ -2,6 +2,3 @@ LICENSE
 README.md
 script
 support
-{{- if not .server }}
-Library/LaunchAgents
-{{- end }}
