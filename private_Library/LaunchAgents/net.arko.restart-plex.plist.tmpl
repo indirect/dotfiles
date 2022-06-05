@@ -6,9 +6,10 @@
 	<string>net.arko.restart-plex</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/bin/bash</string>
-		<string>-c</string>
-		<string>kill $(ps ax | grep 'MacOS/Plex Media Server' | grep -v grep | awk '{print $1}')</string>
+		<string>launchctl</string>
+		<string>kill</string>
+		<string>TERM</string>
+		<string>gui/{{ .chezmoi.uid }}/net.arko.plex</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
