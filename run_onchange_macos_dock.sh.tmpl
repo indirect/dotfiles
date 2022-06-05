@@ -16,4 +16,13 @@ dockutil --no-restart --add /Applications/Fantastical.app
 dockutil --no-restart --add /Applications/kitty.app
 dockutil --no-restart --add /System/Library/CoreServices/Applications/Feedback\ Assistant.app
 
+{{ if .server -}}
+# Server dock items
+dockutil --no-restart --add /Applications/Photos.app
+dockutil --no-restart --add /Applications/Transmission.app
+dockutil --no-restart --add /Applications/Name\ Mangler.app
+dockutil --no-restart --add /Applications/Utilities/Activity\ Monitor.app
+dockutil --no-restart --add /Applications/Plex\ Media\ Server.app
+{{- end }}
+
 dockutil --add ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/Downloads --view fan --display stack
