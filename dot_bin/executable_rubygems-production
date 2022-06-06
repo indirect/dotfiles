@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euo pipefail
+set -vx
+
+kubectl exec -n rubygems-production --context rubygems $(kubectl get pods -l name=unicorn --field-selector=status.phase=Running -n rubygems-production --context rubygems -o jsonpath={.items[0].metadata.name}) -it -- bash
