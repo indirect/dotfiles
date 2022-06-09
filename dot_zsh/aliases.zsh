@@ -33,6 +33,7 @@ alias man=batman
 alias md="open -a Marked\ 2"
 alias mdwtf="sudo fs_usage -w -f filesys mdworker"
 alias mux="tmux-named"
+alias power="pmset -g assertions"
 alias pp="prettyping"
 alias rc="bin/rails console"
 alias s="bin/rspec"
