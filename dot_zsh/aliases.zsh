@@ -23,6 +23,7 @@ alias gl="git lg"
 alias gs="git status -sb"
 alias histogram="sort | uniq -c | sort -r"
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
+alias j="z"
 alias l="exa --icons"
 alias la="exa -lahF --git --icons"
 alias less=bat

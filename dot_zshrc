@@ -25,6 +25,8 @@ which kubectl &> /dev/null && znap fpath _kubectl 'kubectl completion  zsh'
 which rustup  &> /dev/null && znap fpath _rustup  'rustup  completions zsh'
 which rustup  &> /dev/null && znap fpath _cargo   'rustup  completions zsh cargo'
 
+which zoxide &> /dev/null && znap eval zoxide 'zoxide init zsh'
+
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
 setopt GLOB_COMPLETE
@@ -82,12 +84,6 @@ packages=(~/.zsh/*)
 for file in $packages; do
   [[ -f $file ]] && source $file
 done
-
-# Zoxide is like autojump or z
-if which zoxide > /dev/null; then
-  eval "$(zoxide init zsh)"
-  alias j=z
-fi
 
 # prefix search history with up and down
 autoload -U up-line-or-beginning-search
