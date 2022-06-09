@@ -26,6 +26,7 @@ which rustup  &> /dev/null && znap fpath _rustup  'rustup  completions zsh'
 which rustup  &> /dev/null && znap fpath _cargo   'rustup  completions zsh cargo'
 
 which zoxide &> /dev/null && znap eval zoxide 'zoxide init zsh'
+which nodenv &> /dev/null && znap eval nodenv 'nodenv init -'
 
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
