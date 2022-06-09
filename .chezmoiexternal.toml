@@ -25,7 +25,7 @@
   refreshPeriod = "168h"
 ["src/server/jackett"]
   type = "archive"
-  url = "https://github.com/Jackett/Jackett/releases/download/{{ (gitHubLatestRelease "Jackett/Jackett").TagName }}/Jackett.Binaries.macOSARM64.tar.gz"
+  url = "https://github.com/Jackett/Jackett/releases/latest/download/Jackett.Binaries.macOSARM64.tar.gz"
   stripComponents = 1
 ["src/server/overseerr"]
   type = "git-repo"
