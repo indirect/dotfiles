@@ -57,10 +57,6 @@
   type = "git-repo"
   url = "https://github.com/tpope/vim-surround"
   refreshPeriod = "168h"
-[".vim/bundle/ctrlp.vim"]
-  type = "git-repo"
-  url = "https://github.com/ctrlpvim/ctrlp.vim"
-  refreshPeriod = "168h"
 [".vim/bundle/ale"]
   type = "git-repo"
   url = "https://github.com/w0rp/ale"
