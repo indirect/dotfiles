@@ -152,9 +152,9 @@ brew "indirect/tap/cronitor"
 brew "nginx", restart_service: :changed
 
 cask "handbrake"
-cask "lidarr", args: { no_quarantine: true }
+cask "indirect/tap/lidarr", args: { no_quarantine: true }
+cask "indirect/tap/radarr", args: { no_quarantine: true }
 cask "plex-media-server"
-cask "radarr", args: { no_quarantine: true }
 cask "sabnzbd", args: { no_quarantine: true }
 cask "softraid"
 cask "sonarr", args: { no_quarantine: true }
