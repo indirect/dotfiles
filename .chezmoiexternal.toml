@@ -20,9 +20,8 @@
   refreshPeriod = "168h"
 {{ if .server }}
 ["src/server/bazarr"]
-  type = "git-repo"
-  url = "https://github.com/morpheus65535/bazarr"
-  refreshPeriod = "168h"
+  type = "archive"
+  url = "https://github.com/morpheus65535/bazarr/releases/latest/download/bazarr.zip"
 ["src/server/jackett"]
   type = "archive"
   url = "https://github.com/Jackett/Jackett/releases/latest/download/Jackett.Binaries.macOSARM64.tar.gz"
