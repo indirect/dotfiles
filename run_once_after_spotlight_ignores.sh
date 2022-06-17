@@ -3,7 +3,11 @@ set -euo pipefail
 set -vx
 
 # don't spotlight index cache, rubies
-paths=("$HOME/.cache" "$HOME/.rubies")
+paths=(
+  "$HOME/.cache"
+  "$HOME/.rubies"
+  "$HOME/Library/Application Support/Steam/steamapps"
+)
 for p in ${paths[@]}; do
   mkdir -p "$p"
   chown "$USER:staff" "$p"
