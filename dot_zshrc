@@ -21,6 +21,8 @@ znap source zsh-users/zsh-history-substring-search
 znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
 
+which nodenv &> /dev/null && znap eval nodenv 'nodenv init -'
+
 which kubectl &> /dev/null && znap fpath _kubectl 'kubectl completion  zsh'
 which rustup  &> /dev/null && znap fpath _rustup  'rustup  completions zsh'
 which rustup  &> /dev/null && znap fpath _cargo   'rustup  completions zsh cargo'
