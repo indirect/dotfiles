@@ -22,20 +22,16 @@
 ["src/server/bazarr"]
   type = "archive"
   url = "https://github.com/morpheus65535/bazarr/releases/latest/download/bazarr.zip"
-  refreshPeriod = "168h"
 ["src/server/jackett"]
   type = "archive"
   url = "https://github.com/Jackett/Jackett/releases/latest/download/Jackett.Binaries.macOSARM64.tar.gz"
   stripComponents = 1
-  refreshPeriod = "168h"
 ["src/server/overseerr"]
   type = "git-repo"
   url = "https://github.com/sct/overseerr"
-  refreshPeriod = "168h"
 ["src/server/tautulli"]
   type = "git-repo"
   url = "https://github.com/Tautulli/Tautulli"
-  refreshPeriod = "168h"
 {{ end }}
 
 # 02 zsh plugins

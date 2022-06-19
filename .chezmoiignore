@@ -2,3 +2,7 @@ LICENSE
 README.md
 script
 support
+
+{{- if .server }}
+src/server/*
+{{- end }}
