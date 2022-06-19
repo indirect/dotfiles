@@ -2,5 +2,8 @@
 set -euo pipefail
 set -vx
 
-echo "setting up all dotfiles..."
+echo "getting dotfiles key from 1Password"
+chezmoi apply ~/.config/age/chezmoi_key.txt
+
+echo "setting up all other dotfiles..."
 chezmoi apply
