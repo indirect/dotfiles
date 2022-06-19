@@ -2,7 +2,9 @@ LICENSE
 README.md
 script
 support
-
 {{- if .server }}
-src/server/*
+{{ if stat (joinPath .chezmoi.homeDir "src/server/bazarr") -}}src/server/bazarr{{ end }}
+{{ if stat (joinPath .chezmoi.homeDir "src/server/jackett") -}}src/server/jackett{{ end }}
+{{ if stat (joinPath .chezmoi.homeDir "src/server/overseerr") -}}src/server/overseerr{{ end }}
+{{ if stat (joinPath .chezmoi.homeDir "src/server/tautulli") -}}src/server/tautulli{{ end }}
 {{- end }}
