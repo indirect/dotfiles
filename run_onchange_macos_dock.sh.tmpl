@@ -6,7 +6,12 @@ which dockutil || brew install indirect/tap/dockutil
 
 dockutil --no-restart --remove all
 
+{{ if stat "/System/Applications/System Settings.app" }}
+dockutil --no-restart --add /System/Applications/System\ Settings.app
+{{- else -}}
 dockutil --no-restart --add /System/Applications/System\ Preferences.app
+{{- end }}
+
 dockutil --no-restart --add /Applications/Safari.app
 dockutil --no-restart --add /System/Applications/Messages.app
 dockutil --no-restart --add /System/Applications/Mail.app
