@@ -119,5 +119,7 @@
 	xfuncname = "^[ \t]*((RSpec|describe|context|it|before|after|around|feature|scenario|background)[ \t].*)$"
 [diff "plist"]
 	textconv = plutil -convert xml1 -o -
+[diff "age"]
+	textconv = chezmoi decrypt
 [init]
 	defaultBranch = main
