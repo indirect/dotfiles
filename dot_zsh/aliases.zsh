@@ -1,6 +1,7 @@
 alias ...="cd .. ; cd ..; ls"
 alias ..="cd ..; ls"
 alias b="bundle exec"
+alias certbot="certbot --work-dir /opt/homebrew/var/lib/letsencrypt --logs-dir /opt/homebrew/var/log/letsencrypt --config-dir /opt/homebrew/etc/letsencrypt"
 alias cm="chezmoi"
 alias crystal="crystal-dev"
 alias dbundle="~/src/rubygems/rubygems/bundler/bin/bundle"
