@@ -1,0 +1,46 @@
+gnk.shark-crocodile.ts.net {
+	# Overseerr
+	reverse_proxy 127.0.0.1:5055
+
+	log {
+		output file /opt/homebrew/var/log/caddy/access.log
+	}
+}
+
+100.127.239.51:80, gnk:80 {
+	# Overseerr
+	reverse_proxy 127.0.0.1:5055
+
+	# Sonarr
+	redir /tv /tv/ 308
+	reverse_proxy /tv/* 127.0.0.1:8989
+
+	# Radarr
+	redir /movies /movies/ 308
+	reverse_proxy /movies/* 127.0.0.1:7878
+
+	# Bazarr
+	redir /subs /subtitles/ 308
+	redir /subtitles /subtitles/ 308
+	reverse_proxy /subtitles/* 127.0.0.1:6767
+
+	# Lidarr
+	redir /music /music/ 308
+	reverse_proxy /music/* 127.0.0.1:8686
+
+	# Tautulli
+	redir /activity /activity/ 308
+	reverse_proxy /activity/* 127.0.0.1:8181
+
+	# Transmission
+	redir /transmission /transmission/ 308
+	reverse_proxy /transmission/* 127.0.0.1:9091
+
+	# Jackett
+	redir /jackett /jackett/ 308
+	reverse_proxy /jackett/* 127.0.0.1:9117
+
+	log {
+		output file /opt/homebrew/var/log/caddy/access.log
+	}
+}
