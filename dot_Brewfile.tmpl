@@ -149,10 +149,8 @@ mas "Xcode", id: 497799835
 
 {{- if .server }}
 # Server-specific entries
-brew "certbot"
 brew "caddy"
 brew "indirect/tap/cronitor"
-brew "nginx", restart_service: :changed
 
 cask "handbrake"
 cask "indirect/tap/lidarr", args: { no_quarantine: true }
