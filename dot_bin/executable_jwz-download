@@ -46,6 +46,7 @@ if ARGV.any?
 else
   name, youtube_url = mixtapes.first
 end
+dirname = name.tr('Ø', '0')
 
 tape_row = doc.css(".mixbox b").find{|e| e.text == name }.parent.parent
 track_text = tape_row.css(".mixtbox").text.force_encoding("UTF-8")
@@ -55,8 +56,13 @@ end.compact
 
 add_to_itunes = Dir.glob(File.expand_path("~/Music/*/*/Automatically\ Add\ to\ *")).first || raise("oh no can't add to itunes")
 
+if File.directory?("/Volumes/Media/Music/jwz mixtapes/#{dirname}")
+  puts "#{dirname} is already downloaded"
+  exit 0
+end
+
 base = File.expand_path("~/Downloads")
-dir = File.join(base, name.tr('Ø', '0'))
+dir = File.join(base, dirname)
 FileUtils.mkdir_p(dir)
 Dir.chdir(dir)
 
@@ -78,7 +84,7 @@ Dir.mktmpdir do |path|
     system("AtomicParsley #{e(fa)} \
          --artist #{e(t[:artist])}\
          --title #{e(t[:title])}\
-         --album #{e(name.tr('Ø', '0'))}\
+         --album #{e(dirname)}\
          --year #{e(t[:year])}\
          --tracknum #{t[:number]}/#{tracklist.size} \
          --albumArtist jwz \
@@ -94,6 +100,7 @@ end
 
 if File.directory?("/Volumes/Media/Music/jwz mixtapes")
   FileUtils.cp_r(dir, "/Volumes/Media/Music/jwz mixtapes")
+  FileUtils.rm_r(dir)
 end
 
 puts name
