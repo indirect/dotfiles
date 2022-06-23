@@ -1,16 +1,27 @@
 {{ if .server -}}
-gnk.shark-crocodile.ts.net {
+gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, 100.127.239.51:80, gnk.local:80, gnk:80 {
 	# Overseerr
 	reverse_proxy 127.0.0.1:5055
 
-	log {
-		output file /opt/homebrew/var/log/caddy/access.log
+	# Admin services that aren't shared
+	@auth {
+		path /tv*
+		path /movies*
+		path /subtitles*
+		path /music*
+		path /activity*
+		path /transmission*
+		path /jackett*
 	}
-}
 
-100.127.239.51:80, gnk:80 {
-	# Overseerr
-	reverse_proxy 127.0.0.1:5055
+	forward_auth @auth unix//opt/homebrew/var/run/tailscale.nginx-auth.sock {
+		uri /auth
+		header_up Remote-Addr {remote_host}
+		header_up Remote-Port {remote_port}
+		header_up Original-URI {uri}
+		header_up Expected-Tailnet "arko.net"
+		copy_headers Tailscale-User Tailscale-Name Tailscale-Login Tailscale-Tailnet Tailscale-Profile-Picture
+	}
 
 	# Sonarr
 	redir /tv /tv/ 308
