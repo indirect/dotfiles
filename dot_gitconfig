@@ -61,7 +61,7 @@
 [core]
 	legacyheaders = false
 	excludesfile = ~/.gitignore
-	pager = "delta --syntax-theme='Solarized (dark)'"
+	pager = delta
 	attributesfile = ~/.gitattributes
 [push]
 	default = simple
@@ -81,6 +81,7 @@
 	process = git-lfs filter-process
 [diff]
 	algorithm = patience
+	colorMoved = default
 [github]
 	user = indirect
 [gpg]
@@ -123,3 +124,6 @@
 	textconv = chezmoi decrypt
 [init]
 	defaultBranch = main
+[delta]
+	navigate = true
+	light = false
