@@ -1,3 +1,4 @@
+{{ if .server -}}
 gnk.shark-crocodile.ts.net {
 	# Overseerr
 	reverse_proxy 127.0.0.1:5055
@@ -44,3 +45,4 @@ gnk.shark-crocodile.ts.net {
 		output file /opt/homebrew/var/log/caddy/access.log
 	}
 }
+{{- end }}
