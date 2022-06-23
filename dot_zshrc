@@ -20,6 +20,7 @@ znap source softmoth/zsh-vim-mode
 znap source zsh-users/zsh-history-substring-search
 znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
+znap source unixorn/fzf-zsh-plugin
 
 which nodenv &> /dev/null && znap eval nodenv 'nodenv init -'
 
