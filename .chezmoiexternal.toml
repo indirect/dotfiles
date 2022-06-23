@@ -19,6 +19,10 @@
   url = "https://github.com/bigH/git-fuzzy"
   refreshPeriod = "168h"
 {{ if .server }}
+[".bin/nginx-auth"]
+  type = "file"
+  url = "https://github.com/indirect/dotfiles/releases/download/nginx-auth-1-4f6fa3d6/nginx-auth"
+  executable = true
 ["src/server/bazarr"]
   type = "archive"
   url = "https://github.com/morpheus65535/bazarr/releases/latest/download/bazarr.zip"
