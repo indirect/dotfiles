@@ -1,0 +1,31 @@
+{{- if .server -}}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/Users/andre/.bin</string>
+	</dict>
+	<key>Label</key>
+	<string>net.arko.nginx-auth</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>nginx-auth</string>
+		<string>-sockpath</string>
+		<string>/opt/homebrew/var/run/tailscale.nginx-auth.sock</string>
+	</array>
+	<key>Sockets</key>
+	<dict>
+		<key>Listeners</key>
+		<dict>
+			<key>SockFamily</key>
+			<string>Unix</string>
+			<key>SockPathName</key>
+			<string>/opt/homebrew/var/run/tailscale.nginx-auth.sock</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
+{{- end }}
