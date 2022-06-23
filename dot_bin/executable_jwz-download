@@ -9,7 +9,7 @@ if ARGV.include?("-h") || ARGV.include?("--help")
   exit 1
 end
 
-%w[atomicparsley youtube-dl MP4Box id3v2].each do |tool|
+%w[atomicparsley yt-dlp MP4Box id3v2].each do |tool|
   next if system("which #{tool} > /dev/null")
   puts "You need #{tool} installed! Installing it now."
   system("brew install #{tool}")
@@ -60,8 +60,8 @@ dir = File.join(base, name.tr('Ø', '0'))
 FileUtils.mkdir_p(dir)
 Dir.chdir(dir)
 
-run "youtube-dl -U"
-run 'youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4" -o "%(autonumber)s %(title)s.%(ext)s" "' << youtube_url << '"'
+run 'brew upgrade yt-dlp'
+run 'yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4" -o "%(autonumber)s %(title)s.%(ext)s" "' << youtube_url << '"'
 
 Dir.mktmpdir do |path|
   tmpdir = path.encode('UTF-8')
