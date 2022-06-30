@@ -22,19 +22,19 @@ http_to_ssh(){
 	fi
     fi
 
-    USER=`echo $REPO_URL | sed -Ene's#https://github.com/([^/]*)/(.*).git#\1#p'`
+    USER=`echo $REPO_URL | sed -Ene's#https://github.com/([^/]*)/(.*)#\1#p'`
     if [ -z "$USER" ]; then
 	echo "-- ERROR:  Could not identify User."
 	exit
     fi
 
-    REPO=`echo $REPO_URL | sed -Ene's#https://github.com/([^/]*)/(.*).git#\2#p'`
+    REPO=`echo $REPO_URL | sed -Ene's#https://github.com/([^/]*)/(.*)#\2#p'`
     if [ -z "$REPO" ]; then
 	echo "-- ERROR:  Could not identify Repo."
 	exit
     fi
 
-    NEW_URL="git@github.com:$USER/$REPO.git"
+    NEW_URL="git@github.com:$USER/${REPO%.git}.git"
     echo "Changing repo url from "
     echo "  '$REPO_URL'"
     echo "      to "
