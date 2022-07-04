@@ -11,6 +11,7 @@ gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, 100.127.239.51:8
 		path /music*
 		path /activity*
 		path /transmission*
+		path /sabnzbd*
 		path /jackett*
 	}
 
@@ -43,6 +44,10 @@ gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, 100.127.239.51:8
 	# Tautulli
 	redir /activity /activity/ 308
 	reverse_proxy /activity/* 127.0.0.1:8181
+
+	# Sabnzbd
+	redir /sabnzbd /sabnzbd/ 308
+	reverse_proxy /sabnzbd/* 127.0.0.1:8080
 
 	# Transmission
 	redir /transmission /transmission/ 308
