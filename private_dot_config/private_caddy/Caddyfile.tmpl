@@ -1,10 +1,11 @@
 {{ if .server -}}
-gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, 100.127.239.51:80, gnk.local:80, gnk:80 {
+gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, gnk:80, gnk.local:80 {
 	# Overseerr
 	reverse_proxy 127.0.0.1:5055
 
 	# Admin services that aren't shared
 	@auth {
+		host gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net
 		path /tv*
 		path /movies*
 		path /subtitles*
