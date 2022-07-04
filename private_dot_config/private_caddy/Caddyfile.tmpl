@@ -52,8 +52,6 @@ gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, 100.127.239.51:8
 	redir /jackett /jackett/ 308
 	reverse_proxy /jackett/* 127.0.0.1:9117
 
-	log {
-		output file /opt/homebrew/var/log/caddy/access.log
-	}
+	log
 }
 {{- end }}
