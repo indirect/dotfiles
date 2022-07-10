@@ -22,12 +22,18 @@ znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
 znap source unixorn/fzf-zsh-plugin
 
-which kubectl &> /dev/null && znap fpath _kubectl 'kubectl completion  zsh'
-which rustup  &> /dev/null && znap fpath _rustup  'rustup  completions zsh'
-which rustup  &> /dev/null && znap fpath _cargo   'rustup  completions zsh cargo'
+znap eval zoxide 'zoxide init zsh'
 
-which zoxide &> /dev/null && znap eval zoxide 'zoxide init zsh'
-which nodenv &> /dev/null && znap eval nodenv 'nodenv init -'
+znap function _nodenv_init node 'eval "$(nodenv init -)"'
+
+znap function _kubectl kubectl 'eval "$( kubectl completion zsh )"'
+compdef       _kubectl kubectl
+
+znap function _rustup rustup 'eval "$( rustup completion zsh )"'
+compdef       _rustup rustup
+
+znap function _cargo cargo 'eval "$( rustup completion zsh cargo )"'
+compdef       _cargo cargo
 
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
