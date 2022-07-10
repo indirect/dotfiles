@@ -85,7 +85,7 @@ for func in $funcs; do
   autoload $func
 done
 
-packages=(~/.zsh/*)
+packages=(~/.zsh/*.zsh)
 for file in $packages; do
   [[ -f $file ]] && source $file
 done
