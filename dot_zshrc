@@ -22,8 +22,6 @@ znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
 znap source unixorn/fzf-zsh-plugin
 
-which nodenv &> /dev/null && znap eval nodenv 'nodenv init -'
-
 which kubectl &> /dev/null && znap fpath _kubectl 'kubectl completion  zsh'
 which rustup  &> /dev/null && znap fpath _rustup  'rustup  completions zsh'
 which rustup  &> /dev/null && znap fpath _cargo   'rustup  completions zsh cargo'
