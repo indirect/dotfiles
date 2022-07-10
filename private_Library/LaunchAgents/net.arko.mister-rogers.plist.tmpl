@@ -3,18 +3,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Label</key>
-	<string>net.arko.mister-rogers</string>
 	<key>EnvironmentVariables</key>
 	<dict>
 		<key>PATH</key>
 		<string>{{ .brew.prefix }}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin</string>
 	</dict>
-	<key>WorkingDirectory</key>
-	<string>/Volumes/Media/Video/New/TV Shows/Mister Rogers Neighborhood</string>
+	<key>Label</key>
+	<string>net.arko.mister-rogers</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>bash</string>
+		<string>/usr/local/bin/fdautil</string>
+		<string>exec</string>
+		<string>/bin/bash</string>
 		<string>-c</string>
 		<string>cronitor exec 0xLpu9 -- yt-dlp 'https://www.misterrogers.org/watch/'</string>
 	</array>
@@ -177,6 +177,8 @@
 			<integer>1</integer>
 		</dict>
 	</array>
+	<key>WorkingDirectory</key>
+	<string>/Volumes/Media/Video/New/TV Shows/Mister Rogers Neighborhood</string>
 </dict>
 </plist>
 {{- end }}
