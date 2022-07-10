@@ -1,0 +1,5 @@
+if [[ "$P9K_SSH" == "1" ]]; then
+  OP_BIOMETRIC_UNLOCK_ENABLED=false chezmoi
+else
+  chezmoi
+fi
