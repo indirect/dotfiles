@@ -51,7 +51,8 @@ gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, gnk:80, gnk.loca
 	reverse_proxy /sabnzbd/* 127.0.0.1:8080
 
 	# Transmission
-	redir /transmission /transmission/ 308
+	redir /transmission     /transmission/web/ 308
+	redir /transmission/web /transmission/web/ 308
 	reverse_proxy /transmission/* 127.0.0.1:9091
 
 	# Jackett
