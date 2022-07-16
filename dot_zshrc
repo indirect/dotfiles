@@ -23,17 +23,18 @@ znap source MichaelAquilina/zsh-you-should-use
 znap source unixorn/fzf-zsh-plugin
 
 znap eval zoxide 'zoxide init zsh'
+znap eval nodenv 'nodenv init -'
 
-znap function _nodenv_init node 'eval "$(nodenv init -)"'
+fpath+=~/.zsh/functions
+funcs=(~/.zsh/functions/*)
+for func in $funcs; do autoload $func; done
 
-znap function _kubectl kubectl 'eval "$( kubectl completion zsh )"'
-compdef       _kubectl kubectl
+packages=(~/.zsh/*.zsh)
+for file in $packages; do [[ -f $file ]] && source $file; done
 
-znap function _rustup rustup 'eval "$( rustup completion zsh )"'
-compdef       _rustup rustup
-
-znap function _cargo cargo 'eval "$( rustup completion zsh cargo )"'
-compdef       _cargo cargo
+znap-complete kubectl "kubectl completion zsh"
+znap-complete rustup  "rustup  completion zsh"
+znap-complete cargo   "rustup  completion zsh cargo"
 
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
@@ -81,18 +82,6 @@ zstyle ':completion:*' expand prefix suffix
 
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-
-# Autoload zsh functions
-fpath+=~/.zsh/functions
-funcs=(~/.zsh/functions/*)
-for func in $funcs; do
-  autoload $func
-done
-
-packages=(~/.zsh/*.zsh)
-for file in $packages; do
-  [[ -f $file ]] && source $file
-done
 
 # prefix search history with up and down
 autoload -U up-line-or-beginning-search
