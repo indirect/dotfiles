@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+set -vx
 
 # Named variables are much more flexible
 name="${1:-main}"
@@ -6,43 +8,45 @@ name="${1:-main}"
 # Make sure we got a session name to create or join
 [[ -n "$name" ]] || { echo "Usage: tmux-named [SESSION_NAME]"; exit; }
 
-# Set up paths and whatnot
-test -e ~/.bashrc && source ~/.bashrc
+# Set up homebrew paths
+if [[ -z "$BREW_PREFIX" ]]; then
+  export BREW_PREFIX=$([[ "$(arch)" == "arm64" ]] && echo "/opt/homebrew" || echo "/usr/local")
+fi
 
 # Make sure we can run homebrewed tmux
-if [[ $PATH != */usr/local/bin* ]]; then export PATH=$PATH:/usr/local/bin; fi
+if [[ $PATH != *$BREW_PREFIX/bin* ]]; then export PATH="$PATH:$BREW_PREFIX/bin"; fi
 
 # We do need tmux to work
 if [[ -z `which tmux` ]]; then echo "You need tmux first!"; exit 1; fi
 
-# Force tmux sessions to look auth set up in ~/.ssh/rc
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+# figure out what terminal program we're inside
+terminal="${__CFBundleIdentifier#*.*.}"
 
 # Make sure there is a 'name' session
-tmux has -t "$name" 2> /dev/null || TMUX= tmux new -d -s "$name"
+tmux -L "$terminal" has-session -t "$name" 2> /dev/null || TMUX= tmux -L "$terminal" new -d -s "$name"
 
 # Calculate the number of the next session
-session_number=$(tmux ls -F "#S" | grep "^$name" | wc -l | sed "s/^[ ]*//")
+session_number=$(tmux -L "$terminal" ls -F "#S" | grep "^$name" | wc -l | sed "s/^[ ]*//")
 session_name="${name} $session_number"
 
 #echo $session_name
 
 # If this session already exists, a lower number must be missing
-while tmux has -t "$session_name" 2> /dev/null; do
+while tmux -L "$terminal" has-session -t "$session_name" 2> /dev/null; do
   let session_number--
   session_name="${name} $session_number"
 done
 
 # Create the new session
-TMUX= tmux new-session -d -E -t "$name" -s "$session_name"
+TMUX= tmux -L "$terminal" new-session -d -E -t "$name" -s "$session_name"
 
 # Tell this session to die when the window containing it is closed
 die="set-option -q -t $session_name destroy-unattached on"
 
-if [ -z $TMUX ]; then
+if [ -z ${TMUX:-} ]; then
   # Join the new and configured session
-  tmux $die \; attach-session -t "$session_name"
+  tmux -L "$terminal" $die \; attach-session -t "$session_name"
 else
   # Switch this tmux client to the new session
-  tmux $die \; switch-client -t "$session_name"
+  tmux -L "$terminal" $die \; switch-client -t "$session_name"
 fi
