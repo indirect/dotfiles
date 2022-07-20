@@ -64,8 +64,7 @@ WORDCHARS=${WORDCHARS/\/}
 # Show substitutions before running them
 setopt HIST_VERIFY
 
-export TERM_APPLICATION="$([[ -n "$TERM_PROGRAM" ]] && echo Terminal || echo kitty)"
-export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a '"$TERM_APPLICATION"'"'
+export EDITOR='mvim -f --nomru -c "au VimLeave * !open -b $__CFBundleIdentifier"'
 export PAGER="less" # page with less not more
 export BROWSER="open" # opens URLs in the default OS X browser
 export LESS="-XRF" # Fix less to not clear screen on exit, show color, exit if < 1 screen
