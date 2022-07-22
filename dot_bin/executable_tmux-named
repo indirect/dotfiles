@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-set -vx
+# set -vx
 
 # Named variables are much more flexible
 name="${1:-main}"
