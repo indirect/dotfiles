@@ -9,5 +9,9 @@ if [[ -n "$2" ]]; then
   SUBDOMAIN="$2."
 fi
 
+if [[ -f ~/.ssh/id_ed25519 ]]; then
+  key="-i ~/.ssh/id_ed25519"
+fi
+
 set +v
-ssh -R "${SUBDOMAIN}arko.me:80:localhost:$1" plan@localhost.run
+ssh "$key" -R "${SUBDOMAIN}arko.me:80:localhost:$1" plan@localhost.run
