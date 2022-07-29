@@ -127,3 +127,5 @@
 [delta]
 	navigate = true
 	light = false
+[credential "https://git.heroku.com"]
+	provider = generic  
