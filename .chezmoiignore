@@ -2,6 +2,7 @@ LICENSE
 README.md
 script
 support
+{{ if stat (joinPath .chezmoi.homeDir ".config/age/chezmoi_key.txt") }}.config/age/chezmoi_key.txt{{ end -}}
 {{- if .server }}
 {{ if stat (joinPath .chezmoi.homeDir "src/server/bazarr") -}}src/server/bazarr{{ end }}
 {{ if stat (joinPath .chezmoi.homeDir "src/server/jackett") -}}src/server/jackett{{ end }}
