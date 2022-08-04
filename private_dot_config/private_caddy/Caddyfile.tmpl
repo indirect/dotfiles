@@ -1,11 +1,11 @@
 {{ if .server -}}
-gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, gnk:80, gnk.local:80 {
+home.arko.me, gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, gnk:80, gnk.local:80 {
 	# Overseerr
 	reverse_proxy 127.0.0.1:5055
 
-	# Admin services that aren't shared
-	@auth {
-		host gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net
+	# Hosts with public access need to authenticate admin services
+	@admin {
+		host gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net, home.arko.me
 		path /tv*
 		path /movies*
 		path /subtitles*
@@ -16,7 +16,8 @@ gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, gnk:80, gnk.loca
 		path /jackett*
 	}
 
-	forward_auth @auth unix//opt/homebrew/var/run/tailscale.nginx-auth.sock {
+	# Auth admin services with Tailscale, only allow personal Tailnet
+	forward_auth @admin unix//opt/homebrew/var/run/tailscale.nginx-auth.sock {
 		uri /auth
 		header_up Remote-Addr {remote_host}
 		header_up Remote-Port {remote_port}
@@ -51,7 +52,7 @@ gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net:80, gnk:80, gnk.loca
 	reverse_proxy /sabnzbd/* 127.0.0.1:8080
 
 	# Transmission
-	redir /transmission     /transmission/web/ 308
+	redir /transmission /transmission/web/ 308
 	redir /transmission/web /transmission/web/ 308
 	reverse_proxy /transmission/* 127.0.0.1:9091
 
