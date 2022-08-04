@@ -72,7 +72,7 @@ run 'yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4" -o "%(autonumber)s %(
 Dir.mktmpdir do |path|
   tmpdir = path.encode('UTF-8')
   File.write "vhs.gif", HTTP.get("https://www.dnalounge.com/webcast/vhs.gif").body
-  system "convert vhs.gif vhs.png"
+  system "sips -s format png vhs.gif --out vhs.png"
 
   Dir["*.mp4"].sort.each_with_index do |f, i|
     t = tracklist.fetch(i)
