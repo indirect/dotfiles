@@ -3,4 +3,4 @@ set -euo pipefail
 set -vx
 
 # {{ include "dot_Brewfile.tmpl" | sha256sum }}
-brew bundle check --global || brew bundle install --global
+brew bundle check --global --no-upgrade || brew bundle install --global --no-upgrade
