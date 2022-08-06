@@ -1,0 +1,38 @@
+{{- if .server -}}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>{{ .brew.prefix }}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin</string>
+	</dict>
+	<key>Label</key>
+	<string>net.arko.github-backup</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/fdautil</string>
+		<string>exec</string>
+		<string>/bin/bash</string>
+		<string>-c</string>
+		<string>cronitor exec CNyIek -- python3 ~/src/server/GitHub-Backup/github_backup/github_backup.py indirect '/Users/Shared/GitHub/indirect' -u indirect</string>
+	</array>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>StandardErrorPath</key>
+	<string>{{ .brew.prefix }}/var/log/net.arko.github-backup.log</string>
+	<key>StandardOutPath</key>
+	<string>{{ .brew.prefix }}/var/log/net.arko.github-backup.log</string>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Hour</key>
+			<integer>5</integer>
+			<key>Minute</key>
+			<integer>15</integer>
+		</dict>
+	</array>
+</dict>
+</plist>
+{{- end }}
