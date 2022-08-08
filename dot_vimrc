@@ -1,3 +1,4 @@
+packadd chezmoi.vim
 runtime macros/matchit.vim " Enable matchit for textobj-rubyblock
 execute pathogen#infect()
 

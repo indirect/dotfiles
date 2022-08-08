@@ -51,7 +51,7 @@
   refreshPeriod = "168h"
 
 # 02 vim plugins
-[".vim/pack/alker0/chezmoi.vim"]
+[".vim/pack/plugins/chezmoi.vim"]
   type = "git-repo"
   url = "https://github.com/alker0/chezmoi.vim.git"
   refreshPeriod = "168h"
