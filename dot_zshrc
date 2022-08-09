@@ -9,6 +9,7 @@ echo; fortune "$BREW_PREFIX/share/games/horse_fortunes" | ponysay -b unicode | p
 # Source zshenv again after macOS /etc/zprofile nukes PATH
 source ~/.zshenv
 
+# Load znap so everything else can be loaded in the background
 source ~/.zsh/znap/zsh-snap/znap.zsh
 
 # znap source marlonrichert/zsh-autocomplete
@@ -65,14 +66,6 @@ WORDCHARS=${WORDCHARS/\/}
 # Show substitutions before running them
 setopt HIST_VERIFY
 
-export EDITOR='mvim -f --nomru -c "au VimLeave * !open -b $__CFBundleIdentifier"'
-export PAGER="less" # page with less not more
-export BROWSER="open" # opens URLs in the default OS X browser
-export LESS="-XRF" # Fix less to not clear screen on exit, show color, exit if < 1 screen
-export CLICOLOR=true # ls with color
-export RI="-f ansi" # ri with color
-export FZF_DEFAULT_COMMAND="rg --files" # only choose from files rg would search
-
 # switch edit mode back to emacs despite EDITOR being vim
 bindkey -e
 
@@ -90,6 +83,14 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
+
+export EDITOR='mvim -f --nomru -c "au VimLeave * !open -b $__CFBundleIdentifier"'
+export PAGER="less" # page with less not more
+export BROWSER="open" # opens URLs in the default OS X browser
+export LESS="-XRF" # Fix less to not clear screen on exit, show color, exit if < 1 screen
+export CLICOLOR=true # ls with color
+export RI="-f ansi" # ri with color
+export FZF_DEFAULT_COMMAND="rg --files" # only choose from files rg would search
 
 # RubyGems.org staging and production access via kubectl
 export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
