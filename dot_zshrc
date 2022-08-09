@@ -27,8 +27,9 @@ znap eval fzf    "cat $BREW_PREFIX/opt/fzf/shell/*.zsh"
 fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(.:t)
 
-packages=(~/.zsh/*.zsh)
-for file in $packages; do [[ -f $file ]] && source $file; done
+for file in ~/.zsh/*.zsh; do
+  znap eval $file(.:t) "cat $file"
+done
 
 znap fpath _kubectl "kubectl completion zsh"
 znap fpath _rustup  "rustup  completion zsh"
