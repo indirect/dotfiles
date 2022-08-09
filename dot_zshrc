@@ -30,9 +30,9 @@ for func in $funcs; do autoload $func; done
 packages=(~/.zsh/*.zsh)
 for file in $packages; do [[ -f $file ]] && source $file; done
 
-znap-complete kubectl "kubectl completion zsh"
-znap-complete rustup  "rustup  completion zsh"
-znap-complete cargo   "rustup  completion zsh cargo"
+znap fpath _kubectl "kubectl completion zsh"
+znap fpath _rustup  "rustup  completion zsh"
+znap fpath _cargo   "rustup  completion zsh cargo"
 
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB

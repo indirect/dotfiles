@@ -1,2 +1,0 @@
-znap function "_$1" 'eval "$( '"$2"' )"'
-compdef "_$1" "$1"
