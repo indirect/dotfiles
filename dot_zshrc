@@ -24,9 +24,8 @@ znap eval zoxide "zoxide init zsh"
 znap eval nodenv "nodenv init -"
 znap eval fzf    "cat $BREW_PREFIX/opt/fzf/shell/*.zsh"
 
-fpath+=~/.zsh/functions
-funcs=(~/.zsh/functions/*)
-for func in $funcs; do autoload $func; done
+fpath=(~/.zsh/functions $fpath)
+autoload -U ~/.zsh/functions/*(.:t)
 
 packages=(~/.zsh/*.zsh)
 for file in $packages; do [[ -f $file ]] && source $file; done
