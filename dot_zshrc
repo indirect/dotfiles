@@ -94,6 +94,10 @@ export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 # Keep go's installed files out of the way
 export GOPATH=$HOME/.go
 
+# Set up a default ruby version
+export DEFAULT_RUBY_VERSION=$(ls ~/.rubies | tail -n1)
+chruby $DEFAULT_RUBY_VERSION
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 znap source romkatv/powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
