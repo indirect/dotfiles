@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-set -vx
+# set -vx
 
 # Flash the screen when a beep is played
 defaults write -g "com.apple.sound.beep.flash" -int 1
