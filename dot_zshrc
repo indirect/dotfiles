@@ -20,8 +20,9 @@ znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
 znap source unixorn/fzf-zsh-plugin
 
-znap eval zoxide 'zoxide init zsh'
-znap eval nodenv 'nodenv init -'
+znap eval zoxide "zoxide init zsh"
+znap eval nodenv "nodenv init -"
+znap eval fzf    "cat $BREW_PREFIX/opt/fzf/shell/*.zsh"
 
 fpath+=~/.zsh/functions
 funcs=(~/.zsh/functions/*)
