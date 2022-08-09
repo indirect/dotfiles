@@ -25,7 +25,7 @@
   executable = true
 ["src/server/bazarr"]
   type = "archive"
-  url = "https://github.com/morpheus65535/bazarr/releases/latest/download/bazarr.zip"
+  url = "https://github.com/morpheus65535/bazarr/releases/download/v1.1.1-beta.11/bazarr.zip"
 ["src/server/jackett"]
   type = "archive"
   url = "https://github.com/Jackett/Jackett/releases/latest/download/Jackett.Binaries.macOSARM64.tar.gz"
