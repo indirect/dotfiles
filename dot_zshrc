@@ -25,6 +25,7 @@ znap eval zoxide "zoxide init zsh"
 znap eval nodenv "nodenv init -"
 znap eval fzf    "cat $BREW_PREFIX/opt/fzf/shell/*.zsh"
 
+fpath+=$BREW_PREFIX/share/zsh-completions
 fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(.:t)
 
