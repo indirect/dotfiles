@@ -50,11 +50,17 @@
   stripComponents = 1
   refreshPeriod = "168h"
 
-# 02 vim plugins
-[".vim/pack/plugins/chezmoi.vim"]
+# 03 vim built-in plugins
+[".vim/pack/plugins/opt/chezmoi.vim"]
   type = "git-repo"
   url = "https://github.com/alker0/chezmoi.vim.git"
   refreshPeriod = "168h"
+[".vim/pack/themes/opt/solarized8"]
+  type = "git-repo"
+  url = "https://github.com/lifepillar/vim-solarized8"
+  refreshPeriod = "168h"
+
+# 04 vim pathogen plugins
 [".vim/bundle/vim-vinegar"]
   type = "git-repo"
   url = "https://github.com/tpope/vim-vinegar.git"
@@ -190,10 +196,6 @@
 [".vim/bundle/fzf"]
   type = "git-repo"
   url = "https://github.com/junegunn/fzf"
-  refreshPeriod = "168h"
-[".vim/pack/themes/opt/solarized8"]
-  type = "git-repo"
-  url = "https://github.com/lifepillar/vim-solarized8"
   refreshPeriod = "168h"
 [".vim/bundle/NeoSolarized"]
   type = "git-repo"
