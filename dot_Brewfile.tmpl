@@ -16,6 +16,7 @@ brew "git"
 brew "git-delta"
 brew "gpg"
 brew "grex"
+brew "handbrake"
 brew "htop"
 brew "hub"
 brew "jq"
@@ -110,6 +111,7 @@ cask "steam"
 cask "superduper"
 cask "suspicious-package"
 cask "textmate"
+cask "transmission"
 cask "vimr"
 cask "visual-studio-code"
 cask "vlc"
@@ -131,7 +133,6 @@ brew "caddy"
 brew "indirect/tap/cronitor"
 brew "transmission-cli", restart_service: :changed
 
-cask "handbrake"
 cask "homebrew/cask-drivers/fujitsu-scansnap-home"
 cask "indirect/tap/lidarr", args: { no_quarantine: true }
 cask "indirect/tap/radarr", args: { no_quarantine: true }
@@ -139,5 +140,4 @@ cask "plex-media-server"
 cask "sabnzbd", args: { no_quarantine: true }
 cask "softraid"
 cask "sonarr", args: { no_quarantine: true }
-cask "transmission"
 {{- end }}
