@@ -126,11 +126,13 @@ tap "microsoft/git"
 cask "microsoft/git/git-credential-manager-core"
 
 {{- if .server }}
-# Server-specific entries
+# Server-specific
 brew "caddy"
 brew "indirect/tap/cronitor"
+brew "transmission-cli", restart_service: :changed
 
 cask "handbrake"
+cask "homebrew/cask-drivers/fujitsu-scansnap-home"
 cask "indirect/tap/lidarr", args: { no_quarantine: true }
 cask "indirect/tap/radarr", args: { no_quarantine: true }
 cask "plex-media-server"
@@ -138,6 +140,4 @@ cask "sabnzbd", args: { no_quarantine: true }
 cask "softraid"
 cask "sonarr", args: { no_quarantine: true }
 cask "transmission"
-
-cask "homebrew/cask-drivers/fujitsu-scansnap-home"
 {{- end }}
