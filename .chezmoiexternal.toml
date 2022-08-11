@@ -36,10 +36,6 @@
 ["src/server/tautulli"]
   type = "git-repo"
   url = "https://github.com/Tautulli/Tautulli"
-["src/server/GitHub-Backup"]
-  type = "git-repo"
-  url = "https://github.com/clockfort/GitHub-Backup"
-  refreshPeriod = "168h"
 {{ end }}
 
 # 02 zsh plugins
