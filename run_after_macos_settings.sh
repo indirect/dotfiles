@@ -5,8 +5,8 @@ set -euo pipefail
 # Flash the screen when a beep is played
 defaults write -g "com.apple.sound.beep.flash" -int 1
 
-# Play sounds while adjusting the volume
-defaults write -g "com.apple.sound.beep.feedback" -int 1
+# Don't play sounds while adjusting the volume
+defaults write -g "com.apple.sound.beep.feedback" -int 0
 
 # Show ~/Library
 chflags nohidden ~/Library
@@ -15,7 +15,7 @@ chflags nohidden ~/Library
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Make keys repeat really fast
-defaults write -g KeyRepeat -int 0
+defaults write -g KeyRepeat -int 1
 
 # Show external volumes on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
