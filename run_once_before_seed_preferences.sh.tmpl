@@ -3,3 +3,4 @@ set -euo pipefail
 set -vx
 
 cp {{ .chezmoi.sourceDir }}/support/Preferences/* ~/Library/Preferences/
+cp -r {{ .chezmoi.sourceDir }}/support/var/* /opt/homebrew/var/
