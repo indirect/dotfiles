@@ -375,3 +375,4 @@ nmap <leader>d :Dispatch
 
 " Use FZF instead of CtrlP
 nmap <C-P> :FZF<CR>
+nmap <C-Y> :Buffers<CR>
