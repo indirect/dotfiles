@@ -44,7 +44,6 @@
   url = "https://github.com/marlonrichert/zsh-snap/archive/refs/heads/main.zip"
   exact = true
   stripComponents = 1
-  refreshPeriod = "168h"
 
 # 03 vim built-in plugins
 [".vim/pack/plugins/opt/chezmoi.vim"]
