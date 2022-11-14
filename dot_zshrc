@@ -77,6 +77,9 @@ setopt HIST_VERIFY
 # switch edit mode back to emacs despite EDITOR being vim
 bindkey -e
 
+# for some reason tmux loses forward delete bind
+bindkey "^[[3~" delete-char
+
 # partial completion suggestions
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
