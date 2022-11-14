@@ -100,6 +100,9 @@ export CLICOLOR=true # ls with color
 export RI="-f ansi" # ri with color
 export FZF_DEFAULT_COMMAND="rg --files" # only choose from files rg would search
 
+# Tell Kaleidoscope where to find itself
+export KALEIDOSCOPE_DIR=$HOME/src/indirect/Kaleidoscope
+
 # RubyGems.org staging and production access via kubectl
 export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 
