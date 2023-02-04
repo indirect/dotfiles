@@ -31,9 +31,9 @@ comppaths=(
   $BREW_PREFIX/share/zsh/site-functions
 )
 
-for path in $comppaths; do
-  fpath+=$path
-  autoload -U $path/*(:t)
+for comppath in $comppaths; do
+  fpath+=$comppath
+  autoload -U $comppath/*(:t)
 done
 
 for file in ~/.zsh/*.zsh; do
