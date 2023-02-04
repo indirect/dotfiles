@@ -1117,14 +1117,14 @@
   function prompt_ruby() {
     case $RUBY_VERSION in
       "") icon="◽️";;
-      3.1.?) icon="💠";;
-      3.0.?) icon="🔹";;
-      2.[5-7].?) icon="🔸";;
-      2.[0-4].?) icon="🔺";;
+      3.2.?) icon="💠";;
+      3.1.?) icon="🔹";;
+      3.[0].?) icon="🔸";;
+      2.[0-7].?) icon="🔺";;
       1.[8-9].?) icon="🔻";;
       *) icon="❓ ($RUBY_VERSION)";;
     esac
-    
+
     p10k segment -f 015 -i "$icon"
   }
 
