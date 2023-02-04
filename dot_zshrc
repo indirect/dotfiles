@@ -33,11 +33,11 @@ comppaths=(
 
 for path in $comppaths; do
   fpath+=$path
-  autoload -U $path/*(.:t)
+  autoload -U $path/*(:t)
 done
 
 for file in ~/.zsh/*.zsh; do
-  znap eval $file(.:t) "cat $file"
+  znap eval $file(:t) "cat $file"
 done
 
 DOCKER_ETC="/Applications/Docker.app/Contents/Resources/etc"
