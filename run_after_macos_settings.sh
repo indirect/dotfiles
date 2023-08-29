@@ -46,3 +46,6 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # disable Xcode Cloud upsell
 defaults write com.apple.dt.Xcode XcodeCloudUpsellPromptEnabled -bool false
+
+# Disable "removing from iCloud Drive" warnings
+defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false
