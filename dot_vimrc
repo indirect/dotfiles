@@ -1,5 +1,6 @@
 packadd chezmoi.vim
 runtime macros/matchit.vim " Enable matchit for textobj-rubyblock
+let g:polyglot_disabled = ['autoindent']
 execute pathogen#infect()
 
 set nocompatible          " We're running Vim, not Vi!
