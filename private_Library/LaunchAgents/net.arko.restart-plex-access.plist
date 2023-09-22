@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/opt/homebrew/sbin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+	</dict>
+	<key>Label</key>
+	<string>net.arko.restart-plex-access</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/bin/cronitor</string>
+		<string>exec</string>
+		<string>pJApoO</string>
+		<string>/bin/bash</string>
+		<string>-c</string>
+		<string>[[ "$(curl 'http://127.0.0.1:32400/library/metadata/131837?checkFiles=1&amp;X-Plex-Token=mszyJgxZniXcdygNaqbD' -s | xq -x '//Part/@accessible')" == "1" ]]</string>
+	</array>
+	<key>StandardErrorPath</key>
+	<string>/tmp/net.arko.restart-plex-access.err</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/net.arko.restart-plex-access.out</string>
+	<key>StartInterval</key>
+	<integer>300</integer>
+</dict>
+</plist>
