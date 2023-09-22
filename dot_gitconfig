@@ -127,8 +127,14 @@
 	light = false
 [credential "https://git.heroku.com"]
 	provider = generic  
-[credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager-core
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[maintenance]
+	repo = /Users/andre/.zsh/znap/fzf-zsh-plugin
+	repo = /Users/andre/.zsh/znap/mac-zsh-completions
+	repo = /Users/andre/.zsh/znap/powerlevel10k
+	repo = /Users/andre/.zsh/znap/zsh-autosuggestions
+	repo = /Users/andre/.zsh/znap/zsh-history-substring-search
+	repo = /Users/andre/.zsh/znap/zsh-syntax-highlighting
+	repo = /Users/andre/.zsh/znap/zsh-vim-mode
+	repo = /Users/andre/.zsh/znap/zsh-you-should-use
