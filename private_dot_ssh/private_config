@@ -33,3 +33,6 @@ Host *.compute-1.amazonaws.com
 Host github.com
   Hostname ssh.github.com
   Port 443
+
+Host corsairone
+  User corsairone\andre
