@@ -1,8 +1,19 @@
 {{ if .server -}}
+{
+	debug
+}
+
 *.test {
-	tls internal
+	tls internal {
+		on_demand
+	}
 	# puma-dev
-	reverse_proxy 127.0.0.1:9280
+	reverse_proxy https://127.0.0.1:9283 {
+		transport http {
+			tls_insecure_skip_verify
+		}
+	}
+	log
 }
 
 home.arko.me, gnk.shark-crocodile.ts.net, gnk:80, gnk.local:80 {
