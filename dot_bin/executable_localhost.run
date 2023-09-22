@@ -14,4 +14,4 @@ if [[ -f ~/.ssh/id_ed25519 ]]; then
 fi
 
 set +v
-ssh "$key" -R "${SUBDOMAIN}arko.me:80:localhost:$1" plan@localhost.run
+\ssh "$key" -R "${SUBDOMAIN}arko.me:80:localhost:$1" plan@localhost.run
