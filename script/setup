@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 set -vx
+
+echo "installing Rosetta..."
+sudo softwareupdate --install-rosetta
+
 echo "moving dotfiles for chezmoi..."
 
 # relocate the checkout to the usual ~/src/indirect/dotfiles location
