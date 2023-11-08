@@ -1,5 +1,7 @@
 # Start every shell with a random my little horse ebooks
-echo; fortune "$BREW_PREFIX/share/games/horse_fortunes" | ponysay -b unicode 2>/dev/null | pr -o 3 -t; echo "\n"
+if [[ $TERM_PROGRAM != "vscode" ]]; then
+  echo; fortune "$BREW_PREFIX/share/games/horse_fortunes" | ponysay -b unicode 2>/dev/null | pr -o 3 -t; echo
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
