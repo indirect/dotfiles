@@ -1,7 +1,6 @@
 alias ...="cd .. ; cd ..; ls"
 alias ..="cd ..; ls"
 alias b="bundle exec"
-alias crystal="crystal-dev"
 alias dbundle="~/src/rubygems/rubygems/bundler/exe/bundle"
 alias dc="docker compose"
 alias dsrm="find . -name ".DS_Store" -exec rm \{} \;"
