@@ -21,9 +21,9 @@ znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
 znap source unixorn/fzf-zsh-plugin
 
-znap eval zoxide "zoxide init zsh"
-znap eval nodenv "nodenv init -"
-znap eval fzf    "cat $BREW_PREFIX/opt/fzf/shell/*.zsh"
+znap eval zoxide 'zoxide init --cmd j zsh'
+znap eval nodenv 'nodenv init -'
+znap eval fzf    'cat $BREW_PREFIX/opt/fzf/shell/*.zsh'
 
 comppaths=(
   ~/.zsh/functions
@@ -40,9 +40,9 @@ for file in ~/.zsh/*.zsh; do
   znap eval $file(:t) "cat $file"
 done
 
-znap fpath _kubectl "kubectl completion zsh"
-znap fpath _rustup  "rustup completions zsh"
-znap fpath _cargo   "rustup completions zsh cargo"
+znap fpath _kubectl 'kubectl completion zsh'
+znap fpath _rustup  'rustup completions zsh'
+znap fpath _cargo   'rustup completions zsh cargo'
 
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
