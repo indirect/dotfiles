@@ -12,7 +12,7 @@ sudo tmutil addexclusion -p \
 
 # skip backup on node_modules, bundled gems and rails assets
 pathnames=(~/src/*/*/{.bundle/ruby,node_modules})
-if [[ -n "$pathnames" ]]; then
+if (find "$pathnames" 2>&1 1>/dev/null); then
   for pathname in $pathnames; do
     sudo tmutil addexclusion "$pathname"
 

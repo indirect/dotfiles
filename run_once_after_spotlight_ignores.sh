@@ -16,7 +16,7 @@ done
 
 # skip spotlight index on existing node_modules, bundled gems and rails assets
 pathnames=(~/src/*/*/{.bundle/ruby,node_modules})
-if [[ -n "$pathnames" ]]; then
+if (find "$pathnames"); then
   for pathname in $pathnames; do
     touch "$pathname/.metadata_never_index"
 
