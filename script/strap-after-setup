@@ -3,6 +3,7 @@ set -euo pipefail
 set -vx
 
 echo "getting dotfiles key from 1Password"
+mkdir ~/.config/age
 chezmoi apply ~/.config/age/chezmoi_key.txt
 
 echo "setting up all other dotfiles..."
