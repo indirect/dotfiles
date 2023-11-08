@@ -1,2 +1,1 @@
-source ~/.zsh/chruby.zsh
 chruby $(cat .ruby-version | sed 's/ruby-//')
