@@ -26,5 +26,5 @@ add_pam_line "auth       sufficient     pam_tid.so"
 
 BREW_PREFIX="${BREW_PREFIX:-$(brew --prefix)}"
 PAM_REATTACH="$BREW_PREFIX/lib/pam/pam_reattach.so"
-test -e "$PAM_REATTACH" || brew install pam_reattach
+test -e "$PAM_REATTACH" || brew install pam-reattach
 add_pam_line "auth       optional       $PAM_REATTACH"
