@@ -7,7 +7,7 @@ else
 fi
 
 case "$1" in
-home|poe)
+home)
   SERVER="--server=/usr/local/bin/mosh-server"
   "$MOSH" "$SERVER" --ssh="ssh -p 2222" home.arko.me ~/.bin/tmux-named main
   ;;
