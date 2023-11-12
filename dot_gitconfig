@@ -72,8 +72,6 @@
 [user]
 	name = Andre Arko
 	email = andre@arko.net
-[hub]
-	protocol = https
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
