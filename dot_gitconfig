@@ -111,10 +111,6 @@
 [delta]
 	navigate = true
 	light = false
-[credential "https://git.heroku.com"]
-	provider = generic  
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [maintenance]
 	repo = /Users/andre/.zsh/znap/fzf-zsh-plugin
 	repo = /Users/andre/.zsh/znap/mac-zsh-completions
