@@ -40,11 +40,10 @@ for file in ~/.zsh/*.zsh; do
   znap eval $file(:t) "cat $file"
 done
 
-DOCKER_ETC="/Applications/Docker.app/Contents/Resources/etc"
-znap fpath _docker  "cat $DOCKER_ETC/docker.zsh-completion"
+znap fpath _cargo   "rustup completions zsh cargo"
+znap fpath _docker  "cat /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion"
 znap fpath _kubectl "kubectl completion zsh"
 znap fpath _rustup  "rustup completions zsh"
-znap fpath _cargo   "rustup completions zsh cargo"
 
 # Globbing a bit more like bash
 setopt NO_CASE_GLOB
