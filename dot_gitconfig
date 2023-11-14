@@ -59,10 +59,10 @@
 	status = auto
 	ui = auto
 [core]
-	legacyheaders = false
-	excludesfile = ~/.gitignore
-	pager = delta
 	attributesfile = ~/.gitattributes
+	excludesfile = ~/.gitignore
+	legacyheaders = false
+	pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
 [push]
 	default = simple
 [repack]
@@ -95,7 +95,7 @@
 [protocol]
 	version = 2
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta --color-only --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
 [pull]
 	rebase = true
 [diff "rust"]
@@ -108,9 +108,14 @@
 	textconv = chezmoi decrypt
 [init]
 	defaultBranch = main
+[delta "light-mode"]
+	light = true
+	syntax-theme = GitHub
+[delta "dark-mode"]
+	light = false
+	syntax-theme = Visual Studio Dark+
 [delta]
 	navigate = true
-	light = false
 [maintenance]
 	repo = /Users/andre/.zsh/znap/fzf-zsh-plugin
 	repo = /Users/andre/.zsh/znap/mac-zsh-completions
