@@ -37,12 +37,26 @@ systemsetup -setrestartpowerfailure on &>/dev/null
 # restart on freeze
 systemsetup -setrestartfreeze on &>/dev/null
 
-# Enable Safari development mode
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+# Show status bar
+defaults write com.apple.Safari ShowStatusBar -bool true
+defaults write com.apple.Safari ShowOverlayStatusBar -bool true
+# Show the full URL in the address bar (note: this still hides the scheme)
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+# Safari opens with: last session
+defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+# Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+# Enable Safari’s debug menu
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+# Update extensions automatically
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+# Make Safari’s search banners default to Contains instead of Starts With
+defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+# Website use of location services
+# 0 = Deny without prompting
+# 1 = Prompt for each website once each day
+# 2 = Prompt for each website one time only
+defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 
 # disable Xcode Cloud upsell
 defaults write com.apple.dt.Xcode XcodeCloudUpsellPromptEnabled -bool false
