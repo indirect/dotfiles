@@ -1,0 +1,18 @@
+
+echo "about to open 1Password. log in and enable CLI integration in preferences."
+read -p "Press enter to continue..."
+open -a 1Password
+read -p "Press enter once CLI integration is enabled..."
+op account add --account indirect
+
+echo "getting dotfiles key from 1Password"
+mkdir -p ~/.config/age
+chezmoi apply ~/.config/age/chezmoi_key.txt
+
+echo "installing Xcode..."
+brew install mas
+mas install 497799835
+sudo xcodebuild -license accept
+
+echo "setting up all other dotfiles..."
+chezmoi apply
