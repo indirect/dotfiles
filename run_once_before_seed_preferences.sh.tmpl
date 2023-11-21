@@ -5,6 +5,6 @@ set -vx
 cp {{ .chezmoi.sourceDir }}/support/Preferences/* ~/Library/Preferences/
 cp -r {{ .chezmoi.sourceDir }}/support/var/* /opt/homebrew/var/
 
-pushd {{ .chezmoi.SourceDir }}/support/defaults
+pushd {{ .chezmoi.sourceDir }}/support/defaults
 defaults import eu.exelban.Stats - < eu.exelban.Stats.xml
 popd
