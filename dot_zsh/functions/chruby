@@ -2,6 +2,9 @@
 # `chruby install X.Y` to invoke `ruby-install ruby X.Y`
 
 function reload_chruby {
+  # ensure chruby can load without errors
+  touch ~/.rubies/system
+
   if [[ -f "$BREW_PREFIX/opt/chruby/share/chruby/chruby.sh" ]]; then
     # base chruby function, aliased to original_chruby
     source "$BREW_PREFIX/opt/chruby/share/chruby/chruby.sh"
