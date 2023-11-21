@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Battery_state</key>
+	<false/>
+	<key>CPU_barChart_position</key>
+	<integer>3</integer>
+	<key>CPU_label_position</key>
+	<integer>2</integer>
+	<key>CPU_lineChart_position</key>
+	<integer>0</integer>
+	<key>CPU_line_chart_color</key>
+	<string>system</string>
+	<key>CPU_mini_position</key>
+	<integer>1</integer>
+	<key>CPU_pieChart_position</key>
+	<integer>4</integer>
+	<key>CPU_tachometer_position</key>
+	<integer>5</integer>
+	<key>CPU_widget</key>
+	<string>line_chart</string>
+	<key>Disk_state</key>
+	<false/>
+	<key>GPU_barChart_position</key>
+	<integer>3</integer>
+	<key>GPU_label_position</key>
+	<integer>2</integer>
+	<key>GPU_lineChart_position</key>
+	<integer>0</integer>
+	<key>GPU_line_chart_color</key>
+	<string>secondGreen</string>
+	<key>GPU_mini_position</key>
+	<integer>1</integer>
+	<key>GPU_state</key>
+	<true/>
+	<key>GPU_tachometer_position</key>
+	<integer>4</integer>
+	<key>GPU_widget</key>
+	<string>line_chart</string>
+	<key>NSStatusItem Preferred Position CPU_line_chart</key>
+	<real>450</real>
+	<key>NSStatusItem Preferred Position GPU_line_chart</key>
+	<real>498</real>
+	<key>NSStatusItem Preferred Position Network_network_chart</key>
+	<real>404</real>
+	<key>NSStatusItem Preferred Position Network_speed</key>
+	<real>340</real>
+	<key>NSStatusItem Preferred Position RAM_bar_chart</key>
+	<real>546</real>
+	<key>NSStatusItem Preferred Position Sensors_sensors</key>
+	<real>573</real>
+	<key>NSStatusItem Restore Position Battery_battery</key>
+	<integer>5306</integer>
+	<key>NSStatusItem Restore Position CPU_mini</key>
+	<integer>365</integer>
+	<key>NSStatusItem Restore Position Disk_mini</key>
+	<integer>520</integer>
+	<key>NSStatusItem Restore Position GPU_mini</key>
+	<integer>365</integer>
+	<key>NSStatusItem Restore Position RAM_mini</key>
+	<integer>412</integer>
+	<key>Network_label_position</key>
+	<integer>2</integer>
+	<key>Network_networkChart_position</key>
+	<integer>0</integer>
+	<key>Network_speed_icon</key>
+	<string>none</string>
+	<key>Network_speed_position</key>
+	<integer>1</integer>
+	<key>Network_speed_valueColor</key>
+	<true/>
+	<key>Network_state_position</key>
+	<integer>3</integer>
+	<key>Network_widget</key>
+	<string>speed,network_chart</string>
+	<key>RAM_barChart_position</key>
+	<integer>0</integer>
+	<key>RAM_bar_chart_box</key>
+	<true/>
+	<key>RAM_bar_chart_color</key>
+	<string>secondPurple</string>
+	<key>RAM_bar_chart_label</key>
+	<false/>
+	<key>RAM_label_position</key>
+	<integer>1</integer>
+	<key>RAM_lineChart_position</key>
+	<integer>2</integer>
+	<key>RAM_memory_position</key>
+	<integer>5</integer>
+	<key>RAM_mini_position</key>
+	<integer>3</integer>
+	<key>RAM_pieChart_position</key>
+	<integer>4</integer>
+	<key>RAM_splitValue</key>
+	<true/>
+	<key>RAM_tachometer_position</key>
+	<integer>6</integer>
+	<key>RAM_widget</key>
+	<string>bar_chart</string>
+	<key>Sensors_state</key>
+	<true/>
+	<key>runAtLoginInitialized</key>
+	<true/>
+	<key>sensor_PSTR</key>
+	<true/>
+	<key>sensor_Total System Consumption</key>
+	<false/>
+	<key>setupProcess</key>
+	<true/>
+	<key>updater_check_ts</key>
+	<integer>1699421011</integer>
+	<key>version</key>
+	<string>2.9.11</string>
+</dict>
+</plist>
