@@ -62,7 +62,8 @@
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore
 	legacyheaders = false
-	pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
+	pager = delta
+	; pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
 [push]
 	default = simple
 [repack]
