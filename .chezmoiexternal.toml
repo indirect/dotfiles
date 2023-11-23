@@ -3,7 +3,13 @@
 # 01 unpackaged software
 # 02 zsh plugins
 # 03 vim plugins
+# 04 vim pathogen
 
+[".config/ghostty/themes"]
+  type = "archive"
+  url = "https://codeload.github.com/hroi/ghostty-themes/zip/refs/heads/main"
+  stripComponents = 2
+  include = ["*/themes/**"]
 
 # 00 projects
 ["src/indirect/andre.arko.net"]
