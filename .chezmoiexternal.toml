@@ -10,6 +10,10 @@
   url = "https://codeload.github.com/hroi/ghostty-themes/zip/refs/heads/main"
   stripComponents = 2
   include = ["*/themes/**"]
+[".config/chrome/extensions/bypass-paywalls-chrome-clean"]
+  type = "archive"
+  url = "https://gitlab.com/magnolia1234/bypass-paywalls-chrome-clean/-/archive/master/bypass-paywalls-chrome-clean-master.zip"
+  stripComponents = 1
 
 # 00 projects
 ["src/indirect/andre.arko.net"]
