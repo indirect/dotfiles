@@ -7,9 +7,9 @@
 
 [".config/ghostty/themes"]
   type = "archive"
-  url = "https://codeload.github.com/hroi/ghostty-themes/zip/refs/heads/main"
+  url = "https://codeload.github.com/mbadolato/iTerm2-Color-Schemes/zip/refs/heads/master"
   stripComponents = 2
-  include = ["*/themes/Solarized_*"]
+  include = ["ghostty/*"]
 [".config/chrome/extensions/bypass-paywalls-chrome-clean"]
   type = "archive"
   url = "https://gitlab.com/magnolia1234/bypass-paywalls-chrome-clean/-/archive/master/bypass-paywalls-chrome-clean-master.zip"
