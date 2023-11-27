@@ -1,1 +1,16 @@
-config-file = /Users/andre/.config/ghostty/themes/Solarized_Dark
+config-file = /Users/andre/.config/ghostty/themes/selenized-dark
+font-family = MesloLGS NF
+font-size = 14
+
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+clipboard-trim-trailing-spaces = true
+
+mouse-hide-while-typing = true
+
+macos-option-as-alt = left
+
+keybind = alt+left=esc:b
+keybind = alt+right=esc:f
