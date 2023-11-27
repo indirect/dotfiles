@@ -1,0 +1,52 @@
+
+## name: Solarized Light
+## author: Ethan Schoonover
+## license: MIT
+## blurb: Precision colors for machines and people
+
+# The basic colors
+foreground = #657b83
+background = #fdf6e3
+selection-foreground = #586e75
+selection-background = #eee8d5
+
+# Cursor colors
+cursor-color =#657b83
+cursor-text = #fdf6e3
+
+# kitty window border colors
+
+# Tab bar colors
+
+# The basic 16 colors
+# black
+palette = 0=#073642
+palette = 8=#93a1a1
+
+# red
+palette = 1=#dc322f
+palette = 9=#cb4b16
+
+# green
+palette = 2=#859900
+palette = 10=#586e75
+
+# yellow
+palette = 3=#b58900
+palette = 11=#657b83
+
+# blue
+palette = 4=#268bd2
+palette = 12=#839496
+
+# magenta
+palette = 5=#d33682
+palette = 13=#6c71c4
+
+# cyan
+palette = 6=#2aa198
+palette = 14=#93a1a1
+
+# white
+palette = 7=#eee8d5
+palette = 15=#fdf6e3
