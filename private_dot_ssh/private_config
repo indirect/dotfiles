@@ -5,6 +5,8 @@ Host *
   AddKeysToAgent yes
   ForwardAgent yes
   ForwardX11 no
+  IdentityAgent ~/.ssh/secretive.ssh
+  IdentityFile ~/.ssh/secretive.pub
 
 # Home
 Host home
