@@ -1,4 +1,3 @@
-
 ## name: Solarized Light
 ## author: Ethan Schoonover
 ## license: MIT
@@ -13,10 +12,6 @@ selection-background = #eee8d5
 # Cursor colors
 cursor-color =#657b83
 cursor-text = #fdf6e3
-
-# kitty window border colors
-
-# Tab bar colors
 
 # The basic 16 colors
 # black
