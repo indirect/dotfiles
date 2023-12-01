@@ -40,3 +40,7 @@ Host github.com
 
 Host corsairone
   User corsairone\andre
+
+Host localhost.run
+  User plan
+  IdentityFile ~/.ssh/id_ed25519
