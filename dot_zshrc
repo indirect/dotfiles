@@ -116,6 +116,9 @@ export GOPATH=$HOME/.go
 export DEFAULT_RUBY_VERSION=$(ls ~/.rubies | tail -n1)
 chruby $DEFAULT_RUBY_VERSION
 
+# Use sekey's agent to store SSH keys in the secure enclave
+export SSH_AUTH_SOCK=$HOME/.sekey/ssh-agent.ssh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 znap source romkatv/powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

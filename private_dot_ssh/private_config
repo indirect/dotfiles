@@ -1,12 +1,15 @@
 Include ~/.orbstack/ssh/config
 
 Host *
-  UseKeychain yes
-  AddKeysToAgent yes
-  ForwardAgent yes
   ForwardX11 no
-  IdentityAgent ~/.ssh/secretive.ssh
-  IdentityFile ~/.ssh/secretive.pub
+  IdentityAgent ~/.sekey/ssh-agent.ssh
+
+Host gnk
+  ForwardAgent yes
+
+Host corsairone
+  User corsairone\andre
+  ForwardAgent yes
 
 # Home
 Host home
@@ -37,9 +40,6 @@ Host *.compute-1.amazonaws.com
 Host github.com
   Hostname ssh.github.com
   Port 443
-
-Host corsairone
-  User corsairone\andre
 
 Host localhost.run
   User plan
