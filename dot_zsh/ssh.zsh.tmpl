@@ -1,0 +1,6 @@
+# Use agent to store SSH keys in the secure enclave
+{{ if .server -}}
+export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+{{- else -}}
+export SSH_AUTH_SOCK=$HOME/.sekey/ssh-agent.ssh
+{{- end }}
