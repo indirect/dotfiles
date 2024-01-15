@@ -1,0 +1,5 @@
+if [[ -e bin/rspec ]]; then
+  bin/rspec "$@"
+else
+	bundle exec rspec "$@"
+fi
