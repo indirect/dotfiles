@@ -6,6 +6,10 @@ cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
+clipboard-paste-protection = false
+clipboard-read = allow
+clipboard-write = allow
+
 clipboard-trim-trailing-spaces = true
 
 mouse-hide-while-typing = true
