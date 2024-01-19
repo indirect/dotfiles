@@ -37,7 +37,7 @@ res = HTTP.get("https://www.dnalounge.com/webcast/mixtapes/")
 doc = Oga.parse_html(res.body)
 
 mixtapes = doc.xpath('//b[text()="Watch"]').map do |link|
-  [link.parent.parent.css("B").first.text, link.parent.attr("HREF").value]
+  [link.parent.parent.css("B").first.text, link.parent.attr("HREF")&.value]
 end.to_h
 
 if ARGV.any?
