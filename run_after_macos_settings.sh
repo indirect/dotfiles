@@ -67,5 +67,5 @@ defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false
 # Set Mail.app fonts
 defaults write com.apple.mail NSFont -string "AvenirNext-Regular"
 defaults write com.apple.mail NSFontSize -int 14
-defaults write com.apple.mail NSFixedPitchFont -string "Menlo-NF-Regular"
+defaults write com.apple.mail NSFixedPitchFont -string "Menlo-Regular"
 defaults write com.apple.mail NSFixedPitchFontSize -int 13
