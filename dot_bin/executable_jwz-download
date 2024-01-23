@@ -22,6 +22,7 @@ gemfile do
   gem "http"
   gem "addressable"
   gem "oga"
+  gem "base64"
 end
 
 def e(str)
