@@ -1,0 +1,38 @@
+{{- if .server -}}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>{{ .brew.prefix }}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin</string>
+	</dict>
+	<key>Label</key>
+	<string>net.arko.jwz-download</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/fdautil</string>
+		<string>exec</string>
+		<string>/bin/zsh</string>
+		<string>-c</string>
+		<string>source $HOME/.zshenv; source $HOME/.zsh/chruby.zsh; cronitor exec 0xLpu9 -- jwz-download</string>
+	</array>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>StandardErrorPath</key>
+	<string>{{ .brew.prefix }}/var/log/net.arko.jwz-download.log</string>
+	<key>StandardOutPath</key>
+	<string>{{ .brew.prefix }}/var/log/net.arko.jwz-download.log</string>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>5</integer>
+		<key>Minute</key>
+		<integer>5</integer>
+	</dict>
+	<key>WorkingDirectory</key>
+	<string>/Volumes/Downloads</string>
+</dict>
+</plist>
+{{- end }}
