@@ -62,7 +62,8 @@ if File.directory?("/Volumes/Media/Music/jwz mixtapes/#{dirname}")
   exit 0
 end
 
-base = File.expand_path("~/Downloads")
+base = "/Volumes/Downloads/Music" if File.exist?("/Volumes/Downloads")
+base ||= File.expand_path("~/Downloads")
 dir = File.join(base, dirname)
 FileUtils.mkdir_p(dir)
 Dir.chdir(dir)
