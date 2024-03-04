@@ -79,7 +79,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [diff]
-	algorithm = patience
+	algorithm = histogram
 	colorMoved = default
 [github]
 	user = indirect
