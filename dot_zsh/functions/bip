@@ -1,5 +1,9 @@
 if [[ -f Gemfile.lock ]] && [[ $(tail -n 2 Gemfile.lock | tr "\n" " ") == "BUNDLED WITH    1"* ]]; then
   GEM_REQUIREMENT_BUNDLER="~> 1.0" bundle install --path .bundle "$@"
 else
-  bundle config set path .bundle --local && bundle install "$@"
+  if [[ -d .git ]] && [[ -f Gemfile.lock ]]; then
+	  git checkout HEAD -- Gemfile.lock
+	fi
+  bundle config set path .bundle --local
+  bundle install "$@"
 fi
