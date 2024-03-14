@@ -41,6 +41,9 @@
 ["src/server/tautulli"]
   type = "git-repo"
   url = "https://github.com/Tautulli/Tautulli"
+["src/server/ytdl-sub"]
+  type = "git-repo"
+  url = "https://github.com/jmbannon/ytdl-sub"
 {{ end }}
 
 # 02 zsh plugins
