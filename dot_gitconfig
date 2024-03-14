@@ -90,7 +90,7 @@
 [tag]
 	forceSignAnnotated = true
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 [rebase]
 	autoStash = true
 [protocol]
