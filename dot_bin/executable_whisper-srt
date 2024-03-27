@@ -1,0 +1,75 @@
+#!/usr/bin/env ruby
+
+require "shellwords"
+require "json"
+require "pry"
+
+def main
+	files = ARGV.map { |f| File.absolute_path(f) }
+	Dir.chdir(File.expand_path("~/src/ggerganov/whisper.cpp"))
+
+	files.each do |file|
+		dir = File.dirname(file)
+		base = File.basename(file, File.extname(file))
+		filebase = File.join(dir, base)
+
+		output = `mkvmerge -J #{Shellwords.escape(file)}`
+		info = JSON.parse(output)
+		track = info.dig("tracks").find { |t| t.dig("properties", "language") == "eng" && t.dig("type") == "audio" }
+    audio_file = "#{filebase}.#{ext_for(track)}"
+
+		extract_cmd = "mkvextract #{Shellwords.escape(file)} tracks #{track["id"]}:#{Shellwords.escape(audio_file)}"
+		puts extract_cmd
+		system extract_cmd, out: STDOUT
+
+		wav_cmd = "ffmpeg -i #{Shellwords.escape(audio_file)} -ar 16000 -ac 1 -c:a pcm_s16le #{Shellwords.escape(filebase)}.wav"
+		puts wav_cmd
+		system wav_cmd, out: STDOUT
+
+		srt_cmd = "./main -m models/ggml-medium.bin -osrt #{Shellwords.escape(filebase)}.wav"
+		puts srt_cmd
+		system srt_cmd, out: STDOUT
+	end
+end
+
+def ext_for(track)
+  {
+    "AVC" => ".264",
+    "HEVC" => ".hevc",
+    "V_VP8" => ".ivf",
+    "V_VP9" => ".ivf",
+    "V_AV1" => ".ivf",
+    "V_MPEG1" => ".mpg",
+    "V_MPEG2" => ".mpg",
+    "V_REAL" => ".rm",
+    "V_THEORA" => ".ogg",
+    "V_MS/VFW/FOURCC" => ".avi",
+    "AAC" => ".aac",
+    "A_AC3" => ".ac3",
+    "A_EAC3" => ".eac3",
+    "ALAC" => ".caf",
+    "DTS" => ".dts",
+    "FLAC" => ".flac",
+    "MPEG/L2" => ".mp2",
+    "MPEG/L3" => ".mp3",
+    "OPUS" => ".ogg",
+    "PCM" => ".wav",
+    "REAL" => ".ra",
+    "TRUEHD" => ".thd",
+    "MLP" => ".mlp",
+    "TTA1" => ".tta",
+    "VORBIS" => ".ogg",
+    "WAVPACK4" => ".wv",
+    "PGS" => ".sup",
+    "ASS" => ".ass",
+    "SSA" => ".ssa",
+    "UTF8" => ".srt",
+    "ASCII" => ".srt",
+    "VOBSUB" => ".sub",
+    "S_KATE" => ".ogg",
+    "USF" => ".usf",
+    "WEBVTT" => ".vtt"
+  }.fetch track.dig("properties", "codec_id")
+end
+
+main
