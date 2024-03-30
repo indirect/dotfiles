@@ -26,7 +26,7 @@ znap source unixorn/fzf-zsh-plugin
 znap eval zoxide 'zoxide init --cmd j zsh'
 znap eval nodenv 'nodenv init -'
 znap eval fzf    'cat $BREW_PREFIX/opt/fzf/shell/*.zsh'
-znap eval atuin  'atuin init zsh --disable-up-arrow'
+znap eval atuin  'atuin init zsh'
 
 znap fpath _kubectl 'kubectl completion zsh'
 znap fpath _rustup  'rustup completions zsh'
