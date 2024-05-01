@@ -24,6 +24,13 @@ znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
 znap source unixorn/fzf-zsh-plugin
 
+# switch edit mode back to emacs despite EDITOR being vim
+# this has to come before the znap evals so it can be partially overwritten
+bindkey -e
+
+# for some reason tmux loses forward delete bind
+bindkey "^[[3~" delete-char
+
 znap eval zoxide 'zoxide init --cmd j zsh'
 znap eval nodenv 'nodenv init -'
 znap eval fzf    'cat $BREW_PREFIX/opt/fzf/shell/*.zsh'
@@ -77,26 +84,12 @@ WORDCHARS=${WORDCHARS/\/}
 # Show substitutions before running them
 setopt HIST_VERIFY
 
-# switch edit mode back to emacs despite EDITOR being vim
-bindkey -e
-
-# for some reason tmux loses forward delete bind
-bindkey "^[[3~" delete-char
-
 # partial completion suggestions
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-
-# prefix search history with up and down
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search
-bindkey "^[[B" down-line-or-beginning-search
 
 export EDITOR='mvim -f --nomru -c "au VimLeave * !open -b $__CFBundleIdentifier"'
 export PAGER="less" # page with less not more
