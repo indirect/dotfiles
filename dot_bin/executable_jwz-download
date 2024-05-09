@@ -34,8 +34,8 @@ def run(cmd)
   system(cmd)
 end
 
-res = HTTP.get("https://www.dnalounge.com/webcast/mixtapes/")
-doc = Oga.parse_html(res.body)
+res = HTTP.get("https://www.dnalounge.com/webcast/mixtapes/").to_s
+doc = Oga.parse_html(res)
 
 mixtapes = doc.xpath('//b[text()="Watch"]').map do |link|
   [link.parent.parent.css("B").first.text, link.parent.attr("HREF")&.value]
