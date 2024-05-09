@@ -96,6 +96,7 @@ export PAGER="less" # page with less not more
 export BROWSER="open" # opens URLs in the default OS X browser
 export LESS="-XRF" # Fix less to not clear screen on exit, show color, exit if < 1 screen
 export CLICOLOR=true # ls with color
+export BAT_THEME="Solarized (dark)"
 export RI="-f ansi" # ri with color
 export FZF_DEFAULT_COMMAND="rg --files" # only choose from files rg would search
 
