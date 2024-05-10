@@ -52,7 +52,7 @@ dirname = name.tr('Ø', '0')
 tape_row = doc.css(".mixbox b").find{|e| e.text == name }.parent.parent
 track_text = tape_row.css(".mixtbox").text.force_encoding("UTF-8")
 tracklist = track_text.strip.split("\n").map do |line|
-  line.match(/(?<number>\d\d) (?<artist>.*?) -- (?<title>.*?) \((?<year>\d{4})\)/u)
+  line.match(/(?<number>\d\d) (?<artist>.*?) --? (?<title>.*?) \((?<year>\d{4})\)/u)
 end.compact
 
 add_to_itunes = Dir.glob(File.expand_path("~/Music/*/*/Automatically\ Add\ to\ *")).first || raise("oh no can't add to itunes")
