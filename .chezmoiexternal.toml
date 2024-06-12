@@ -44,6 +44,9 @@
 ["src/server/ytdl-sub"]
   type = "git-repo"
   url = "https://github.com/jmbannon/ytdl-sub"
+["src/server/youtube-dl-server"]
+  type = "git-repo"
+  url = "https://github.com/nbr23/youtube-dl-server"
 {{ end }}
 
 # 02 zsh plugins
