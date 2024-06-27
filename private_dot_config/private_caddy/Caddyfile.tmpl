@@ -16,7 +16,11 @@
 	log
 }
 
-home.arko.me, gnk.shark-crocodile.ts.net, gnk:80, gnk.local:80 {
+home.arko.me {
+  redir https://media.arko.me{uri}
+}
+
+media.arko.me, gnk.shark-crocodile.ts.net, gnk:80, gnk.local:80 {
 	# Overseerr
 	reverse_proxy 127.0.0.1:5055
 
