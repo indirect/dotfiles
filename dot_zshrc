@@ -34,7 +34,7 @@ bindkey "^[[3~" delete-char
 znap eval zoxide 'zoxide init --cmd j zsh'
 znap eval nodenv 'nodenv init -'
 znap eval fzf    'cat $BREW_PREFIX/opt/fzf/shell/*.zsh'
-znap eval atuin  'atuin init zsh'
+znap eval atuin  'atuin init --disable-up-arrow zsh'
 
 znap fpath _kubectl 'kubectl completion zsh'
 znap fpath _rustup  'rustup completions zsh'
