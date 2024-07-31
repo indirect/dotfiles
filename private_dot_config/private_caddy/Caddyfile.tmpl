@@ -20,6 +20,15 @@ home.arko.me {
   redir https://media.arko.me{uri}
 }
 
+gnk.shark-crocodile.ts.net {
+	handle_path /files/* {
+		root * /Volumes/Media/Video
+		file_server browse {
+			hide .DS_Store .grab /New /Other /Recycled
+		}
+	}
+}
+
 media.arko.me, gnk.shark-crocodile.ts.net, gnk:80, gnk.local:80 {
 	# Overseerr
 	reverse_proxy 127.0.0.1:5055
