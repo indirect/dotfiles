@@ -17,16 +17,7 @@
 }
 
 home.arko.me {
-  redir https://media.arko.me{uri}
-}
-
-gnk.shark-crocodile.ts.net {
-	handle_path /files/* {
-		root * /Volumes/Media/Video
-		file_server browse {
-			hide .DS_Store .grab /New /Other /Recycled
-		}
-	}
+	redir https://media.arko.me{uri}
 }
 
 media.arko.me, gnk.shark-crocodile.ts.net, gnk:80, gnk.local:80 {
@@ -35,7 +26,8 @@ media.arko.me, gnk.shark-crocodile.ts.net, gnk:80, gnk.local:80 {
 
 	# Hosts with public access need to authenticate admin services
 	@admin {
-		host gnk.shark-crocodile.ts.net, gnk.arko.net.beta.tailscale.net, home.arko.me
+		host media.arko.me # public internet
+		host gnk.shark-crocodile.ts.net # shared on tailscale
 		path /tv*
 		path /movies*
 		path /subtitles*
@@ -55,6 +47,21 @@ media.arko.me, gnk.shark-crocodile.ts.net, gnk:80, gnk.local:80 {
 		header_up Expected-Tailnet "arko.net"
 		copy_headers Tailscale-User Tailscale-Name Tailscale-Login Tailscale-Tailnet Tailscale-Profile-Picture
 	}
+
+	@files {
+		host gnk.shark-crocodile.ts.net # shared on tailscale
+		path /files*
+	}
+
+	handle @files {
+		handle_path /files/* {
+			root * /Volumes/Media/Video
+			file_server browse {
+				hide .DS_Store .grab /New /Other /Recycled
+			}
+		}
+	}
+
 
 	# Sonarr
 	redir /tv /tv/ 308
