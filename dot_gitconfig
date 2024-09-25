@@ -126,3 +126,9 @@
 	repo = /Users/andre/.zsh/znap/zsh-syntax-highlighting
 	repo = /Users/andre/.zsh/znap/zsh-vim-mode
 	repo = /Users/andre/.zsh/znap/zsh-you-should-use
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
