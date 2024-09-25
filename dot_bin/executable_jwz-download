@@ -19,10 +19,11 @@ require "shellwords"
 require "bundler/inline"
 gemfile(install: true) do
   source "https://rubygems.org"
-  gem "http"
   gem "addressable"
-  gem "oga"
   gem "base64"
+  gem "http"
+  gem "oga"
+  gem "ostruct"
 end
 
 def e(str)
