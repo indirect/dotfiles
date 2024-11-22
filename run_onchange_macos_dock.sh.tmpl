@@ -2,7 +2,7 @@
 set -euo pipefail
 set -vx
 
-which dockutil || brew install indirect/tap/dockutil
+which dockutil || brew install dockutil
 
 dockutil --no-restart --remove all
 dockutil --no-restart --add /System/Applications/System\ Settings.app
