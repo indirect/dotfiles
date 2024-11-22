@@ -7,7 +7,7 @@
 
 [".config/chrome/extensions/bypass-paywalls-chrome-clean"]
   type = "archive"
-  url = "https://gitlab.com/magnolia1234/bypass-paywalls-chrome-clean/-/archive/master/bypass-paywalls-chrome-clean-master.zip"
+  url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass-paywalls-chrome-clean-master.zip"
   stripComponents = 1
 
 # 00 projects
