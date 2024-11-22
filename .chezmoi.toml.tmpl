@@ -1,20 +1,17 @@
+encryption = "age"
+[age]
+    identity = "{{ .chezmoi.homeDir }}/.config/age/chezmoi_key.txt"
+    recipient = "age1jhkpvp9npqpcjztzae0f64njnesuw2nvgxzpsajge524mgzz45mqqqcyac"
 [data]
     name = "André Arko"
     email = "andre@arko.net"
     github = { username = "indirect" }
     server = {{ if eq .chezmoi.hostname "gnk" }}true{{ else }}false{{ end }}
     brew = { prefix = "{{ if stat "/opt/homebrew" }}/opt/homebrew{{ else }}/usr/local{{ end }}" }
-
 [diff]
     exclude = ["scripts"]
     format = "git"
     pager = "delta"
-
 [edit]
     command = "mvim"
     args = ["-f", "--nomru", "-c", "au VimLeave * !open -a $TERM_APPLICATION"]
-
-encryption = "age"
-[age]
-    identity = "{{ .chezmoi.homeDir }}/.config/age/chezmoi_key.txt"
-    recipient = "age1jhkpvp9npqpcjztzae0f64njnesuw2nvgxzpsajge524mgzz45mqqqcyac"
