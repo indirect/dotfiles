@@ -3,7 +3,7 @@ set -euo pipefail
 set -vx
 
 echo "installing Rosetta..."
-sudo softwareupdate --install-rosetta
+/usr/bin/pgrep -q oahd || sudo softwareupdate --install-rosetta --agree-to-license
 
 echo "moving dotfiles for chezmoi..."
 
