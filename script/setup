@@ -5,8 +5,10 @@ set -vx
 echo "installing Rosetta..."
 /usr/bin/pgrep -q oahd || sudo softwareupdate --install-rosetta --agree-to-license
 
-echo "moving dotfiles for chezmoi..."
+echo "installing chezmoi..."
+brew install chezmoi
 
+echo "moving dotfiles for chezmoi..."
 # relocate the checkout to the usual ~/src/indirect/dotfiles location
 [[ -d ~/src/indirect ]] || mkdir -p ~/src/indirect
 [[ -d ~/src/indirect/dotfiles ]] || mv ~/.dotfiles ~/src/indirect/dotfiles
@@ -18,10 +20,11 @@ echo "moving dotfiles for chezmoi..."
 [[ -d ~/.local/share ]] || mkdir -p ~/.local/share
 [[ -L ~/.local/share/chezmoi ]] || ln -sf ~/src/indirect/dotfiles ~/.local/share/chezmoi
 
+echo "initializing chezmoi..."
+chezmoi init
+
 echo "configuring zsh..."
 chezmoi apply ~/.zshenv ~/p10k.zsh ~/.zsh ~/.zshrc
 
 echo "setting up Brewfile"
-brew install chezmoi
-chezmoi init
 chezmoi apply ~/.Brewfile
