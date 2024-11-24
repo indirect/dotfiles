@@ -2,11 +2,7 @@ Include ~/.orbstack/ssh/config
 
 Host *
   ForwardX11 no
-  {{ if .server -}}
-    IdentityAgent ~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-  {{- else -}}
-    IdentityAgent ~/.sekey/ssh-agent.ssh
-  {{- end }}
+  IdentityAgent ~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
 Host gnk
   ForwardAgent yes
