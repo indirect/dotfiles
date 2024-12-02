@@ -25,7 +25,7 @@ open_application() {
   fi
 }
 
-open_application "$(echo $BREW_PREFIX/Caskroom/backblaze/*/*Installer.app)", "/Library/PreferencePanes/Backblaze Settings Launcher.prefPane"
+open_application "$(echo $BREW_PREFIX/Caskroom/backblaze/*/*\ Installer.app)", "/Library/PreferencePanes/Backblaze Settings Launcher.prefPane"
 open_application "Little Snitch", 
 open_application "Alfred 5"
 open_application "Bartender 5"
