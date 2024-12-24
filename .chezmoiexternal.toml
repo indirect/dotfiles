@@ -57,6 +57,10 @@
   stripComponents = 1
 
 # 03 vim built-in plugins
+[".vim/pack/plugins/opt/eunuch"]
+  type = "git-repo"
+  url = "https://tpope.io/vim/eunuch.git"
+  refreshPeriod = "168h"
 [".vim/pack/plugins/opt/chezmoi.vim"]
   type = "git-repo"
   url = "https://github.com/alker0/chezmoi.vim.git"
