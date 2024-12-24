@@ -57,6 +57,10 @@
   stripComponents = 1
 
 # 03 vim built-in plugins
+[".vim/pack/plugins/opt/textobj-comment"]
+  type = "git-repo"
+  url = "https://github.com/glts/vim-textobj-comment.git"
+  refreshPeriod = "168h"
 [".vim/pack/plugins/opt/eunuch"]
   type = "git-repo"
   url = "https://tpope.io/vim/eunuch.git"
