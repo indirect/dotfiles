@@ -3695,6 +3695,22 @@
                         "vendor_id": 13462
                     },
                     "ignore": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 68,
+                        "vendor_id": 7531
+                    },
+                    "ignore": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 50504,
+                        "vendor_id": 1133
+                    },
+                    "ignore": true
                 }
             ],
             "fn_function_keys": [
@@ -3724,10 +3740,37 @@
                     },
                     "ignore": true,
                     "manipulate_caps_lock_led": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 68,
+                        "vendor_id": 7531
+                    },
+                    "ignore": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 6,
+                        "vendor_id": 13462
+                    },
+                    "ignore": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 50504,
+                        "vendor_id": 1133
+                    },
+                    "ignore": true
                 }
             ],
             "name": "Qwerty",
-            "virtual_hid_keyboard": { "country_code": 0 }
+            "virtual_hid_keyboard": {
+                "country_code": 0,
+                "keyboard_type_v2": "ansi"
+            }
         }
     ]
 }
