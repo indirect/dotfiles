@@ -9,7 +9,8 @@
 	<string>net.arko.tautulli</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>{{ .brew.prefix }}/bin/python3</string>
+		<string>{{ .brew.prefix }}/bin/uv</string>
+		<string>run</string>
 		<string>{{ .chezmoi.homeDir }}/src/server/tautulli/Tautulli.py</string>
 	</array>
 	<key>RunAtLoad</key>
