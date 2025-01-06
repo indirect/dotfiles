@@ -39,6 +39,7 @@ znap fpath _kubectl 'kubectl completion zsh'
 znap fpath _rustup  'rustup completions zsh'
 znap fpath _cargo   'rustup completions zsh cargo'
 znap fpath _atuin   'atuin gen-completions --shell zsh'
+znap fpath _posh    'posh completion zsh'
 
 comppaths=(
   ~/.zsh/functions
