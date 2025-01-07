@@ -223,3 +223,7 @@
   type = "git-repo"
   url = "https://github.com/qpkorr/vim-renamer"
   refreshPeriod = "168h"
+[".vim/bundle/vim-rake"]
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-rake"
+  refreshPeriod = "168h"
