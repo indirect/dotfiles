@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -f ~/.local/share/atuin/atuin.sock
+exec /opt/homebrew/opt/atuin/bin/atuin daemon
