@@ -23,6 +23,14 @@ znap source zsh-users/zsh-history-substring-search
 znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
 
+# bind the history substring search to up and down arrows
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# only match command starts on up and down
+HISTORY_SUBSTRING_SEARCH_PREFIXED=true
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=(bold)
+
 # switch edit mode back to emacs despite EDITOR being vim
 # this has to come before the znap evals so it can be partially overwritten
 bindkey -e
