@@ -23,13 +23,6 @@ znap source zsh-users/zsh-history-substring-search
 znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
 
-# bind the history substring search to up and down arrows
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-# only match command starts on up and down
-HISTORY_SUBSTRING_SEARCH_PREFIXED=true
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=(bold)
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   znap eval ghostty 'cat "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration'
 fi
@@ -45,6 +38,14 @@ znap eval zoxide 'zoxide init --cmd j zsh'
 znap eval nodenv 'nodenv init -'
 znap eval fzf    'fzf --zsh'
 znap eval atuin  'atuin init zsh --disable-up-arrow'
+
+# bind the history substring search to up and down arrows
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# only match command starts on up and down
+HISTORY_SUBSTRING_SEARCH_PREFIXED=true
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=(bold)
 
 znap fpath _kubectl 'kubectl completion zsh'
 znap fpath _rustup  'rustup completions zsh'
