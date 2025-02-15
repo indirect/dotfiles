@@ -73,6 +73,10 @@
   type = "git-repo"
   url = "https://github.com/lifepillar/vim-solarized8"
   refreshPeriod = "168h"
+[".vim/pack/plugins/opt/hugo"]
+  type = "git-repo"
+  url = "https://github.com/phelipetls/vim-hugo"
+  refreshPeriod = "168h"
 
 # 04 vim pathogen plugins
 [".vim/bundle/vim-vinegar"]
