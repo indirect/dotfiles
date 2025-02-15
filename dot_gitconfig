@@ -71,7 +71,7 @@
 [rerere]
 	enabled = true
 [user]
-	name = Andre Arko
+	name = André Arko
 	email = andre@arko.net
 [filter "lfs"]
 	required = true
