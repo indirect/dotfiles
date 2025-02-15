@@ -34,8 +34,8 @@
 	ls = "!git log --date=relative --pretty='format:%C(yellow)%h%C(reset) %G? %C(blue)%>(14,trunc)%ad %C(green)%<(19)%aN%C(reset)%s%C(red)% gD% D'"
 	msg = !"git log -1 --oneline | cut -d ' ' -f 2-"
 	noff = merge --no-ff
-	nuke = "!git reset --hard HEAD"
-	nuke-all = "!git reset --hard HEAD && git clean -fd"
+	zap = "!git reset --hard HEAD"
+	nuke = "!git reset --hard HEAD && git clean -fd"
 	pending = "!git --no-pager log --pretty=format:'%Cblue%ar%Creset\t%s' origin/master..master && echo"
 	prl = pull-request-last-commit
 	punch = push --force
