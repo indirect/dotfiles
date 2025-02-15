@@ -30,6 +30,9 @@ bindkey '^[[B' history-substring-search-down
 # only match command starts on up and down
 HISTORY_SUBSTRING_SEARCH_PREFIXED=true
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=(bold)
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+  znap eval ghostty 'cat "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration'
+fi
 
 # switch edit mode back to emacs despite EDITOR being vim
 # this has to come before the znap evals so it can be partially overwritten
