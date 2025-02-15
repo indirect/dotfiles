@@ -7,5 +7,12 @@ if [[ -z "$BREW_PREFIX" ]]; then
 fi
 path=($BREW_PREFIX/bin $BREW_PREFIX/sbin $path)
 
-# Personal and rust bins
-path=($HOME/.bin $HOME/.cargo/bin $path)
+# Personal bin
+path=($HOME/.bin $path)
+
+# Rust tool bin
+path=($HOME/.cargo/bin $path)
+
+# Go module files and bin
+export GOPATH=$HOME/.go
+path=($HOME/.go/bin $path)
