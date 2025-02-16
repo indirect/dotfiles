@@ -1,16 +1,16 @@
+# Source zshenv again after macOS /etc/zprofile nukes PATH
+source ~/.zshenv
+
 # Start every shell with a random my little horse ebooks
 if [[ $TERM_PROGRAM != "vscode" ]]; then
   FORTUNES=$BREW_PREFIX/share/games/fortunes
-  echo; fortune $FORTUNES/horse_ebooks $FORTUNES/weird_twitter | ponysay -b unicode 2>/dev/null | pr -o 3 -t; echo
+  echo; $BREW_PREFIX/bin/fortune $FORTUNES/horse_ebooks $FORTUNES/weird_twitter | ponysay -b unicode 2>/dev/null | pr -o 3 -t; echo
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
 () { [[ -r $1 ]] && source $1 } ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$USERNAME.zsh
-
-# Source zshenv again after macOS /etc/zprofile nukes PATH
-source ~/.zshenv
 
 # Load znap so everything else can be loaded in the background
 source ~/.zsh/znap/zsh-snap/znap.zsh
