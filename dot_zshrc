@@ -1,6 +1,9 @@
 # Source zshenv again after macOS /etc/zprofile nukes PATH
 source ~/.zshenv
 
+# Stop here if this is e.g. cron or puma-dev
+[[ ! -v TERM ]] && return 0
+
 # Start every shell with a random my little horse ebooks
 if [[ $TERM_PROGRAM != "vscode" ]]; then
   FORTUNES=$BREW_PREFIX/share/games/fortunes
