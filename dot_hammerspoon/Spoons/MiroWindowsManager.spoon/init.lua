@@ -32,10 +32,36 @@
 -- sticky sides option when shrinking windows
 -- different sizes lists for specific apps
 
-local obj={}
-obj.__index = obj
+-- Patch hs.window to work around accessibility forcing animations
+local function axHotfix(win)
+    if not win then win = hs.window.frontmostWindow() end
+
+    local axApp = hs.axuielement.applicationElement(win:application())
+    local wasEnhanced = axApp.AXEnhancedUserInterface
+    axApp.AXEnhancedUserInterface = false
+
+    return function()
+        hs.timer.doAfter(hs.window.animationDuration * 2, function()
+            axApp.AXEnhancedUserInterface = wasEnhanced
+        end)
+    end
+end
+
+local function withAxHotfix(fn, position)
+    if not position then position = 1 end
+    return function(...)
+        local revert = axHotfix(select(position, ...))
+        fn(...)
+        revert()
+    end
+end
+
+local windowMT = hs.getObjectMetatable("hs.window")
+windowMT.setFrame = withAxHotfix(windowMT.setFrame)
 
 -- Metadata
+local obj={}
+obj.__index = obj
 obj.name = "MiroWindowsManager"
 obj.version = "1.2"
 obj.author = "Miro Mannino <miro.mannino@gmail.com>"
