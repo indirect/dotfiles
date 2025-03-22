@@ -58,6 +58,8 @@ end
 
 local windowMT = hs.getObjectMetatable("hs.window")
 windowMT.setFrame = withAxHotfix(windowMT.setFrame)
+windowMT.maximize   = withAxHotfix(windowMT.maximize)
+windowMT.moveToUnit = withAxHotfix(windowMT.moveToUnit)
 
 -- Metadata
 local obj={}
