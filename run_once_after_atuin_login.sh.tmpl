@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+# set -xv
+
+echo "Logging in to atuin.sh..."
+
+if [[ "$(atuin status)" == "You are not logged in"* ]]; then
+  atuin login \
+    -u '{{ onepasswordRead "op://Private/Atuin.sh/username" "indirect.1password.com" }}' \
+    -p '{{ onepasswordRead "op://Private/Atuin.sh/password" "indirect.1password.com" }}' \
+    -k '{{ onepasswordRead "op://Private/Atuin.sh/key" "indirect.1password.com" }}'
+else
+  echo "Already logged in"
+fi
