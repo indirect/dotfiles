@@ -28,3 +28,4 @@ chezmoi apply ~/.zshenv ~/p10k.zsh ~/.zsh ~/.zshrc
 
 echo "setting up Brewfile"
 chezmoi apply ~/.Brewfile
+chezmoi apply --source-path ~/.dotfiles/run_onchange_brew_bundle.sh.tmpl
