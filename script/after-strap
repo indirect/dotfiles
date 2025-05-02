@@ -1,3 +1,5 @@
+echo "installing 1Password"
+brew install 1password
 
 echo "about to open 1Password. log in and enable CLI integration in preferences."
 read -p "Press enter to continue..."
