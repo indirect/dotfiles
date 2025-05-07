@@ -17,5 +17,5 @@ path=($HOME/.cargo/bin $path)
 export GOPATH=$HOME/.go
 path=($HOME/.go/bin $path)
 
-# uv bins
+# uv tools
 path=($HOME/.local/bin $path)
