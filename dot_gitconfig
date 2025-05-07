@@ -14,6 +14,7 @@
 	co = checkout
 	compact = gc --prune --aggressive
 	conflicted=diff --name-only --diff-filter=U
+	continue = "-c core.editor=true rebase --continue"
 	cp = cherry-pick
 	cpsha = !git sha | pbcopy
 	d = diff
