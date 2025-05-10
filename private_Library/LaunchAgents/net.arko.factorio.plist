@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin</string>
+	</dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>net.arko.factorio</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/andre/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/factorio</string>
+		<string>--start-server</string>
+		<string>/Users/andre/Documents/Factorio/professionalism.zip</string>
+		<string>--server-settings</string>
+		<string>/Users/andre/.config/factorio/server-settings.json</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/opt/homebrew/var/log/factorio.log</string>
+	<key>StandardOutPath</key>
+	<string>/opt/homebrew/var/log/factorio.log</string>
+</dict>
+</plist>
