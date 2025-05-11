@@ -16,7 +16,7 @@
 	<array>
 		<string>bash</string>
 		<string>-c</string>
-		<string>eval "$(/opt/homebrew/bin/nodenv init -)" &amp;&amp; yarn install &amp;&amp; yarn start</string>
+		<string>yarn install &amp;&amp; yarn build &amp;&amp; yarn start</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
