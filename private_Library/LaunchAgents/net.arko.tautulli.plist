@@ -11,7 +11,9 @@
 	<array>
 		<string>{{ .brew.prefix }}/bin/uv</string>
 		<string>run</string>
-		<string>{{ .chezmoi.homeDir }}/src/server/tautulli/Tautulli.py</string>
+		<string>--with</string>
+		<string>setuptools</string>
+		<string>Tautulli.py</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
