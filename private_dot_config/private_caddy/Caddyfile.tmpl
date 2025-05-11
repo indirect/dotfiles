@@ -20,14 +20,14 @@ home.arko.me {
 	redir https://media.arko.me{uri}
 }
 
-media.arko.me, gnk.shark-crocodile.ts.net, gnk:80, gnk.local:80 {
+media.arko.me, mse-65.shark-crocodile.ts.net, mse-6:80, mse-6.local:80 {
 	# Overseerr
 	reverse_proxy 127.0.0.1:5055
 
 	# Hosts with public access need to authenticate admin services
 	@admin {
 		host media.arko.me # public internet
-		host gnk.shark-crocodile.ts.net # shared on tailscale
+		host mse-6.shark-crocodile.ts.net # shared on tailscale
 		path /tv*
 		path /movies*
 		path /subtitles*
@@ -49,7 +49,7 @@ media.arko.me, gnk.shark-crocodile.ts.net, gnk:80, gnk.local:80 {
 	}
 
 	@files {
-		host gnk.shark-crocodile.ts.net # shared on tailscale
+		host mse-6.shark-crocodile.ts.net # shared on tailscale
 		path /files*
 	}
 
