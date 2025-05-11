@@ -13,7 +13,7 @@
 	<string>net.arko.factorio</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Users/andre/Library/Application Support/Steam/steamapps/common/Factorio/factorio.app/Contents/MacOS/factorio</string>
+		<string>/Applications/factorio.app/Contents/MacOS/factorio</string>
 		<string>--start-server</string>
 		<string>/Users/andre/Documents/Factorio/professionalism.zip</string>
 		<string>--server-settings</string>
