@@ -123,7 +123,7 @@ export KALEIDOSCOPE_DIR=$HOME/src/indirect/Kaleidoscope
 export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 
 # Set up a default ruby version
-export DEFAULT_RUBY_VERSION=$(ls ~/.rubies | tail -n1)
+export DEFAULT_RUBY_VERSION=$(ls ~/.rubies | grep -v system | tail -n1)
 chruby $DEFAULT_RUBY_VERSION
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
