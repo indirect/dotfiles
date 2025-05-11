@@ -26,6 +26,10 @@
 			<string>/opt/homebrew/var/run/tailscale.nginx-auth.sock</string>
 		</dict>
 	</dict>
+	<key>StandardErrorPath</key>
+	<string>/opt/homebrew/var/log/nginx-auth.log</string>
+	<key>StandardOutPath</key>
+	<string>/opt/homebrew/var/log/nginx-auth.log</string>
 </dict>
 </plist>
 {{- end }}
