@@ -1,0 +1,35 @@
+{{ if .server -}}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>net.arko.ytdl-sub</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/fdautil</string>
+		<string>exec</string>
+		<string>/opt/homebrew/bin/uvx</string>
+		<string>ytdl-sub</string>
+		<string>sub</string>
+	</array>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>StandardErrorPath</key>
+	<string>/opt/homebrew/var/log/ytdl-sub.log</string>
+	<key>StandardOutPath</key>
+	<string>/opt/homebrew/var/log/ytdl-sub.log</string>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Hour</key>
+			<integer>6</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>/Users/andre/.config/ytdl-sub</string>
+</dict>
+</plist>
+{{- end }}

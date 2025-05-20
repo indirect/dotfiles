@@ -1,0 +1,44 @@
+{{ if .server -}}
+__preset__:
+  overrides:
+    tv_show_directory: "/Volumes/Media/Video/Other Shows"
+    music_directory: "/Volumes/Media/Video/Music Videos"
+    episode_title: "{title_sanitized}"
+  subtitles:
+    subtitles_type: "srt"
+    embed_subtitles: False
+    languages:
+      - "en"
+    allow_auto_generated_subtitles: False
+  ytdl_options:
+    extractor_args:
+      youtube:
+        lang:
+          - "en"
+  throttle_protection:
+      sleep_per_download_s:
+        min: 2.2
+        max: 10.8
+      sleep_per_subscription_s:
+        min: 9.0
+        max: 14.1
+
+Plex TV Show by Date | Best Video Quality:
+  = Comedy:
+    "Krazam": "https://www.youtube.com/@KRAZAM/videos"
+    "Tom Cardy": "https://www.youtube.com/@tomcardy1/videos"
+    "Bobby Fingers": "https://www.youtube.com/@bobbyfingers/videos"
+    "Brian David Gilbert": "https://www.youtube.com/@briandavidgilbert/videos"
+  = Documentary:
+    "USCSB": "https://www.youtube.com/@USCSB/videos"
+  = Video Games:
+    "Summoning Salt": "https://www.youtube.com/@SummoningSalt/videos"
+  = Media:
+    "CinemaStix": "https://www.youtube.com/@CinemaStix/videos"
+    "CinemaStix nebula": "https://nebula.tv/cinemastix"
+    "Jenny Nicholson": "https://www.youtube.com/@JennyNicholson/videos"
+    "Jenny Nicholson patreon": "https://www.patreon.com/c/JennyNicholson/posts"
+    "hbomberguy": "https://www.youtube.com/@hbomberguy/videos"
+    "hbomberguy patreon": "https://www.patreon.com/c/hbomb/posts"
+    "Thomas Flight nebula": "https://nebula.tv/thomasflight"
+{{- end }}
