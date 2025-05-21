@@ -97,8 +97,8 @@ let mapleader = " "
 let maplocalleader = " "
 " nnoremap <Space> :
 
-" Leave insert mode on jj
-inoremap jj <Esc>
+" Leave insert mode on jk
+inoremap jk <Esc>
 
 " mapping to make movements operate on 1 screen line in wrap mode
 function! ScreenMovement(movement)
