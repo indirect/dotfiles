@@ -1,0 +1,21 @@
+{{- if .server -}}
+#!/bin/bash
+
+# {{ include "/Applications/Sonarr.app/Contents/MacOS/Sonarr" | sha256sum }}
+if [[ -e /Applications/Sonarr.app ]]; then
+  codesign --force --deep -s - /Applications/Sonarr.app
+  xattr -rd com.apple.quarantine /Applications/Sonarr.app
+fi
+
+# {{ include "/Applications/Radarr.app/Contents/MacOS/Radarr" | sha256sum }}
+if [[ -e /Applications/Radarr.app ]]; then
+  codesign --force --deep -s - /Applications/Radarr.app
+  xattr -rd com.apple.quarantine /Applications/Radarr.app
+fi
+
+# {{ include "/Applications/Lidarr.app/Contents/MacOS/Lidarr" | sha256sum }}
+if [[ -e /Applications/Lidarr.app ]]; then
+  codesign --force --deep -s - /Applications/Lidarr.app
+  xattr -rd com.apple.quarantine /Applications/Lidarr.app
+fi
+{{- end }}
