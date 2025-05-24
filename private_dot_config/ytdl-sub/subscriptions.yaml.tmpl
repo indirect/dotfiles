@@ -4,24 +4,32 @@ __preset__:
     tv_show_directory: "/Volumes/Media/Video/Other Shows"
     music_directory: "/Volumes/Media/Video/Music Videos"
     episode_title: "{title_sanitized}"
+    chunk_max_downloads: 1
   subtitles:
     subtitles_type: "srt"
     embed_subtitles: False
     languages:
       - "en"
     allow_auto_generated_subtitles: False
-  ytdl_options:
-    extractor_args:
-      youtube:
-        lang:
-          - "en"
   throttle_protection:
-      sleep_per_download_s:
-        min: 2.2
-        max: 10.8
-      sleep_per_subscription_s:
-        min: 9.0
-        max: 14.1
+    sleep_per_download_s:
+      min: 2.2
+      max: 17.8
+    sleep_per_subscription_s:
+      min: 9.4
+      max: 27.1
+  ytdl_options:
+    sleep_interval_requests: 1
+
+Plex TV Show by Date | Best Video Quality | Chunk Downloads:
+  overrides:
+    ytdl_options:
+      cookiesfrombrowser: ["safari"]
+  = Media:
+    "CinemaStix nebula": "https://nebula.tv/cinemastix"
+    "Thomas Flight nebula": "https://nebula.tv/thomasflight"
+    "Jenny Nicholson patreon": "https://www.patreon.com/c/JennyNicholson/posts"
+    "hbomberguy patreon": "https://www.patreon.com/c/hbomb/posts"
 
 Plex TV Show by Date | Best Video Quality:
   = Comedy:
@@ -35,10 +43,6 @@ Plex TV Show by Date | Best Video Quality:
     "Summoning Salt": "https://www.youtube.com/@SummoningSalt/videos"
   = Media:
     "CinemaStix": "https://www.youtube.com/@CinemaStix/videos"
-    "CinemaStix nebula": "https://nebula.tv/cinemastix"
     "Jenny Nicholson": "https://www.youtube.com/@JennyNicholson/videos"
-    "Jenny Nicholson patreon": "https://www.patreon.com/c/JennyNicholson/posts"
     "hbomberguy": "https://www.youtube.com/@hbomberguy/videos"
-    "hbomberguy patreon": "https://www.patreon.com/c/hbomb/posts"
-    "Thomas Flight nebula": "https://nebula.tv/thomasflight"
 {{- end }}
