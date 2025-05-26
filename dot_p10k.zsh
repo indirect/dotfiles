@@ -254,6 +254,7 @@
     .bzr
     .citc
     .git
+    .jj
     .hg
     .node-version
     .python-version
@@ -375,6 +376,35 @@
       local   modified='%244F'  # grey foreground
       local  untracked='%244F'  # grey foreground
       local conflicted='%244F'  # grey foreground
+    fi
+
+    if [[ -d ".jj" ]]; then
+      jj_status=$(jj log --ignore-working-copy --no-graph --color never -r @ -T '
+          separate(
+              " ",
+              bookmarks.join(", "),
+              coalesce(
+                  surround(
+                      "\"",
+                      "\"",
+                      if(
+                          description.first_line().substr(0, 24).starts_with(description.first_line()),
+                          description.first_line().substr(0, 24),
+                          description.first_line().substr(0, 23) ++ "…"
+                      )
+                  ),
+                  "(no description set)"
+              ),
+              change_id.shortest(),
+              if(conflict, "(conflict)"),
+              if(empty, "(empty)"),
+              if(divergent, "(divergent)"),
+              if(hidden, "(hidden)"),
+          )
+      ')
+      
+      typeset -g my_git_format=$jj_status
+      return
     fi
 
     local status_color
