@@ -1,0 +1,12 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "André Arko"
+email = "andre@arko.net"
+
+[revset-aliases]
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+
+[aliases]
+head = ["diff", "-r", "@-"]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
