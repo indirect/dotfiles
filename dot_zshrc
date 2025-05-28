@@ -10,11 +10,6 @@ if [[ $TERM_PROGRAM != "vscode" ]]; then
   echo; $BREW_PREFIX/bin/fortune $FORTUNES/horse_ebooks $FORTUNES/weird_twitter | ponysay -b unicode 2>/dev/null | pr -o 3 -t; echo
 fi
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-() { [[ -r $1 ]] && source $1 } ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$USERNAME.zsh
-
 # Load znap so everything else can be loaded in the background
 source ~/.zsh/znap/zsh-snap/znap.zsh
 
@@ -37,11 +32,12 @@ bindkey -e
 # for some reason tmux loses forward delete bind
 bindkey "^[[3~" delete-char
 
-znap eval zoxide 'zoxide init --cmd j zsh'
-znap eval nodenv 'nodenv init -'
-znap eval fzf    'fzf --zsh'
-znap eval atuin  'atuin init zsh --disable-up-arrow'
-znap eval ghcs   'gh copilot alias zsh'
+znap eval zoxide   'zoxide init --cmd j zsh'
+znap eval nodenv   'nodenv init -'
+znap eval fzf      'fzf --zsh'
+znap eval atuin    'atuin init zsh --disable-up-arrow'
+znap eval ghcs     'gh copilot alias zsh'
+znap eval starship 'starship init zsh'
 
 # bind the history substring search to up and down arrows
 bindkey '^[[A' history-substring-search-up
@@ -125,7 +121,3 @@ export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 # Set up a default ruby version
 export DEFAULT_RUBY_VERSION=$(ls ~/.rubies | grep -v system | tail -n1)
 chruby $DEFAULT_RUBY_VERSION
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-znap source romkatv/powerlevel10k
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
