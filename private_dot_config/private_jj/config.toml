@@ -1,12 +1,23 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 
-[user]
-name = "André Arko"
-email = "andre@arko.net"
+[aliases]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 
-[aliases]
-head = ["diff", "-r", "@-"]
-tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+[git]
+push-new-bookmarks = true
+
+[[--scope]]
+--when.commands = ["diff", "show"]
+
+[--scope.ui]
+# https://github.com/jj-vcs/jj/blob/v0.25.0/docs/config.md#processing-contents-to-be-paged
+pager = "delta"
+# NOTE: this is required when using `delta` as a pager
+diff.format = "git"
+
+[user]
+name = "André Arko"
+email = "andre@arko.net"
