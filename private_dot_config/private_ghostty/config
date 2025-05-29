@@ -1,5 +1,5 @@
 config-file = /Users/andre/.config/ghostty/themes/selenized-dark
-font-family = MesloLGS NF
+font-family = MenloNF
 font-size = 14
 
 cursor-style = block
