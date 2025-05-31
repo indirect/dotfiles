@@ -2,7 +2,7 @@
 
 format = """
 [](red)\
-$os\
+${custom.ruby}\
 $username\
 [](bg:peach fg:red)\
 $directory\
@@ -10,9 +10,6 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:yellow bg:green)\
-$c\
-$rust\
-$golang\
 $nodejs\
 $php\
 $java\
@@ -21,50 +18,37 @@ $haskell\
 $python\
 [](fg:green bg:sapphire)\
 $conda\
+$c\
+$rust\
+$golang\
 [](fg:sapphire bg:lavender)\
 $time\
 [ ](fg:lavender)\
+$jobs\
 $cmd_duration\
 $line_break\
 $character"""
 
 palette = 'catppuccin_mocha'
 
-[os]
-disabled = false
-style = "bg:red fg:crust"
-
-[os.symbols]
-Windows = ""
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-Arch = "󰣇"
-Artix = "󰣇"
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
+[custom.ruby]
+command = "ruby -v | awk '{ print $2 }'"
+when = true
+symbol = ' '
+style = 'bg:red fg:crust'
+format = '[$symbol($output )]($style)'
 
 [username]
-show_always = true
+show_always = false
 style_user = "bg:red fg:crust"
 style_root = "bg:red fg:crust"
 format = '[ $user]($style)'
 
 [directory]
 style = "bg:peach fg:crust"
-format = "[ $path ]($style)"
-truncation_length = 3
+format = "[ $path[$read_only]($read_only_style) ]($style)"
+truncate_to_repo = false
+truncation_length = 5
 truncation_symbol = "…/"
 
 [directory.substitutions]
@@ -82,6 +66,13 @@ format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 [git_status]
 style = "bg:yellow"
 format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+
+[custom.jj]
+command='''starship-jj --ignore-working-copy starship prompt'''
+format = "[$symbol](blue bold) $output "
+style = "bg:yellow"
+symbol = "󱗆 "
+when = "jj root --ignore-working-copy"
 
 [nodejs]
 symbol = ""
