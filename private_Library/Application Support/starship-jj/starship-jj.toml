@@ -49,11 +49,6 @@ text = "(DIVERGENT)"
 color = "Cyan"
 # bg_color = "Yellow"
 
-[module.hidden]
-text = "(HIDDEN)"
-color = "Yellow"
-# bg_color = "Yellow"
-
 [module.immutable]
 disabled = false
 text = "(IMMUTABLE)"
@@ -63,6 +58,7 @@ color = "Yellow"
 disabled = false
 text = "(HIDDEN)"
 color = "Yellow"
+# bg_color = "Yellow"
 
 [[module]]
 # Prints the amount of changes in the working copy
@@ -88,7 +84,7 @@ color = "Green"
 
 [module.removed_lines]
 # Controlls how the number of removed lines is rendered.
-yprefix = "-"
+prefix = "-"
 # suffix = ""
 color = "Red"
 # bg_color = "Yellow"

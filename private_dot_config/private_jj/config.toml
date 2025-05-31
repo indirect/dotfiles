@@ -21,3 +21,6 @@ diff.format = "git"
 [user]
 name = "André Arko"
 email = "andre@arko.net"
+
+[ui]
+editor = "mvim -f"
