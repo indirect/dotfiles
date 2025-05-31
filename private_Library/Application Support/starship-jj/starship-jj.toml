@@ -1,37 +1,58 @@
+"$schema"="https://gitlab.com/Lanastara/lanastara_foss/-/raw/v0.3.0/schema.json?ref_type=tags"
+# Text that will be printed between each Module.
 module_separator = " "
+# Timeout after wich the process is teminated.
+# timeout = 1000
 
+# Controls the behaviour of the bookmark finding algorythm.
 [bookmarks]
-search_depth = 100
+# Controls how far we are looking back to find bookmarks.
 exclude = []
+# Controls how far we are looking back to find bookmarks.
+# search_depth = 0
 
 [[module]]
+# Prints information about bookmarks in the working copies ancestors.
 type = "Bookmarks"
+# Text that will be rendered between each bookmark.
 separator = " "
 color = "Magenta"
+# bg_color = "Yellow"
+# A suffix that will be printed when the given bookmark is behing the working copy.
 behind_symbol = "⇡"
+# Maximum amout of bookmarks that will be rendered.
+# max_bookmarks = 1
+# Maximum length the bookmark name will be truncated to.
+# max_length = 10
 
 [[module]]
+# Prints the working copies commit text
 type = "Commit"
+# Maximum length the commit text will be truncated to.
 max_length = 24
+# color = "Green"
+# bg_color = "Yellow"
 
 [[module]]
+# Prints a warning if the working copy contains any conflicts, is divergent or hidden
 type = "State"
+# Text that will be printed between each Warning.
 separator = " "
 
 [module.conflict]
-disabled = false
 text = "(CONFLICT)"
 color = "Red"
+# bg_color = "Yellow"
 
 [module.divergent]
-disabled = false
 text = "(DIVERGENT)"
 color = "Cyan"
+# bg_color = "Yellow"
 
-[module.empty]
-disabled = false
-text = "(EMPTY)"
+[module.hidden]
+text = "(HIDDEN)"
 color = "Yellow"
+# bg_color = "Yellow"
 
 [module.immutable]
 disabled = false
@@ -44,22 +65,30 @@ text = "(HIDDEN)"
 color = "Yellow"
 
 [[module]]
+# Prints the amount of changes in the working copy
 type = "Metrics"
-template = "[{changed} {added}{removed}]"
 color = "Magenta"
+# bg_color = "Yellow"
+# Controls how the changes are rendered, use {added}, {removed} and {changed} to render the number of changes.
+template = "[{changed} {added}{removed}]"
 
 [module.changed_files]
-prefix = ""
-suffix = ""
+# Controlls how the number of changed files is rendered.
+# suffix = ""
+# prefix = ""
 color = "Cyan"
+# bg_color = "Yellow"
 
 [module.added_lines]
+# Controlls how the number of changed files is rendered.
 prefix = "+"
-suffix = ""
+# suffix = ""
 color = "Green"
+# bg_color = "Yellow"
 
 [module.removed_lines]
-prefix = "-"
-suffix = ""
+# Controlls how the number of removed lines is rendered.
+yprefix = "-"
+# suffix = ""
 color = "Red"
-
+# bg_color = "Yellow"
