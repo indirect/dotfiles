@@ -32,3 +32,4 @@ email = "andre@arko.net"
 
 [ui]
 editor = "mvim -f"
+diff-editor = ":builtin"
