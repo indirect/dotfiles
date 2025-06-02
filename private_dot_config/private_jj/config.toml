@@ -31,5 +31,5 @@ name = "André Arko"
 email = "andre@arko.net"
 
 [ui]
-editor = "mvim -f"
+editor = ["mvim", "-f", "--nomru", "-c", "au VimLeave * !open -b $__CFBundleIdentifier"]
 diff-editor = ":builtin"
