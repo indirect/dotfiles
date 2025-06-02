@@ -33,3 +33,6 @@ email = "andre@arko.net"
 [ui]
 editor = ["mvim", "-f", "--nomru", "-c", "au VimLeave * !open -b $__CFBundleIdentifier"]
 diff-editor = ":builtin"
+
+[revsets]
+log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
