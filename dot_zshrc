@@ -25,6 +25,7 @@ znap source zsh-users/zsh-syntax-highlighting
 znap source zsh-users/zsh-history-substring-search
 znap source scriptingosx/mac-zsh-completions
 znap source MichaelAquilina/zsh-you-should-use
+znap source mafredri/zsh-async
 
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   znap eval ghostty 'cat "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration'
