@@ -353,7 +353,12 @@
   # VCS_STATUS_* parameters are set by gitstatus plugin. See reference:
   # https://github.com/romkatv/gitstatus/blob/master/gitstatus.plugin.zsh.
   function my_git_formatter() {
-    emulate -L zsh
+    emulate -L zsh -o extended_glob
+
+    if [[ -n ./(../)#(.jj)(#qN/) ]]; then
+      typeset -g my_git_format=""
+      return
+    fi
 
     if [[ -n $P9K_CONTENT ]]; then
       # If P9K_CONTENT is not empty, use it. It's either "loading" or from vcs_info (not from
