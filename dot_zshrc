@@ -72,18 +72,12 @@ for file in ~/.zsh/*.zsh; do
   znap eval $file(:t) "cat $file"
 done
 
-# Globbing a bit more like bash
-setopt NO_CASE_GLOB
-setopt GLOB_COMPLETE
 
 # Make delete-by-word stop on punctuation like other editors
 WORDCHARS=""
-
-# Naming a directory runs cd for you
-setopt AUTO_CD
-
 # Shared history across all shells, updated after every command
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
@@ -93,11 +87,9 @@ setopt INC_APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
-
-# Break words on forward slash, so delete-word stops on directories
-WORDCHARS=${WORDCHARS/\/}
-
-# Show substitutions before running them
+setopt AUTO_CD
+setopt NO_CASE_GLOB
+setopt GLOB_COMPLETE
 setopt HIST_VERIFY
 
 # partial completion suggestions
@@ -115,14 +107,10 @@ export CLICOLOR=true # ls with color
 export BAT_THEME="Solarized (dark)"
 export RI="-f ansi" # ri with color
 export FZF_DEFAULT_COMMAND="rg --files" # only choose from files rg would search
-
-# Tell Kaleidoscope where to find itself
 export KALEIDOSCOPE_DIR=$HOME/src/indirect/Kaleidoscope
-
-# RubyGems.org staging and production access via kubectl
 export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 
-# Set up a default ruby version
+# Default to the latest ruby version
 export DEFAULT_RUBY_VERSION=$(ls ~/.rubies | grep -v system | tail -n1)
 chruby $DEFAULT_RUBY_VERSION
 
