@@ -1,0 +1,7 @@
+if [ -z "$1" ]; then
+	echo "usage: data-url file" >&2
+else
+	mimetype=$(file -bN --mime-type "$1")
+	content=$(base64 < "$1")
+	echo "data:$mimetype;base64,$content"
+fi
