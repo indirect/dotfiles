@@ -20,6 +20,7 @@ consume = ["squash", "--into", "@", "--from"]
 'closest_pushable(to)' = 'heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'
 
 [git]
+auto-local-bookmark = true
 push-new-bookmarks = true
 
 [[--scope]]
