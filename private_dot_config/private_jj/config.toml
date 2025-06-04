@@ -1,6 +1,31 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 
 [aliases]
+# Convenient shorthands.
+d = ["diff"]
+s = ["show"]
+ll = ["log", "-T", "builtin_log_detailed"]
+nt = ["new", "trunk()"]
+
+# Get all open stacks of work.
+open = ["log", "-r", "open()"]
+
+# Better name, IMO.
+credit = ["file", "annotate"]
+
+# Retrunk a series. Typically used as `jj retrunk -s ...`, and notably can be
+# used with open:
+# - jj retrunk -s 'all:roots(open())'
+retrunk = ["rebase", "-d", "trunk()"]
+
+# Retrunk the current stack of work.
+reheat = ["rebase", "-d", "trunk()", "-s", "all:roots(trunk()..stack(@))"]
+
+# Eject content from @ into any other change.
+# - jj eject xyz --interactive
+eject = ["squash", "--from", "@", "--into"]
+
+# Bring the closest bookmark up to the closest pushable change
 tug = ["util", "exec", "--", "sh", "-c", """
 if [ "x$1" = "x" ]; then
   jj bookmark move --from "closest_bookmark(@)" --to "closest_pushable(@)"
@@ -14,10 +39,51 @@ fi
 consume = ["squash", "--into", "@", "--from"]
 
 
+[revsets]
+# By default, show the current stack of work.
+log = 'stack(@)'
+
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
-'closest_remote_bookmark(to)' = 'heads(::to & remote_bookmarks())'
 'closest_pushable(to)' = 'heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'
+
+'user(x)' = 'author(x) | committer(x)'
+
+# By default, show the repo trunk, the remote bookmarks, and all remote tags. We
+# don't want to change these in most cases, but in some repos it's useful.
+'immutable_heads()' = 'present(trunk()) | remote_bookmarks() | tags()'
+
+# Useful to ignore this, in many repos. For repos like `jj` these are
+# consistently populated with a bunch of auto-generated commits, so ignoring it
+# is often nice.
+'gh_pages()' = 'ancestors(remote_bookmarks(exact:"gh-pages"))'
+
+# Private and WIP commits that should never be pushed anywhere. Often part of
+# work-in-progress merge stacks.
+'wip()' = 'description(glob:"wip:*")'
+'private()' = 'description(glob:"private:*")'
+'unready()' = 'wip() | private()'
+
+# stack(x, n) is the set of mutable commits reachable from 'x', with 'n'
+# parents. 'n' is often useful to customize the display and return set for
+# certain operations. 'x' can be used to target the set of 'roots' to traverse,
+# e.g. @ is the current stack.
+'stack()' = 'ancestors(reachable(@, mutable()), 2)'
+'stack(x)' = 'ancestors(reachable(x, mutable()), 2)'
+'stack(x, n)' = 'ancestors(reachable(x, mutable()), n)'
+
+# The current set of "open" works. It is defined as:
+#
+# - given the set of commits not in trunk, that are written by me,
+# - calculate the given stack() for each of those commits
+#
+# n = 1, meaning that nothing from `trunk()` is included, so all resulting
+# commits are mutable by definition.
+'open()' = 'stack(trunk().. & mine(), 1)'
+
+# the set of 'ready()' commits. defined as the set of open commits, but nothing
+# that is blacklisted or any of their children.
+'ready()' = 'open() ~ unready()::'
 
 [git]
 auto-local-bookmark = true
@@ -39,6 +105,3 @@ email = "andre@arko.net"
 [ui]
 editor = ["mvim", "-f", "--nomru", "-c", "au VimLeave * !open -b $__CFBundleIdentifier"]
 diff-editor = ":builtin"
-
-[revsets]
-log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
