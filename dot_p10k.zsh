@@ -1120,25 +1120,6 @@
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
 
-  function prompt_ruby() {
-    case $RUBY_VERSION in
-      "") icon="◽️";;
-      3.4.?) icon="💠";;
-      3.[2-3].?) icon="🔹";;
-      3.1.?) icon="🔸";;
-      3.0.?) icon="🔺";;
-      2.?.?) icon="🔻";;
-      1.?.?) icon="🔻";;
-      *) icon="❓ ($RUBY_VERSION)";;
-    esac
-
-    p10k segment -f 015 -i "$icon"
-  }
-
-  function instant_prompt_ruby() {
-    p10k segment -i "◽️"
-  }
-
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See
   # https://github.com/romkatv/powerlevel10k/blob/master/README.md#instant-prompt.
@@ -1161,6 +1142,25 @@
   # User-defined prompt segments can be customized the same way as built-in segments.
   # typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
   # typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  function prompt_ruby() {
+    case $RUBY_VERSION in
+      "") icon="◽️";;
+      3.4.4) icon="💠";;
+      3.4.?) icon="🔹";;
+      3.3.?) icon="🔸";;
+      3.2.?) icon="🔺";;
+      3.[0-2].?) icon="🔻";;
+      [1-2].?.?) icon="🔻";;
+      *) icon="❓ ($RUBY_VERSION)";;
+    esac
+
+    p10k segment -f 015 -i "$icon"
+  }
+
+  function instant_prompt_ruby() {
+    p10k segment -i "◽️"
+  }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:
