@@ -9,6 +9,11 @@ else
 fi
 """, ""]
 
+# Take content from any change, and move it into @.
+# - jj consume xyz path/to/file`
+consume = ["squash", "--into", "@", "--from"]
+
+
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 'closest_remote_bookmark(to)' = 'heads(::to & remote_bookmarks())'
