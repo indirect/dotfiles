@@ -73,6 +73,9 @@ for file in ~/.zsh/*.zsh; do
   znap eval $file(:t) "cat $file"
 done
 
+# ctrl-] to jump to a repo
+zle -N fzf-src
+bindkey '^]' fzf-src
 
 # Make delete-by-word stop on punctuation like other editors
 WORDCHARS=""
