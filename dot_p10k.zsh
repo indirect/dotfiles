@@ -378,11 +378,6 @@
       local conflicted='%244F'  # grey foreground
     fi
 
-    if [[ -d ".jj" ]]; then
-      typeset -g my_git_format=$(starship-jj --ignore-working-copy starship prompt)
-      return
-    fi
-
     local status_color
     if (( VCS_STATUS_NUM_UNTRACKED )); then
       status_color='%3F' # yellow
