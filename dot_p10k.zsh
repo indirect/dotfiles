@@ -1184,19 +1184,31 @@
 
       local VCS_STATUS_COMMITS_AFTER=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "$branch..@ & (~empty() | merges())" -T '"n"' 2> /dev/null | wc -c | tr -d ' ')
       local VCS_STATUS_COMMITS_BEFORE=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "@..$branch & (~empty() | merges())" -T '"n"' 2> /dev/null | wc -c | tr -d ' ')
-      local counts=($(jj --ignore-working-copy --at-op=@ --no-pager bookmark list -r $branch -T 'if(remote, separate(" ", name ++ "@" ++ remote, tracking_ahead_count.exact(), tracking_behind_count.exact()) ++ "\n")'))
+      local counts=($(jj --ignore-working-copy --at-op=@ --no-pager bookmark list -r $branch -T '
+        if(remote,
+          separate(" ",
+            name ++ "@" ++ remote, 
+            if(tracking_ahead_count.exact(), tracking_ahead_count.exact(), tracking_ahead_count.lower()),
+            if(tracking_behind_count.exact(), tracking_behind_count.exact(), tracking_behind_count.lower()),
+            if(tracking_ahead_count.exact(), "0", "+"),
+            if(tracking_behind_count.exact(), "0", "+"),
+          ) ++ "\n"
+        )
+      '))
       local VCS_STATUS_COMMITS_AHEAD=$counts[2]
       local VCS_STATUS_COMMITS_BEHIND=$counts[3]
+      local VCS_STATUS_COMMITS_AHEAD_PLUS=$counts[4]
+      local VCS_STATUS_COMMITS_BEHIND_PLUS=$counts[5]
     fi
 
     local VCS_STATUS_LOCAL_BRANCH=$branch
 
     local change=($(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T '
       separate(" ",
-        commit_id.shortest(4).prefix(),
-        commit_id.shortest(4).rest(),
         change_id.shortest(4).prefix(),
         change_id.shortest(4).rest(),
+        commit_id.shortest(4).prefix(),
+        commit_id.shortest(4).rest(),
         concat(
           if(conflict, "💥"),
           if(divergent, "🚧"),
@@ -1204,8 +1216,8 @@
           if(immutable, "🔒"),
         ),
       )'))
-    local VCS_STATUS_COMMIT=($change[1] $change[2])
-    local VCS_STATUS_CHANGE=($change[3] $change[4])
+    local VCS_STATUS_CHANGE=($change[1] $change[2])
+    local VCS_STATUS_COMMIT=($change[3] $change[4])
     local VCS_STATUS_ACTION=$change[5]
 
     local res
@@ -1243,12 +1255,13 @@
     (( VCS_STATUS_COMMITS_BEFORE )) && res+="‹${VCS_STATUS_COMMITS_BEFORE}"
     (( VCS_STATUS_COMMITS_AFTER )) && res+="›${VCS_STATUS_COMMITS_AFTER}"
     # ⇣42 if behind the remote.
-    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${meta}⇣${VCS_STATUS_COMMITS_BEHIND}"
+    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${meta}⇣${VCS_STATUS_COMMITS_BEHIND}${VCS_STATUS_COMMITS_BEHIND_PLUS}"
     # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
     (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
-    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${meta}⇡${VCS_STATUS_COMMITS_AHEAD}"
+    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${meta}⇡${VCS_STATUS_COMMITS_AHEAD}${VCS_STATUS_COMMITS_AHEAD_PLUS}"
     # '💥🚧👻🔒' if the repo is in an unusual state.
     [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}${VCS_STATUS_ACTION}"
+
 
     # the current jj change id
     res+=" ${behind}${VCS_STATUS_CHANGE[1]}${meta}${VCS_STATUS_CHANGE[2]}"
