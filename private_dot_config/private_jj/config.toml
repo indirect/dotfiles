@@ -105,3 +105,16 @@ email = "andre@arko.net"
 [ui]
 editor = ["mvim", "-f", "--nomru", "-c", "au VimLeave * !open -b $__CFBundleIdentifier"]
 diff-editor = ":builtin"
+
+[templates]
+draft_commit_description = '''
+  concat(
+    coalesce(description, default_commit_description, "\n"),
+    surround(
+      "\nJJ: This commit contains the following changes:\n", "",
+      indent("JJ:     ", diff.stat(72)),
+    ),
+    "\nJJ: ignore-rest\n",
+    diff.git(),
+  )
+'''
