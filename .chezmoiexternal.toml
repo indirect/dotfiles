@@ -74,6 +74,10 @@
   type = "git-repo"
   url = "https://github.com/phelipetls/vim-hugo"
   refreshPeriod = "168h"
+[".vim/pack/plugins/opt/jjdescription"]
+  type = "git-repo"
+  url = "https://github.com/avm99963/vim-jjdescription"
+  refreshPeriod = "168h"
 
 # 04 vim pathogen plugins
 [".vim/bundle/vim-vinegar"]
