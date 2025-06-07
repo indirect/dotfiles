@@ -25,6 +25,10 @@ reheat = ["rebase", "-d", "trunk()", "-s", "all:roots(trunk()..stack(@))"]
 # - jj eject xyz --interactive
 eject = ["squash", "--from", "@", "--into"]
 
+# Take content from any change, and move it into @.
+# - jj consume xyz path/to/file`
+consume = ["squash", "--into", "@", "--from"]
+
 # Bring the closest bookmark up to the closest pushable change
 tug = ["util", "exec", "--", "sh", "-c", """
 if [ "x$1" = "x" ]; then
@@ -33,11 +37,6 @@ else
   jj bookmark move --to "closest_pushable(@)" "$@"
 fi
 """, ""]
-
-# Take content from any change, and move it into @.
-# - jj consume xyz path/to/file`
-consume = ["squash", "--into", "@", "--from"]
-
 
 [revsets]
 # By default, show the current stack of work.
