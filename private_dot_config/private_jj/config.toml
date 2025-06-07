@@ -4,11 +4,15 @@
 # Convenient shorthands.
 d = ["diff"]
 s = ["show"]
+l = ["log", "-r", "(main..@):: | (main..@)-"]
 ll = ["log", "-T", "builtin_log_detailed"]
 nt = ["new", "trunk()"]
 
 # Get all open stacks of work.
 open = ["log", "-r", "open()"]
+
+# Show the current stack
+stack = ["log", "-r", "stack()"]
 
 # Better name, IMO.
 credit = ["file", "annotate"]
@@ -38,9 +42,6 @@ else
 fi
 """, ""]
 
-[revsets]
-# By default, show the current stack of work.
-log = 'stack(@)'
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
