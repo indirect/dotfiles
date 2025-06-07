@@ -7,6 +7,12 @@ s = ["show"]
 l = ["log", "-r", "(main..@):: | (main..@)-"]
 ll = ["log", "-T", "builtin_log_detailed"]
 nt = ["new", "trunk()"]
+rup = ["git", "fetch"]
+up = ["util", "exec", "--", "bash", "-c", """
+jj git fetch
+jj new main
+jj l
+"""]
 
 # Get all open stacks of work.
 open = ["log", "-r", "open()"]
