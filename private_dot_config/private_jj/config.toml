@@ -4,13 +4,13 @@
 # Convenient shorthands.
 d = ["diff"]
 s = ["show"]
-l = ["log", "-r", "(main..@):: | (main..@)-"]
+l = ["log", "-r", "(trunk()..@):: | (trunk()..@)-"]
 ll = ["log", "-T", "builtin_log_detailed"]
 nt = ["new", "trunk()"]
 rup = ["git", "fetch"]
 up = ["util", "exec", "--", "bash", "-c", """
 jj git fetch
-jj new main
+jj new -r 'trunk()'
 jj l
 """]
 
@@ -55,8 +55,7 @@ fi
 
 'user(x)' = 'author(x) | committer(x)'
 
-# By default, show the repo trunk, the remote bookmarks, and all remote tags. We
-# don't want to change these in most cases, but in some repos it's useful.
+# By default, the repo trunk and remote tags. We don't want to change these in most cases.
 'immutable_heads()' = 'present(trunk()) | remote_bookmarks() | tags()'
 
 # Useful to ignore this, in many repos. For repos like `jj` these are
