@@ -1268,7 +1268,7 @@
     # the current jj change id
     res+=" ${behind}${VCS_STATUS_CHANGE[1]}${meta}${VCS_STATUS_CHANGE[2]}"
 
-    local VCS_STATUS_MESSAGE=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T "coalesce(description, if(!empty, '\Uf040'))")
+    local VCS_STATUS_MESSAGE=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T "coalesce(description.first_line(), if(!empty, '\Uf040'))")
     if [[ -n $VCS_STATUS_MESSAGE ]]; then
       res+=" ${clean}${VCS_STATUS_MESSAGE}"
     fi
