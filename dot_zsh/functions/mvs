@@ -1,1 +1,1 @@
-mvim $(fzf)
+FZF_DEFAULT_COMMAND='rg --files --sortr created' fzf --tmux --print0 | xargs -0 -o mvim
