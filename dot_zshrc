@@ -111,7 +111,8 @@ export LESS="-XRF" # Fix less to not clear screen on exit, show color, exit if <
 export CLICOLOR=true # ls with color
 export BAT_THEME="Solarized (dark)"
 export RI="-f ansi" # ri with color
-export FZF_DEFAULT_COMMAND="rg --files" # only choose from files rg would search
+export FZF_DEFAULT_COMMAND="rg --files --sortr created"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export KALEIDOSCOPE_DIR=$HOME/src/indirect/Kaleidoscope
 export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 
