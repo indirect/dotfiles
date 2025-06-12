@@ -58,6 +58,15 @@ else
 fi
 """, ""]
 
+# list or jump to bookmarks
+b = ["util", "exec", "--", "sh", "-c", """
+if [ "x$1" = "x" ]; then
+  jj bookmark list
+else
+   jj bookmark list -T 'name ++ "\n"' | fzf -f "$1" | head -n1 | xargs jj new
+fi
+""", ""]
+
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
