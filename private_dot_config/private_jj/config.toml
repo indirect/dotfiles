@@ -9,9 +9,11 @@ ll = ["log", "-T", "builtin_log_detailed"]
 nt = ["new", "trunk()"]
 push = ["git", "push"]
 fetch = ["git", "fetch"]
-up = ["util", "exec", "--", "bash", "-c", """
+pull = ["util", "exec", "--", "bash", "-c", """
+# update from remote and rebase onto the latest
+closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
 jj git fetch
-jj new -r 'trunk()'
+jj rebase -d "$closest"
 jj l
 """]
 
