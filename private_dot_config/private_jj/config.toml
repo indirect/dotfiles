@@ -3,7 +3,7 @@
 [aliases]
 # Convenient shorthands.
 d = ["diff"]
-s = ["show"]
+s = ["status"]
 l = ["log", "-r", "(trunk()..@):: | (trunk()..@)-"]
 ll = ["log", "-T", "builtin_log_detailed"]
 nt = ["new", "trunk()"]
