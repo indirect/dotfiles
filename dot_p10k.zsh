@@ -39,8 +39,7 @@
     ruby
     dir                     # current directory
     vcs                     # git status
-    jj_op
-    jj_at
+    jj                      # jj status
     # prompt_char           # prompt symbol
   )
 
@@ -1164,21 +1163,46 @@
     p10k segment -i "◽️"
   }
 
-  function jj_op() {
+    # jj prompt instructions:
+    # -----------------------
+    # 1. add a p10k segment named `jj` to your prompt.
+    # 2. turn off git status in jj repos at the top of my_git_formatter:
+    #      emulate -L zsh -o extended_glob
+    #      if [[ -n ./(../)#(.jj)(#qN/) ]]; then
+    #        typeset -g my_git_format=""
+    #        return
+    #      fi
+    # 3. comment out any sections that you don't want in your own prompt,
+    #    using the table of contents below as a guide.
+
+    # jj prompt table of contents:
+    # ----------------------------
+    # jj_add     | add changes to jj for this prompt   | (no output)
+    # jj_at      | bookmark name and distance from @   | main›1
+    # jj_remote  | count changes ahead/behind remote   | 2⇡1⇣
+    # jj_change  | the current jj change ID            | kkor
+    # jj_desc    | current change description          | first line of description (or  )
+    # jj_status  | counts of added, removed, modified  | +1 -4 ^2 
+    # jj_op      | the current jj operation ID         | b44825e56a5a
+
+  function jj_status() {
     emulate -L zsh
     cd "$1"
 
-    local       meta='%244F'  # grey foreground
-    local      clean='%2F'    # green foreground
-    local   modified='%178F'  # yellow foreground
-    local  untracked='%39F'   # blue foreground
-    local conflicted='%196F'  # red foreground
-    local    changes='%2F'    # yellow foreground
-    local   diverged='%1F'    # red foreground
-    local      ahead='%6F'    # cyan foreground
-    local     behind='%5F'    # magenta foreground
+    local grey='%244F'
+    local green='%2F'
+    local blue='%39F'
+    local red='%196F'
+    local yellow='%3F'
+    local cyan='%6F'
+    local magenta='%5F'
 
-    local branch=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "coalesce(heads(::@ & bookmarks()), heads(::@ & remote_bookmarks()), trunk())" -T "bookmarks"  2> /dev/null)
+    ## jj_add
+    jj debug snapshot
+
+
+    ## jj_at
+    local branch=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "coalesce(heads(::@ & bookmarks()), heads(::@ & remote_bookmarks()), trunk())" -T "separate(' ', bookmarks, tags)"  2> /dev/null | cut -d ' ' -f 1)
     if [[ -n $branch ]]; then
       [[ $branch =~ "\*$" ]] && branch=${branch::-1}
 
@@ -1226,127 +1250,93 @@
       res+="${POWERLEVEL9K_VCS_BRANCH_ICON}"
       where=${(V)VCS_STATUS_LOCAL_BRANCH}
     elif [[ -n $VCS_STATUS_TAG ]]; then
-      res+="${meta}#"
+      res+="${grey}#"
       where=${(V)VCS_STATUS_TAG}
     fi
 
     local status_color
     if (( VCS_STATUS_COMMITS_AHEAD && VCS_STATUS_COMMITS_BEHIND )); then
-      status_color=${diverged} # red
+      status_color=${red}
     elif (( VCS_STATUS_COMMITS_AHEAD )); then
-      status_color=${ahead}    # cyan
+      status_color=${cyan}
     elif (( VCS_STATUS_COMMITS_BEHIND )); then
-      status_color=${behind}   # magenta
+      status_color=${magenta}
     else
-      status_color=${clean}    # green
+      status_color=${green}
     fi
-
     # If local branch name or tag is at most 32 characters long, show it in full.
     # Otherwise show the first 12 … the last 12.
     (( $#where > 32 )) && where[13,-13]="…"
     res+="${status_color}${where//\%/%%}"  # escape %
-
     # Show tracking branch name if it differs from local branch.
     if [[ -n ${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH} ]]; then
-      res+="${meta}:${clean}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"  # escape %
+      res+="${grey}:${green}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"  # escape %
     fi
-
-    # ⇢42 if beyond the local bookmark
+    # ‹42 if before the local bookmark
     (( VCS_STATUS_COMMITS_BEFORE )) && res+="‹${VCS_STATUS_COMMITS_BEFORE}"
+    # ›42 if beyond the local bookmark
     (( VCS_STATUS_COMMITS_AFTER )) && res+="›${VCS_STATUS_COMMITS_AFTER}"
+    # '💥🚧👻🔒' if the repo is in an unusual state.
+    [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${red}${VCS_STATUS_ACTION}"
+
+
+    ## jj_remote
     # ⇣42 if behind the remote.
-    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${meta}⇣${VCS_STATUS_COMMITS_BEHIND}"
+    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${green}⇣${VCS_STATUS_COMMITS_BEHIND}"
     (( VCS_STATUS_COMMITS_BEHIND_PLUS )) && res+="${VCS_STATUS_COMMITS_BEHIND_PLUS}"
     # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
     (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
-    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${meta}⇡${VCS_STATUS_COMMITS_AHEAD}"
+    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${green}⇡${VCS_STATUS_COMMITS_AHEAD}"
     (( VCS_STATUS_COMMITS_AHEAD_PLUS )) && res+="${VCS_STATUS_COMMITS_AHEAD_PLUS}"
-    # '💥🚧👻🔒' if the repo is in an unusual state.
-    [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}${VCS_STATUS_ACTION}"
 
 
-    # the current jj change id
-    res+=" ${behind}${VCS_STATUS_CHANGE[1]}${meta}${VCS_STATUS_CHANGE[2]}"
+    ## jj_change
+    res+=" ${magenta}${VCS_STATUS_CHANGE[1]}${grey}${VCS_STATUS_CHANGE[2]}"
+    
 
-    local VCS_STATUS_MESSAGE=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T "coalesce(description.first_line(), if(!empty, '\Uf040'))")
-    if [[ -n $VCS_STATUS_MESSAGE ]]; then
-      res+=" ${clean}${VCS_STATUS_MESSAGE}"
-    fi
+    ## jj_desc
+    local VCS_STATUS_MESSAGE=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T "coalesce(description.first_line(), if(!empty, '\Uf040 '))")
+    [[ -n $VCS_STATUS_MESSAGE ]] && res+=" ${green}${VCS_STATUS_MESSAGE}"
+    
 
+    ## jj_status
+    local VCS_STATUS_CHANGES=($(jj log --ignore-working-copy --at-op=@ --no-graph --no-pager -r @ -T "diff.summary()" 2> /dev/null | awk 'BEGIN {a=0;d=0;m=0} /^A / {a++} /^D / {d++} /^M / {m++} /^R / {m++} /^C / {a++} END {print(a,d,m)}'))
+    (( VCS_STATUS_CHANGES[1] )) && res+=" %F{green}+${VCS_STATUS_CHANGES[1]}"
+    (( VCS_STATUS_CHANGES[2] )) && res+=" %F{red}-${VCS_STATUS_CHANGES[2]}"
+    (( VCS_STATUS_CHANGES[3] )) && res+=" ${yellow}^${VCS_STATUS_CHANGES[3]}"
+
+
+    ## jj_op
+    local VCS_STATUS_MESSAGE=$(jj --ignore-working-copy --at-op=@ --no-pager op log --limit 1 --no-graph -T "id.short()")
+    [[ -n $VCS_STATUS_MESSAGE ]] && res+=" ${blue}${VCS_STATUS_MESSAGE}"
+
+
+    # return results
     echo $res
   }
-  function jj_op_callback() {
+  function jj_status_callback() {
     emulate -L zsh
     if [[ $2 -ne 0 ]]; then
-      typeset -g p10k_jj_op=
+      typeset -g p10k_jj_status=
     else
-      typeset -g p10k_jj_op="$3"
+      typeset -g p10k_jj_status="$3"
     fi
-    typeset -g p10k_jj_op_stale= p10k_jj_op_updated=1
+    typeset -g p10k_jj_status_stale= p10k_jj_status_updated=1
     p10k display -r
   }
-  async_start_worker        jj_op_worker -u
-  async_unregister_callback jj_op_worker
-  async_register_callback   jj_op_worker jj_op_callback
-  function prompt_jj_op() {
+  async_start_worker        jj_status_worker -u
+  async_unregister_callback jj_status_worker
+  async_register_callback   jj_status_worker jj_status_callback
+  function prompt_jj() {
     emulate -L zsh -o extended_glob
     (( $+commands[jj]         )) || return
     [[ -n ./(../)#(.jj)(#qN/) ]] || return
-    typeset -g p10k_jj_op_stale=1 p10k_jj_op_updated=
-    p10k segment -f grey -c '$p10k_jj_op_stale' -e -t '$p10k_jj_op'
-    p10k segment -c '$p10k_jj_op_updated' -e -t '$p10k_jj_op'
-    async_job jj_op_worker jj_op $PWD
+    typeset -g p10k_jj_status_stale=1 p10k_jj_status_updated=
+    p10k segment -f grey -c '$p10k_jj_status_stale' -e -t '$p10k_jj_status'
+    p10k segment -c '$p10k_jj_status_updated' -e -t '$p10k_jj_status'
+    async_job jj_status_worker jj_status $PWD
   }
 
-  function jj_at() {
-    emulate -L zsh
-    cd "$1"
-    # jj -R "$1" --ignore-working-copy show -s -T "" 2> /dev/null | wc -l
-    # jj --ignore-working-copy show -s -T "" 2> /dev/null | awk 'BEGIN {a=0;d=0;m=0} /^A / {a++} /^D / {d++} /^M / {m++} /^R / {m++} /^C / {a++} END {print(a,d,m)}'
-    # jj --ignore-working-copy --at-op=@ log --no-graph --no-pager -r @ -T "diff.summary()" 2> /dev/null | awk 'BEGIN {a=0;d=0;m=0} /^A / {a++} /^D / {d++} /^M / {m++} /^R / {m++} /^C / {a++} END {print(a,d,m)}'
-    jj log --no-graph --no-pager -r @ -T "diff.summary()" 2> /dev/null | awk 'BEGIN {a=0;d=0;m=0} /^A / {a++} /^D / {d++} /^M / {m++} /^R / {m++} /^C / {a++} END {print(a,d,m)}'
-  }
-  function jj_at_callback() {
-    emulate -L zsh
-    if [[ $2 -ne 0 ]]; then
-      typeset -g p10k_jj_at_add= p10k_jj_at_del= p10k_jj_at_mod=
-    else
-      parts=(${(@s: :)3})
-      if [[ ${parts[1]} != "0" ]]; then
-        typeset -g p10k_jj_at_add="+${parts[1]}"
-      else
-        typeset -g p10k_jj_at_add=
-      fi
-      if [[ ${parts[2]} != "0" ]]; then
-        typeset -g p10k_jj_at_del="-${parts[2]}"
-      else
-        typeset -g p10k_jj_at_del=
-      fi
-      if [[ ${parts[3]} != "0" ]]; then
-        typeset -g p10k_jj_at_mod="^${parts[3]}"
-      else
-        typeset -g p10k_jj_at_mod=
-      fi
-    fi
-    typeset -g p10k_jj_at_stale= p10k_jj_at_updated=1
-    p10k display -r
-  }
-  async_start_worker        jj_at_worker -u
-  async_unregister_callback jj_at_worker
-  async_register_callback   jj_at_worker jj_at_callback
-  function prompt_jj_at() {
-    emulate -L zsh -o extended_glob
-    (( $+commands[jj]         )) || return
-    [[ -n ./(../)#(.jj)(#qN/) ]] || return
-    typeset -g p10k_jj_at_stale=1 p10k_jj_at_updated=
-    p10k segment -f grey -c '$p10k_jj_at_stale' -e -t '$p10k_jj_at_add'
-    p10k segment -f green -c '$p10k_jj_at_updated' -e -t '$p10k_jj_at_add'
-    p10k segment -f grey -c '$p10k_jj_at_stale' -e -t '$p10k_jj_at_del'
-    p10k segment -f red -c '$p10k_jj_at_updated' -e -t '$p10k_jj_at_del'
-    p10k segment -f grey -c '$p10k_jj_at_stale' -e -t '$p10k_jj_at_mod'
-    p10k segment -f yellow -c '$p10k_jj_at_updated' -e -t '$p10k_jj_at_mod'
-    async_job jj_at_worker jj_at $PWD
-  }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:
