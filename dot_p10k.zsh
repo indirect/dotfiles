@@ -1307,8 +1307,8 @@
 
 
     ## jj_op
-    local VCS_STATUS_MESSAGE=$(jj --ignore-working-copy --at-op=@ --no-pager op log --limit 1 --no-graph -T "id.short()")
-    [[ -n $VCS_STATUS_MESSAGE ]] && res+=" ${blue}${VCS_STATUS_MESSAGE}"
+    # local VCS_STATUS_MESSAGE=$(jj --ignore-working-copy --at-op=@ --no-pager op log --limit 1 --no-graph -T "id.short()")
+    # [[ -n $VCS_STATUS_MESSAGE ]] && res+=" ${blue}${VCS_STATUS_MESSAGE}"
 
 
     # return results
