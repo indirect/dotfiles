@@ -1227,23 +1227,6 @@
 
     local VCS_STATUS_LOCAL_BRANCH=$branch
 
-    local change=($(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T '
-      separate(" ",
-        change_id.shortest(4).prefix(),
-        change_id.shortest(4).rest(),
-        commit_id.shortest(4).prefix(),
-        commit_id.shortest(4).rest(),
-        concat(
-          if(conflict, "💥"),
-          if(divergent, "🚧"),
-          if(hidden, "👻"),
-          if(immutable, "🔒"),
-        ),
-      )'))
-    local VCS_STATUS_CHANGE=($change[1] $change[2])
-    local VCS_STATUS_COMMIT=($change[3] $change[4])
-    local VCS_STATUS_ACTION=$change[5]
-
     local res
     local where  # branch or tag
     if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
@@ -1276,22 +1259,39 @@
     (( VCS_STATUS_COMMITS_BEFORE )) && res+="‹${VCS_STATUS_COMMITS_BEFORE}"
     # ›42 if beyond the local bookmark
     (( VCS_STATUS_COMMITS_AFTER )) && res+="›${VCS_STATUS_COMMITS_AFTER}"
-    # '💥🚧👻🔒' if the repo is in an unusual state.
-    [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${red}${VCS_STATUS_ACTION}"
 
 
     ## jj_remote
-    # ⇣42 if behind the remote.
-    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${green}⇣${VCS_STATUS_COMMITS_BEHIND}"
-    (( VCS_STATUS_COMMITS_BEHIND_PLUS )) && res+="${VCS_STATUS_COMMITS_BEHIND_PLUS}"
-    # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
-    (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
-    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${green}⇡${VCS_STATUS_COMMITS_AHEAD}"
-    (( VCS_STATUS_COMMITS_AHEAD_PLUS )) && res+="${VCS_STATUS_COMMITS_AHEAD_PLUS}"
+    # # ⇣42 if behind the remote.
+    # (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${green}⇣${VCS_STATUS_COMMITS_BEHIND}"
+    # (( VCS_STATUS_COMMITS_BEHIND_PLUS )) && res+="${VCS_STATUS_COMMITS_BEHIND_PLUS}"
+    # # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
+    # (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
+    # (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${green}⇡${VCS_STATUS_COMMITS_AHEAD}"
+    # (( VCS_STATUS_COMMITS_AHEAD_PLUS )) && res+="${VCS_STATUS_COMMITS_AHEAD_PLUS}"
 
 
     ## jj_change
+    local change=($(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T '
+      separate(" ",
+        change_id.shortest(4).prefix(),
+        change_id.shortest(4).rest(),
+        commit_id.shortest(4).prefix(),
+        commit_id.shortest(4).rest(),
+        concat(
+          if(conflict, "💥"),
+          if(divergent, "🚧"),
+          if(hidden, "👻"),
+          if(immutable, "🔒"),
+        ),
+      )'))
+    local VCS_STATUS_CHANGE=($change[1] $change[2])
+    local VCS_STATUS_COMMIT=($change[3] $change[4])
+    local VCS_STATUS_ACTION=$change[5]
+    # 'zyxw' with the standard jj color coding for shortest name
     res+=" ${magenta}${VCS_STATUS_CHANGE[1]}${grey}${VCS_STATUS_CHANGE[2]}"
+    # '💥🚧👻🔒' if the repo is in an unusual state.
+    [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${red}${VCS_STATUS_ACTION}"
     # # '123abc' with the standard jj color coding for shortest name
     # res+=" ${blue}${VCS_STATUS_COMMIT[1]}${grey}${VCS_STATUS_COMMIT[2]}"
 
