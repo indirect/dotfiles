@@ -1292,7 +1292,9 @@
 
     ## jj_change
     res+=" ${magenta}${VCS_STATUS_CHANGE[1]}${grey}${VCS_STATUS_CHANGE[2]}"
-    
+    # # '123abc' with the standard jj color coding for shortest name
+    # res+=" ${blue}${VCS_STATUS_COMMIT[1]}${grey}${VCS_STATUS_COMMIT[2]}"
+
 
     ## jj_desc
     local VCS_STATUS_MESSAGE=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T "coalesce(description.first_line(), if(!empty, '\Uf040 '))")
