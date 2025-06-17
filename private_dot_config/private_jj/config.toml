@@ -75,16 +75,7 @@ fi
 
 'user(x)' = 'author(x) | committer(x)'
 
-# By default, the repo trunk and remote tags. We don't want to change these in most cases.
-'immutable_heads()' = 'present(trunk()) | remote_bookmarks() | tags()'
-
-# Useful to ignore this, in many repos. For repos like `jj` these are
-# consistently populated with a bunch of auto-generated commits, so ignoring it
-# is often nice.
-'gh_pages()' = 'ancestors(remote_bookmarks(exact:"gh-pages"))'
-
-# Private and WIP commits that should never be pushed anywhere. Often part of
-# work-in-progress merge stacks.
+# Private and WIP commits that should never be pushed anywhere.
 'wip()' = 'description(glob:"wip:*")'
 'private()' = 'description(glob:"private:*")'
 'unready()' = 'wip() | private()'
