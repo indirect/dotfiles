@@ -1272,12 +1272,10 @@
 
 
     ## jj_change
-    local change=($(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T '
-      separate(" ",
-        change_id.shortest(4).prefix(),
-        change_id.shortest(4).rest(),
+    IFS="#" local change=($(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T '
+      separate("#", change_id.shortest(4).prefix(), coalesce(change_id.shortest(4).rest(), "\0"),
         commit_id.shortest(4).prefix(),
-        commit_id.shortest(4).rest(),
+        coalesce(commit_id.shortest(4).rest(), "\0"),
         concat(
           if(conflict, "💥"),
           if(divergent, "🚧"),
