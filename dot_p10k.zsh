@@ -1163,27 +1163,27 @@
     p10k segment -i "◽️"
   }
 
-    # jj prompt instructions:
-    # -----------------------
-    # 1. add a p10k segment named `jj` to your prompt.
-    # 2. turn off git status in jj repos at the top of my_git_formatter:
-    #      emulate -L zsh -o extended_glob
-    #      if [[ -n ./(../)#(.jj)(#qN/) ]]; then
-    #        typeset -g my_git_format=""
-    #        return
-    #      fi
-    # 3. comment out any sections that you don't want in your own prompt,
-    #    using the table of contents below as a guide.
+  # jj prompt instructions:
+  # -----------------------
+  # 1. add a p10k segment named `jj` to your prompt.
+  # 2. turn off git status in jj repos at the top of my_git_formatter:
+  #      emulate -L zsh -o extended_glob
+  #      if [[ -n ./(../)#(.jj)(#qN/) ]]; then
+  #        typeset -g my_git_format=""
+  #        return
+  #      fi
+  # 3. comment out any sections that you don't want in your own prompt,
+  #    using the table of contents below as a guide.
 
-    # jj prompt table of contents:
-    # ----------------------------
-    # jj_add     | add changes to jj for this prompt   | (no output)
-    # jj_at      | bookmark name and distance from @   | main›1
-    # jj_remote  | count changes ahead/behind remote   | 2⇡1⇣
-    # jj_change  | the current jj change ID            | kkor
-    # jj_desc    | current change description          | first line of description (or  )
-    # jj_status  | counts of added, removed, modified  | +1 -4 ^2 
-    # jj_op      | the current jj operation ID         | b44825e56a5a
+  # jj prompt table of contents:
+  # ----------------------------
+  # jj_add     | add changes to jj for this prompt   | (no output)
+  # jj_at      | bookmark name and distance from @   | main›1
+  # jj_remote  | count changes ahead/behind remote   | 2⇡1⇣
+  # jj_change  | the current jj change ID            | kkor
+  # jj_desc    | current change description          | first line of description (or  )
+  # jj_status  | counts of added, removed, modified  | +1 -4 ^2 
+  # jj_op      | the current jj operation ID         | b44825e56a5a
 
   function jj_status() {
     emulate -L zsh
