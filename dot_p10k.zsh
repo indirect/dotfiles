@@ -1212,8 +1212,8 @@
         if(remote,
           separate(" ",
             name ++ "@" ++ remote, 
-            if(tracking_ahead_count.exact(), tracking_ahead_count.exact(), tracking_ahead_count.lower()),
-            if(tracking_behind_count.exact(), tracking_behind_count.exact(), tracking_behind_count.lower()),
+            coalesce(tracking_ahead_count.exact(), tracking_ahead_count.lower()),
+            coalesce(tracking_behind_count.exact(), tracking_behind_count.lower()),
             if(tracking_ahead_count.exact(), "0", "+"),
             if(tracking_behind_count.exact(), "0", "+"),
           ) ++ "\n"
