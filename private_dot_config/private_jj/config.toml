@@ -23,7 +23,7 @@ pull = ["util", "exec", "--", "bash", "-c", """
 # update from remote and rebase onto the latest
 closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
 jj git fetch
-jj log -n 1 -r "${closest%\\*}" 2> /dev/null && jj rebase -d "${closest%\\*}"
+jj log -n 1 -r "${closest%\\*}" 2> /dev/null && jj rebase -d "${closest%\\*}" || jj rebase -d 'trunk()'
 jj l
 """]
 
