@@ -13,11 +13,12 @@ jj git init --colocate
 jj bookmark track 'glob:*@origin'
 """]
 push = ["util", "exec", "--", "bash", "-c", """
-[[ -n "$(jj log -r 'closest_pushable(@)' -T '"n"')" ]] && jj tug
-jj git push
+# tug the closest bookmark, push it, and track it
+pushable="$(jj log -r 'closest_pushable(@)' -T '"n"')"
+[[ -n "$pushable" ]] && (jj tug && jj git push) || echo "Nothing changed."
 closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
-tracked="$(jj bookmark list -r ${closest} -t -T 'if(remote, name ++ \"\n\")')"
-[[ tracked == $closest ]] || jj bookmark track "${closest}@origin"
+tracked="$(jj bookmark list -r ${closest} -t -T 'if(remote, name)')"
+[[ $tracked == $closest ]] || jj bookmark track "${closest}@origin"
 """]
 fetch = ["git", "fetch"]
 pull = ["util", "exec", "--", "bash", "-c", """
