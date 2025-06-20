@@ -1247,10 +1247,7 @@
     # Otherwise show the first 12 … the last 12.
     (( $#where > 32 )) && where[13,-13]="…"
     res+="${status_color}${where//\%/%%}"  # escape %
-    # Show tracking branch name if it differs from local branch.
-    if [[ -n ${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH} ]]; then
-      res+="${grey}:${green}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"  # escape %
-    fi
+
     # ‹42 if before the local bookmark
     (( VCS_STATUS_COMMITS_BEFORE )) && res+="‹${VCS_STATUS_COMMITS_BEFORE}"
     # ›42 if beyond the local bookmark
