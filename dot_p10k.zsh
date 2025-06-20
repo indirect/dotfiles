@@ -1198,7 +1198,7 @@
     local magenta='%5F'
 
     ## jj_add
-    jj debug snapshot
+    jj --at-operation=@ debug snapshot
 
 
     ## jj_at
