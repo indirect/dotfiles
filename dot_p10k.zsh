@@ -1228,23 +1228,16 @@
           ) ++ "\n"
         )
       '))
+
+      local VCS_STATUS_LOCAL_BRANCH=$branch
       local VCS_STATUS_COMMITS_AHEAD=$counts[2]
       local VCS_STATUS_COMMITS_BEHIND=$counts[3]
       local VCS_STATUS_COMMITS_AHEAD_PLUS=$counts[4]
       local VCS_STATUS_COMMITS_BEHIND_PLUS=$counts[5]
     fi
 
-    local VCS_STATUS_LOCAL_BRANCH=$branch
 
     local res
-    local where  # branch or tag
-    if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
-      res+="${POWERLEVEL9K_VCS_BRANCH_ICON}"
-      where=${(V)VCS_STATUS_LOCAL_BRANCH}
-    elif [[ -n $VCS_STATUS_TAG ]]; then
-      res+="${grey}#"
-      where=${(V)VCS_STATUS_TAG}
-    fi
 
     local status_color
     if (( VCS_STATUS_COMMITS_AHEAD && VCS_STATUS_COMMITS_BEHIND )); then
@@ -1256,6 +1249,7 @@
     else
       status_color=${green}
     fi
+    local where=${(V)VCS_STATUS_LOCAL_BRANCH}
     # If local branch name or tag is at most 32 characters long, show it in full.
     # Otherwise show the first 12 … the last 12.
     (( $#where > 32 )) && where[13,-13]="…"
