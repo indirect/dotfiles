@@ -1236,19 +1236,12 @@
       local VCS_STATUS_COMMITS_BEHIND_PLUS=$counts[5]
     fi
 
+    local status_color=${green}
+    (( VCS_STATUS_COMMITS_AHEAD )) && status_color=${cyan}
+    (( VCS_STATUS_COMMITS_BEHIND )) && status_color=${magenta}
+    (( VCS_STATUS_COMMITS_AHEAD && VCS_STATUS_COMMITS_BEHIND )) && status_color=${red}
 
     local res
-
-    local status_color
-    if (( VCS_STATUS_COMMITS_AHEAD && VCS_STATUS_COMMITS_BEHIND )); then
-      status_color=${red}
-    elif (( VCS_STATUS_COMMITS_AHEAD )); then
-      status_color=${cyan}
-    elif (( VCS_STATUS_COMMITS_BEHIND )); then
-      status_color=${magenta}
-    else
-      status_color=${green}
-    fi
     local where=${(V)VCS_STATUS_LOCAL_BRANCH}
     # If local branch name or tag is at most 32 characters long, show it in full.
     # Otherwise show the first 12 … the last 12.
