@@ -13,7 +13,7 @@ jj git init --colocate
 jj bookmark track 'glob:*@origin'
 """]
 push = ["util", "exec", "--", "bash", "-c", """
-jj tug
+[[ -n "$(jj log -r 'closest_pushable(@)' -T '"n"')" ]] && jj tug
 jj git push
 closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
 jj bookmark track "${closest}@origin"
