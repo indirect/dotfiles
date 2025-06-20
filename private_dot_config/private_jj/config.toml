@@ -16,7 +16,8 @@ push = ["util", "exec", "--", "bash", "-c", """
 [[ -n "$(jj log -r 'closest_pushable(@)' -T '"n"')" ]] && jj tug
 jj git push
 closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
-jj bookmark track "${closest}@origin"
+tracked="$(jj bookmark list -r ${closest} -t -T 'if(remote, name ++ \"\n\")')"
+[[ tracked == $closest ]] || jj bookmark track "${closest}@origin"
 """]
 fetch = ["git", "fetch"]
 pull = ["util", "exec", "--", "bash", "-c", """
