@@ -1202,7 +1202,16 @@
 
 
     ## jj_at
-    local branch=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "coalesce(heads(::@ & bookmarks()), heads(::@ & remote_bookmarks()), trunk())" -T "separate(' ', bookmarks, tags)"  2> /dev/null | cut -d ' ' -f 1)
+    local branch=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "
+      coalesce(
+        heads(::@ & bookmarks()),
+        heads(::@ & remote_bookmarks()),
+        heads(::@ & tags()),
+        heads(@:: & bookmarks()),
+        heads(@:: & remote_bookmarks()),
+        heads(@:: & tags()),
+        trunk()
+      )" -T "separate(' ', bookmarks, tags)" 2> /dev/null | cut -d ' ' -f 1)
     if [[ -n $branch ]]; then
       [[ $branch =~ "\*$" ]] && branch=${branch::-1}
 
