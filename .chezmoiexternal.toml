@@ -44,6 +44,9 @@
 ["src/server/youtube-dl-server"]
   type = "git-repo"
   url = "https://github.com/nbr23/youtube-dl-server"
+["src/server/Plex-Auto-Languages"]
+  type = "git-repo"
+  url = "https://github.com/RemiRigal/Plex-Auto-Languages"
 {{ end }}
 
 # 02 zsh plugins
