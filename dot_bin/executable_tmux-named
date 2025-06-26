@@ -28,6 +28,12 @@ terminal="${terminal:-default}"
 # treat ghostty as the default terminal
 [[ "$terminal" == "ghostty" ]] && terminal="default"
 
+# list sessions on `ls`
+if [[ "$name" == "ls" ]]; then
+  tmux -L "$terminal" list-sessions
+  exit 0
+fi
+
 # Make sure there is a 'name' session
 tmux -L "$terminal" has-session -t "$name" 2> /dev/null || TMUX= tmux -L "$terminal" new -d -s "$name"
 
