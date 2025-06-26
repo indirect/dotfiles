@@ -37,7 +37,7 @@ bindkey -e
 # for some reason tmux loses forward delete bind
 bindkey "^[[3~" delete-char
 
-znap eval zoxide 'zoxide init --cmd j zsh'
+znap eval zoxide 'zoxide init zsh'
 znap eval nodenv 'nodenv init -'
 znap eval fzf    'fzf --zsh'
 znap eval atuin  'atuin init zsh --disable-up-arrow'
