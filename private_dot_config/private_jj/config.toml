@@ -6,7 +6,7 @@ d = ["diff"]
 s = ["status"]
 l = ["log", "-r", "(trunk()..@):: | (trunk()..@)-"]
 ll = ["log", "-T", "builtin_log_detailed"]
-name = ["bookmark", "set", "-r", "@"]
+name = ["bookmark", "set", "-r", "closest_pushable(@)"]
 init = ["util", "exec", "--", "bash", "-c", """
 jj git init --colocate
 # only track origin branches, not upstream or others
