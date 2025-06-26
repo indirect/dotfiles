@@ -70,9 +70,10 @@ b = ["util", "exec", "--", "sh", "-c", """
 if [ "x$1" = "x" ]; then
   jj bookmark list
 else
-  jj bookmark list -T 'name ++ "\n"' | fzf -f "$1" | head -n1 | xargs jj new
+  jj bookmark list -a -T 'separate("@", name, remote) ++ "\n"' 2> /dev/null | sort | uniq | fzf -f "$1" | head -n1 | xargs jj new
 fi
 """, ""]
+ba = ["bookmark", "list", "-a"]
 
 
 [revset-aliases]
