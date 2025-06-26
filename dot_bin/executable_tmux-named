@@ -20,11 +20,13 @@ if [[ $PATH != *$BREW_PREFIX/bin* ]]; then export PATH="$PATH:$BREW_PREFIX/bin";
 if [[ -z `which tmux` ]]; then echo "You need tmux first!"; exit 1; fi
 
 # figure out what terminal program we're inside
-# terminal="${__CFBundleIdentifier#*.*.}"
-# terminal="${terminal:-${TERM#xterm-}}"
-# [[ "$terminal" == "256color" ]] && terminal="Terminal"
-# terminal="${terminal:-unknown}"
-terminal="shared"
+terminal="${__CFBundleIdentifier#*.*.}"
+terminal="${terminal:-${TERM#xterm-}}"
+[[ "$terminal" == "256color" ]] && terminal="Terminal"
+terminal="${terminal:-default}"
+
+# treat ghostty as the default terminal
+[[ "$terminal" == "ghostty" ]] && terminal="default"
 
 # Make sure there is a 'name' session
 tmux -L "$terminal" has-session -t "$name" 2> /dev/null || TMUX= tmux -L "$terminal" new -d -s "$name"
