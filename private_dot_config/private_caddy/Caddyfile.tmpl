@@ -88,6 +88,12 @@ media.arko.me, mse-65.shark-crocodile.ts.net, mse-6:80, mse-6.local:80, 127.0.0.
 	redir /sabnzbd /sabnzbd/ 308
 	reverse_proxy /sabnzbd/* 127.0.0.1:8080
 
+	# qBitTorrent
+	redir /qbittorrent /qbittorrent/ 308
+	handle_path /qbittorrent/* {
+		reverse_proxy 127.0.0.1:9092
+	}
+
 	# Transmission
 	redir /transmission /transmission/web/ 308
 	redir /transmission/web /transmission/web/ 308
