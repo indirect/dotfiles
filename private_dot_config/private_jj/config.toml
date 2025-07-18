@@ -90,6 +90,11 @@ jj log -n 1 -r "${closest}" 2>&1 > /dev/null && jj rebase -d "${closest}" || jj 
 jj log -r 'stack()'
 """]
 
+# create a pull request using `gh` for closest_bookmark(@)
+pr = ["util", "exec", "--", "bash", "-c", """
+gh pr create --head $(jj log -r 'closest_bookmark(@)' -T 'bookmarks' --no-graph | cut -d ' ' -f 1)
+"""]
+
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
