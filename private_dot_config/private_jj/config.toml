@@ -2,37 +2,16 @@
 
 [aliases]
 # Convenient shorthands.
+b = ["fuzzy_bookmark"]
+ba = ["bookmark", "list", "-a"]
+co = ["checkout"]
 d = ["diff"]
 s = ["status"]
 l = ["log", "-r", "(trunk()..@):: | (trunk()..@)-"]
 ll = ["log", "-T", "builtin_log_detailed"]
-name = ["bookmark", "set", "-r", "closest_pushable(@)"]
-init = ["util", "exec", "--", "bash", "-c", """
-jj git init --colocate
-# only track origin branches, not upstream or others
-jj bookmark track 'glob:*@origin'
-"""]
-push = ["util", "exec", "--", "bash", "-c", """
-# tug the closest bookmark, push it, and track it
-pushable="$(jj log -r 'closest_pushable(@)' -T '"n"')"
-[[ -n "$pushable" ]] && (jj tug && jj git push) || echo "Nothing changed."
-closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
-closest="${closest%\\*}"
-tracked="$(jj bookmark list -r ${closest} -t -T 'if(remote, name)')"
-[[ $tracked == $closest ]] || jj bookmark track "${closest}@origin"
-"""]
+
 fetch = ["git", "fetch"]
-pull = ["util", "exec", "--", "bash", "-c", """
-# update from remote and rebase onto the latest
-closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
-closest="${closest%\\*}"
-jj git fetch
-jj log -n 1 -r "${closest}" 2>&1 > /dev/null && jj rebase -d "${closest}" || jj rebase -d 'trunk()'
-jj log -r 'stack()'
-"""]
-track = ["util", "exec", "--", "bash", "-c", """
-jj bookmark track "${1%@origin}@origin"
-""", ""]
+name = ["bookmark", "set", "-r", "closest_pushable(@)"]
 
 # Get all open stacks of work.
 open = ["log", "-r", "open()"]
@@ -69,15 +48,47 @@ fi
 """, ""]
 
 # list or jump to bookmarks
-b = ["util", "exec", "--", "sh", "-c", """
+fuzzy_bookmark = ["util", "exec", "--", "sh", "-c", """
 if [ "x$1" = "x" ]; then
   jj bookmark list
 else
   jj bookmark list -a -T 'separate("@", name, remote) ++ "\n"' 2> /dev/null | sort | uniq | fzf -f "$1" | head -n1 | xargs jj new
 fi
 """, ""]
-ba = ["bookmark", "list", "--all-remotes"]
-bo = ["bookmark", "list", "--remote", "origin"]
+
+# colocate with git and track origin's branches
+init = ["util", "exec", "--", "bash", "-c", """
+jj git init --colocate
+# only track origin branches, not upstream or others
+jj bookmark track 'glob:*@origin'
+"""]
+
+# track the remote branch and new on top of it
+checkout = ["util", "exec", "--", "bash", "-c", """
+  jj bookmark track ${@}@origin
+  jj new $@
+""", ""]
+
+# tug the closest bookmark, push it, and track it
+push = ["util", "exec", "--", "bash", "-c", """
+tuggable="$(jj log -r 'closest_bookmark(@)..closest_pushable(@)' -T '"n"' --no-graph)"
+[[ -n "$tuggable" ]] && jj tug
+pushable="$(jj log -r 'remote_bookmarks(remote=origin)..@' -T 'bookmarks' --no-graph)"
+[[ -n "$pushable" ]] && jj git push || echo "Nothing to push."
+closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
+closest="${closest%\\*}"
+tracked="$(jj bookmark list -r ${closest} -t -T 'if(remote, name)')"
+[[ "$tracked" == "$closest" ]] || jj bookmark track "${closest}@origin"
+"""]
+
+# update from remote and rebase onto the latest
+pull = ["util", "exec", "--", "bash", "-c", """
+closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
+closest="${closest%\\*}"
+jj git fetch
+jj log -n 1 -r "${closest}" 2>&1 > /dev/null && jj rebase -d "${closest}" || jj rebase -d 'trunk()'
+jj log -r 'stack()'
+"""]
 
 
 [revset-aliases]
