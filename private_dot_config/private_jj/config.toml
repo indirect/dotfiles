@@ -30,6 +30,9 @@ jj git fetch
 jj log -n 1 -r "${closest}" 2>&1 > /dev/null && jj rebase -d "${closest}" || jj rebase -d 'trunk()'
 jj log -r 'stack()'
 """]
+track = ["util", "exec", "--", "bash", "-c", """
+jj bookmark track "${1%@origin}@origin"
+""", ""]
 
 # Get all open stacks of work.
 open = ["log", "-r", "open()"]
