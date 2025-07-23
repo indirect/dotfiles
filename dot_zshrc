@@ -103,7 +103,8 @@ zstyle ':completion:*' expand prefix suffix
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
-export EDITOR='mvim -f --nomru -c "au VimLeave * !open -b $__CFBundleIdentifier"'
+export EDITOR="$HOME/.bin/editor"
+export VISUAL="$HOME/.bin/visual"
 export PAGER="less" # page with less not more
 export BROWSER="open" # opens URLs in the default OS X browser
 export LESS="-XRF" # Fix less to not clear screen on exit, show color, exit if < 1 screen
