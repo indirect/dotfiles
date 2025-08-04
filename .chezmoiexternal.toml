@@ -47,6 +47,9 @@
 ["src/server/Plex-Auto-Languages"]
   type = "git-repo"
   url = "https://github.com/RemiRigal/Plex-Auto-Languages"
+["src/server/Speed-Test"]
+  type = "git-repo"
+  url = "https://github.com/openspeedtest/Speed-Test"
 {{ end }}
 
 # 02 zsh plugins

@@ -103,6 +103,13 @@ media.arko.me, mse-65.shark-crocodile.ts.net, mse-6:80, mse-6.local:80, 127.0.0.
 	redir /jackett /jackett/ 308
 	reverse_proxy /jackett/* 127.0.0.1:9117
 
+	# Speed test
+	redir /speedtest /speedtest/
+	handle_path /speedtest/* {
+		root * /Users/andre/src/server/Speed-Test
+		file_server
+	}
+
 	log
 }
 {{- end }}
