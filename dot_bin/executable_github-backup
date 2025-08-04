@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+set -vx
+
+uvx github-backup indirect --output-directory /Users/Shared/GitHub/indirect \
+  --keychain-account indirect --keychain-name github-backup \
+  --incremental --all --gists --repositories --fork --private
+
+uvx github-backup spinel-coop --organization --output-directory /Users/Shared/GitHub/spinel-coop \
+  --keychain-account spinel-coop --keychain-name github-backup \
+  --incremental --all --repositories --fork --private
