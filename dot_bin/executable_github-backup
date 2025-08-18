@@ -3,9 +3,37 @@ set -euo pipefail
 set -vx
 
 uvx github-backup indirect --output-directory /Users/Shared/GitHub/indirect \
-  --keychain-account indirect --keychain-name github-backup \
+  --keychain-account indirect --keychain-name github-backup-indirect \
   --incremental --all --gists --repositories --fork --private
 
 uvx github-backup spinel-coop --organization --output-directory /Users/Shared/GitHub/spinel-coop \
-  --keychain-account spinel-coop --keychain-name github-backup \
+  --keychain-account spinel-coop --keychain-name github-backup-spinel-coop \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup rubygems --organization --output-directory /Users/Shared/GitHub/rubygems \
+  --keychain-account rubygems --keychain-name github-backup-rubygems \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup cloudcity --organization --output-directory /Users/Shared/GitHub/cloudcity \
+  --keychain-account cloudcity --keychain-name github-backup-cloudcity \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup sunchaserio --organization --output-directory /Users/Shared/GitHub/sunchaserio \
+  --keychain-account sunchaserio --keychain-name github-backup-sunchaserio \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup obliviousnetwork --organization --output-directory /Users/Shared/GitHub/obliviousnetwork \
+  --keychain-account obliviousnetwork --keychain-name github-backup-obliviousnetwork \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup rubytogether --organization --output-directory /Users/Shared/GitHub/rubytogether \
+  --keychain-account rubytogether --keychain-name github-backup-rubytogether \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup filecabin --organization --output-directory /Users/Shared/GitHub/filecabin \
+  --keychain-account filecabin --keychain-name github-backup-filecabin \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup bubblesortio --organization --output-directory /Users/Shared/GitHub/bubblesortio \
+  --keychain-account bubblesortio --keychain-name github-backup-bubblesortio \
   --incremental --all --repositories --fork --private
