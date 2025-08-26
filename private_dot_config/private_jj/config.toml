@@ -8,6 +8,7 @@ co = ["checkout"]
 d = ["diff"]
 s = ["status"]
 l = ["log", "-r", "(trunk()..@):: | (trunk()..@)-"]
+la = ["log", "-r", "..@"]
 ll = ["log", "-T", "builtin_log_detailed"]
 
 fetch = ["git", "fetch"]
