@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+set -vx
+
+uvx github-backup rubygems --organization --output-directory /Users/Shared/GitHub/rubygems \
+  --keychain-account rubygems --keychain-name github-backup-rubygems \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup cloudcity --organization --output-directory /Users/Shared/GitHub/cloudcity \
+  --keychain-account cloudcity --keychain-name github-backup-cloudcity \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup rubytogether --organization --output-directory /Users/Shared/GitHub/rubytogether \
+  --keychain-account rubytogether --keychain-name github-backup-rubytogether \
+  --incremental --all --repositories --fork --private
+
+uvx github-backup bubblesortio --organization --output-directory /Users/Shared/GitHub/bubblesortio \
+  --keychain-account bubblesortio --keychain-name github-backup-bubblesortio \
+  --incremental --all --repositories --fork --private
