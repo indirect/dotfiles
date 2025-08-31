@@ -42,7 +42,7 @@ znap eval nodenv 'nodenv init -'
 znap eval fzf    'fzf --zsh'
 znap eval atuin  'atuin init zsh --disable-up-arrow'
 znap eval ghcs   'gh copilot alias zsh'
-znap eval jj     'jj util completion zsh'
+znap eval jj     'COMPLETE=zsh jj'
 
 # bind the history substring search to up and down arrows
 bindkey '^[[A' history-substring-search-up
