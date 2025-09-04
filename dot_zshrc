@@ -115,6 +115,7 @@ export FZF_DEFAULT_COMMAND="rg --files --sortr created"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export KALEIDOSCOPE_DIR=$HOME/src/indirect/Kaleidoscope
 export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
+export HOMEBREW_NO_ENV_HINTS=1
 
 # Default to the latest ruby version
 export DEFAULT_RUBY_VERSION=$(ls ~/.rubies | grep -v system | tail -n1)
