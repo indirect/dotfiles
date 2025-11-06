@@ -2,8 +2,8 @@
 
 [aliases]
 # Convenient shorthands.
-b = ["fuzzy_bookmark"]
-ba = ["bookmark", "list", "-a"]
+z = ["fuzzy_bookmark"]
+za = ["bookmark", "list", "-a"]
 co = ["checkout"]
 d = ["diff"]
 s = ["status"]
