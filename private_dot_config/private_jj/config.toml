@@ -145,15 +145,6 @@ gh pr create --head "$branch" --title "$title" --body "$body" && gh pr merge $br
 [git]
 push-new-bookmarks = true
 
-[[--scope]]
---when.commands = ["diff", "show"]
-
-[--scope.ui]
-# https://github.com/jj-vcs/jj/blob/v0.25.0/docs/config.md#processing-contents-to-be-paged
-pager = "delta"
-# NOTE: this is required when using `delta` as a pager
-diff-formatter = ":git"
-
 [user]
 name = "André Arko"
 email = "andre@arko.net"
@@ -161,6 +152,19 @@ email = "andre@arko.net"
 [ui]
 editor = ["mvim", "-f", "--nomru", "-c", "au VimLeave * !open -b $__CFBundleIdentifier"]
 diff-editor = ":builtin"
+
+# Don't wait on editor when editing config
+[[--scope]]
+--when.commands = ["config"]
+[--scope.ui]
+editor = ["mvim", "--nomru", "-c", "au VimLeave * !open -b $__CFBundleIdentifier"]
+
+[[--scope]]
+--when.commands = ["diff", "show"]
+[--scope.ui]
+pager = "delta"
+# NOTE: this is required when using `delta` as a pager
+diff-formatter = ":git"
 
 [templates]
 description_title = 'description.first_line().trim_end()'
