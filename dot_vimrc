@@ -151,7 +151,7 @@ function! RubyScratch()
     :set filetype=ruby
     :setlocal ts=2 sts=2 sw=2
   endif
-  :write !ruby
+  :write !ruby --no-color
 endfunction
 if &filetype ==# ""
   nnoremap <Leader>r :call RubyScratch()<CR>
