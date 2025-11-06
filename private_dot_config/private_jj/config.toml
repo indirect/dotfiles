@@ -53,7 +53,9 @@ fuzzy_bookmark = ["util", "exec", "--", "sh", "-c", """
 if [ "x$1" = "x" ]; then
   jj bookmark list
 else
-  jj bookmark list -a -T 'separate("@", name, remote) ++ "\n"' 2> /dev/null | sort | uniq | fzf -f "$1" | head -n1 | xargs jj new
+  branch=$(jj bookmark list -a -T 'separate("@", name, remote) ++ "\n"' 2> /dev/null | sort | uniq | grep -v '@git' | fzf -f "$1" | head -n1)
+  jj bookmark track "${branch%@origin}@origin" 2> /dev/null
+  jj new "${branch%@origin}"
 fi
 """, ""]
 
