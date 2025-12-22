@@ -49,7 +49,6 @@ brew "source-highlight"
 brew "ssh-copy-id"
 brew "tailscale"
 brew "tmux"
-brew "transmission-cli", restart_service: :changed
 brew "uv"
 brew "wget"
 brew "xcodes"
@@ -165,6 +164,7 @@ cask "indirect/tap/sky"
 # Server-specific
 brew "caddy"
 brew "indirect/tap/cronitor"
+brew "transmission-cli", restart_service: :changed
 
 cask "fujitsu-scansnap-home"
 cask "indirect/tap/lidarr", args: { no_quarantine: true }
