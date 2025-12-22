@@ -76,7 +76,7 @@ checkout = ["util", "exec", "--", "bash", "-c", """
 push = ["util", "exec", "--", "bash", "-c", """
 tuggable="$(jj log -r 'closest_bookmark(@)..closest_pushable(@)' -T '"n"' --no-graph)"
 [[ -n "$tuggable" ]] && jj tug
-pushable="$(jj log -r 'remote_bookmarks(remote=origin)..@' -T 'bookmarks' --no-graph)"
+pushable="$(jj log -r 'remote_bookmarks(remote='exact:origin')..@' -T 'bookmarks' --no-graph)"
 [[ -n "$pushable" ]] && jj git push || echo "Nothing to push."
 closest="$(jj log -r 'closest_bookmark(@)' -n 1 -T 'bookmarks' --no-graph | cut -d ' ' -f 1)"
 closest="${closest%\\*}"
@@ -141,10 +141,6 @@ gh pr create --head "$branch" --title "$title" --body "$body" && gh pr merge $br
 
 'recent_work' = 'ancestors(visible_heads(), 3) & mutable()'
 
-
-[git]
-push-new-bookmarks = true
-
 [user]
 name = "André Arko"
 email = "andre@arko.net"
@@ -167,8 +163,6 @@ pager = "delta"
 diff-formatter = ":git"
 
 [templates]
-description_title = 'description.first_line().trim_end()'
-description_body = 'description.remove_prefix(description.first_line()).trim_start()'
 draft_commit_description = '''
   concat(
     coalesce(description, default_commit_description, "\n"),
@@ -180,8 +174,6 @@ draft_commit_description = '''
     diff.git(),
   )
 '''
-
-[template-aliases]
 log_with_files = '''
 if(root,
   format_root_commit(self),
@@ -200,3 +192,10 @@ if(root,
   )
 )
 '''
+
+[template-aliases]
+description_title = 'description.first_line().trim_end()'
+description_body = 'description.remove_prefix(description.first_line()).trim_start()'
+
+[remotes.origin]
+auto-track-bookmarks = "glob:*"
