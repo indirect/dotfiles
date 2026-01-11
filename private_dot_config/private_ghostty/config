@@ -5,6 +5,7 @@ font-size = 14
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
+confirm-close-surface = false
 
 clipboard-paste-protection = false
 clipboard-read = allow
