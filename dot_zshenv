@@ -19,3 +19,6 @@ path=($HOME/.go/bin $path)
 
 # uv tools
 path=($HOME/.local/bin $path)
+
+# Use agent to store SSH keys in the secure enclave
+export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
