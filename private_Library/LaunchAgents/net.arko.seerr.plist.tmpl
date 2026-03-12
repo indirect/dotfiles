@@ -1,0 +1,33 @@
+{{- if .server -}}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>CI</key>
+		<string>true</string>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin</string>
+	</dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>net.arko.seerr</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>bash</string>
+		<string>-c</string>
+		<string>nodenv exec npx pnpm install &amp;&amp; nodenv exec npx pnpm start</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/opt/homebrew/var/log/seerr.log</string>
+	<key>StandardOutPath</key>
+	<string>/opt/homebrew/var/log/seerr.log</string>
+	<key>WorkingDirectory</key>
+	<string>/Users/andre/src/server/seerr</string>
+</dict>
+</plist>
+{{- end -}}

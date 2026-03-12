@@ -5,11 +5,6 @@
 # 03 vim plugins
 # 04 vim pathogen
 
-[".config/chrome/extensions/bypass-paywalls-chrome-clean"]
-  type = "archive"
-  url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass-paywalls-chrome-clean-master.zip"
-  stripComponents = 1
-
 # 00 projects
 ["src/indirect/andre.arko.net"]
   type = "git-repo"
@@ -35,9 +30,9 @@
   type = "archive"
   url = "https://github.com/Jackett/Jackett/releases/latest/download/Jackett.Binaries.macOSARM64.tar.gz"
   stripComponents = 1
-["src/server/overseerr"]
+["src/server/seerr"]
   type = "git-repo"
-  url = "https://github.com/sct/overseerr"
+  url = "https://github.com/seerr-team/seerr.git"
 ["src/server/tautulli"]
   type = "git-repo"
   url = "https://github.com/Tautulli/Tautulli"
