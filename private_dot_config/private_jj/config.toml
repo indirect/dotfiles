@@ -155,6 +155,7 @@ email = "andre@arko.net"
 [ui]
 editor = ["mvim", "-f", "--nomru", "-c", "au VimLeave * !open -b $__CFBundleIdentifier"]
 diff-editor = ":builtin"
+merge-editor = "weave"
 
 # Don't wait on editor when editing config
 [[--scope]]
@@ -206,3 +207,7 @@ description_body = 'description.remove_prefix(description.first_line()).trim_sta
 
 [remotes.origin]
 auto-track-bookmarks = "glob:*"
+
+[merge-tools.weave]
+program = "weave-driver"
+merge-args = ["$base", "$left", "$right", "-o", "$output", "-p", "$path"]
