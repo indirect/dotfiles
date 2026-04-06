@@ -1,4 +1,6 @@
 command git "$@"
+RESULT=$?
 if [[ "$1" == "init" && "$@" != *"--help"* ]]; then
   git symbolic-ref HEAD refs/heads/main
 fi
+return $RESULT
