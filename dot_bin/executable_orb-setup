@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+set -x
+
+sudo apt install -y git fzf
+
+which cargo || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+test -e "$HOME/.cargo/env" && . "$HOME/.cargo/env"
+
+export BINSTALL_DISABLE_TELEMETRY=true
+which cargo-binstall || curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
+which jj || (
+    cargo binstall --strategies crate-meta-data jj-cli --no-confirm
+    mkdir -p ~/.config/jj
+    cp /mnt/mac/Users/andre/.config/jj/config.toml ~/.config/jj/config.toml
+    sed -i.bak '/mvim/d' ~/.config/jj/config.toml
+    jj config set --user ui.editor vim
+)
