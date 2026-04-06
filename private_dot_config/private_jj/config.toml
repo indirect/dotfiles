@@ -13,6 +13,7 @@ ll = ["log", "-T", "builtin_log_detailed"]
 
 fetch = ["git", "fetch"]
 name = ["bookmark", "set", "-r", "closest_pushable(@)"]
+remain = ["bookmark", "set", "main", "-r", "main@origin", "--allow-backwards"]
 
 # Get all open stacks of work.
 open = ["log", "-r", "open()"]
@@ -106,6 +107,12 @@ title="$(jj log -r $branch -T 'description_title' --no-graph)"
 body="$(jj log -r $branch -T 'description_body' --no-graph)"
 gh pr create --head "$branch" --title "$title" --body "$body" && gh pr merge $branch --auto --merge
 """]
+
+# https://pksunkara.com/tech-notes/jujutsu-keeping-a-file-untracked/
+ignore = [
+  'util', 'exec', '--', 'bash', '-c',
+  'jj config set --repo snapshot.auto-track "$(jj config get snapshot.auto-track) & ~$0" && jj file untrack $0'
+]
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
