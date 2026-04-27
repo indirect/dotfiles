@@ -24,7 +24,7 @@ echo "initializing chezmoi..."
 chezmoi init
 
 echo "configuring zsh..."
-chezmoi apply ~/.zshenv ~/p10k.zsh ~/.zsh ~/.zshrc
+chezmoi apply ~/.zshenv ~/.p10k.zsh ~/.zsh ~/.zshrc
 
 echo "setting up Brewfile"
 chezmoi apply ~/.Brewfile
