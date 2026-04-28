@@ -21,7 +21,7 @@ mas "Save to Raindrop.io",  id: 1549370672
 mas "Save to Reader",       id: 1640236961
 mas "Shareful",             id: 1522267256
 mas "Simplenote",           id: 692867256
-mas "Sip",                  id: 507257563
+#mas "Sip",                  id: 507257563
 mas "Sofa",                 id: 1276554886
 mas "Soulver 3",            id: 1508732804
 mas "Stop the Madness Pro", id: 6471380298
@@ -31,4 +31,4 @@ mas "The Unarchiver",       id: 425424353
 mas "Ulysses",              id: 1225570693
 mas "Vinegar",              id: 1591303229
 mas "Xcode",                id: 497799835
-mas "XScope",               id: 889428659
+#mas "XScope",               id: 889428659
