@@ -6,9 +6,9 @@ echo "Logging in to atuin.sh..."
 
 if [[ "$(atuin status)" == "You are not logged in"* ]]; then
   atuin login \
-    -u '{{ onepasswordRead "op://Private/Atuin.sh/username" "indirect.1password.com" }}' \
-    -p '{{ onepasswordRead "op://Private/Atuin.sh/password" "indirect.1password.com" }}' \
-    -k '{{ onepasswordRead "op://Private/Atuin.sh/key" "indirect.1password.com" }}'
+    -u "$(op read 'op://Private/Atuin.sh/username')" \
+    -p "$(op read 'op://Private/Atuin.sh/password')" \
+    -k "$(op read 'op://Private/Atuin.sh/key')"
 else
   echo "Already logged in"
 fi
