@@ -2,10 +2,6 @@
 set -euo pipefail
 set -vx
 
-uvx github-backup rubygems --organization --output-directory /Users/Shared/GitHub/rubygems \
-  --keychain-account rubygems --keychain-name github-backup-rubygems \
-  --incremental --all --repositories --fork --private
-
 uvx github-backup cloudcity --organization --output-directory /Users/Shared/GitHub/cloudcity \
   --keychain-account cloudcity --keychain-name github-backup-cloudcity \
   --incremental --all --repositories --fork --private

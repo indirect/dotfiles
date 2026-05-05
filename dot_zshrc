@@ -116,7 +116,6 @@ export RI="-f ansi" # ri with color
 export FZF_DEFAULT_COMMAND="rg --files --sortr created"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export KALEIDOSCOPE_DIR=$HOME/src/indirect/Kaleidoscope
-export KUBECONFIG=$KUBECONFIG:~/.kube/rubygems.config
 export HOMEBREW_NO_ENV_HINTS=1
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
