@@ -3381,11 +3381,11 @@
                         ]
                     },
                     {
-                        "description": "Change fn + p/l/;/' to arrow keys",
+                        "description": "Change fn + ijkl to arrow keys",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "p",
+                                    "key_code": "i",
                                     "modifiers": {
                                         "mandatory": ["fn"],
                                         "optional": ["any"]
@@ -3396,7 +3396,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "l",
+                                    "key_code": "j",
                                     "modifiers": {
                                         "mandatory": ["fn"],
                                         "optional": ["any"]
@@ -3407,7 +3407,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "semicolon",
+                                    "key_code": "k",
                                     "modifiers": {
                                         "mandatory": ["fn"],
                                         "optional": ["any"]
@@ -3418,7 +3418,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "quote",
+                                    "key_code": "l",
                                     "modifiers": {
                                         "mandatory": ["fn"],
                                         "optional": ["any"]
