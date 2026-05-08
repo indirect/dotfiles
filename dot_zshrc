@@ -5,7 +5,7 @@ source ~/.zshenv
 [[ ! -v TERM ]] && return 0
 
 # Start every shell with a random my little horse ebooks
-if [[ $TERM_PROGRAM != "vscode" ]]; then
+if [[ $TERM_PROGRAM != "vscode" && $TERM_PROGRAM != "zed" ]]; then
   echo; $BREW_PREFIX/bin/fortune $BREW_PREFIX/share/games/fortunes/weird | ponysay -b unicode 2>/dev/null | pr -o 3 -t; echo
 fi
 
