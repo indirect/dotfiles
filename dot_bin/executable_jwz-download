@@ -15,7 +15,6 @@ end
   system("brew install #{tool}")
 end
 
-require "shellwords"
 require "bundler/inline"
 gemfile do
   source "https://rubygems.org"
@@ -24,6 +23,7 @@ gemfile do
   gem "http"
   gem "oga"
   gem "ostruct"
+  gem "shellwords"
 end
 
 def e(str)
