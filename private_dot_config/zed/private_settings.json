@@ -9,18 +9,33 @@
 {
   "cli_default_open_behavior": "new_window",
   "icon_theme": "Zed (Default)",
+  "project_panel": {
+    "dock": "right",
+  },
+  "outline_panel": {
+    "dock": "right",
+  },
+  "collaboration_panel": {
+    "dock": "right",
+  },
+  "git_panel": {
+    "dock": "right",
+  },
   "vim_mode": true,
   "ui_font_size": 16,
   "buffer_font_size": 16,
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "One Light",
-    "dark": "One Dark",
+    "dark": "Made of Code VSCode Dark",
   },
   "buffer_font_fallbacks": ["Symbols Nerd Font"],
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
+        "cargo": {
+          "features": "all",
+        },
         "check": {
           "command": "clippy", // rust-analyzer.check.command (default: "check")
         },
@@ -28,4 +43,11 @@
     },
   },
   "file_types": { "Diff": ["*.jjdescription"] },
+  "languages": {
+    "Markdown": {
+      "show_edit_predictions": false,
+    },
+    "Diff": { "soft_wrap": "editor_width" },
+  },
+  "confirm_quit": true,
 }
