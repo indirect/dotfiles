@@ -23,6 +23,13 @@
     "bindings": {
       "j": ["workspace::SendKeystrokes", "g j"],
       "k": ["workspace::SendKeystrokes", "g k"],
+      "-": "project_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-shift-g": ["task::Spawn", { "task_name": "Open in GitHub" }],
     },
   },
 ]
