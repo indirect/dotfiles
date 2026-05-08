@@ -1211,8 +1211,8 @@
     if [[ -n $branch ]]; then
       [[ $branch =~ "\*$" ]] && branch=${branch::-1}
 
-      local VCS_STATUS_COMMITS_AFTER=${#$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "$branch..@ & (~empty() | merges())" -T '"n "' 2> /dev/null )})
-      local VCS_STATUS_COMMITS_BEFORE=${#$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "@..$branch & (~empty() | merges())" -T '"n "' 2> /dev/null )})
+      local VCS_STATUS_COMMITS_AFTER=${#$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "$branch..@ & (~empty() | merges())" -T '"n "' 2> /dev/null )}
+      local VCS_STATUS_COMMITS_BEFORE=${#$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "@..$branch & (~empty() | merges())" -T '"n "' 2> /dev/null )}
       local counts=($(jj --ignore-working-copy --at-op=@ --no-pager bookmark list -r $branch -T '
         if(remote,
           separate(" ",
