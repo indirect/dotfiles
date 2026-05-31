@@ -1182,7 +1182,7 @@
   # jj_remote  | count changes ahead/behind remote   | 2⇡1⇣
   # jj_change  | the current jj change ID            | kkor
   # jj_desc    | current change description          | first line of description (or  )
-  # jj_status  | counts of added, removed, modified  | +1 -4 ^2 
+  # jj_status  | counts of added, removed, modified  | +1 -4 ^2
   # jj_op      | the current jj operation ID         | b44825e56a5a
 
   function jj_status() {
@@ -1211,12 +1211,12 @@
     if [[ -n $branch ]]; then
       [[ $branch =~ "\*$" ]] && branch=${branch::-1}
 
-      local VCS_STATUS_COMMITS_AFTER=${#$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "$branch..@ & (~empty() | merges())" -T '"n"' 2> /dev/null )}
-      local VCS_STATUS_COMMITS_BEFORE=${#$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "@..$branch & (~empty() | merges())" -T '"n"' 2> /dev/null )}
+      local VCS_STATUS_COMMITS_AFTER=${#$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "$branch..@ & (~empty() | merges())" -T '"n "' 2> /dev/null )})
+      local VCS_STATUS_COMMITS_BEFORE=${#$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph -r "@..$branch & (~empty() | merges())" -T '"n "' 2> /dev/null )})
       local counts=($(jj --ignore-working-copy --at-op=@ --no-pager bookmark list -r $branch -T '
         if(remote,
           separate(" ",
-            name ++ "@" ++ remote, 
+            name ++ "@" ++ remote,
             coalesce(tracking_ahead_count.exact(), tracking_ahead_count.lower()),
             coalesce(tracking_behind_count.exact(), tracking_behind_count.lower()),
             if(tracking_ahead_count.exact(), "0", "+"),
@@ -1286,7 +1286,7 @@
     ## jj_desc
     local VCS_STATUS_MESSAGE=$(jj --ignore-working-copy --at-op=@ --no-pager log --no-graph --limit 1 -r "@" -T "coalesce(description.first_line(), if(!empty, '\Uf040 '))")
     [[ -n $VCS_STATUS_MESSAGE ]] && res+=" ${green}${VCS_STATUS_MESSAGE}"
-    
+
 
     ## jj_status
     local VCS_STATUS_CHANGES=($(jj log --ignore-working-copy --at-op=@ --no-graph --no-pager -r @ -T "diff.summary()" 2> /dev/null | awk 'BEGIN {a=0;d=0;m=0} /^A / {a++} /^D / {d++} /^M / {m++} /^R / {m++} /^C / {a++} END {print(a,d,m)}'))
