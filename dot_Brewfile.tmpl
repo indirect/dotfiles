@@ -55,30 +55,17 @@ brew "yt-dlp"
 brew "zoxide"
 brew "zsh-completions"
 
-tap "eth-p/software"
-brew "eth-p/software/bat-extras"
-
-tap "heroku/brew"
-brew "heroku/brew/heroku"
-
-tap "indirect/tap"
-brew "indirect/tap/bpb"
-brew "indirect/tap/horse_fortunes"
-brew "indirect/tap/weird_fortunes"
-brew "indirect/tap/utilitylimb_fortunes"
-brew "indirect/tap/wishfish"
-
-tap "nodenv/nodenv"
-brew "nodenv/nodenv/nodenv-package-json-engine"
-
-tap "puma/puma"
-brew "puma/puma/puma-dev"
-
-tap "smudge/smudge"
-brew "smudge/smudge/nightlight"
-
-tap "skatkov/tap"
-brew "skatkov/tap/poshtui"
+brew "eth-p/software/bat-extras", trusted: true
+brew "heroku/brew/heroku", trusted: true
+brew "indirect/tap/bpb", trusted: true
+brew "indirect/tap/horse_fortunes", trusted: true
+brew "indirect/tap/utilitylimb_fortunes", trusted: true
+brew "indirect/tap/weird_fortunes", trusted: true
+brew "indirect/tap/wishfish", trusted: true
+brew "nodenv/nodenv/nodenv-package-json-engine", trusted: true
+brew "puma/puma/puma-dev", trusted: true
+brew "skatkov/tap/poshtui", trusted: true
+brew "smudge/smudge/nightlight", trusted: true
 
 # cask "dymo-connect"
 cask "1password-cli"
@@ -104,7 +91,7 @@ cask "fork"
 cask "google-chrome"
 cask "hammerspoon"
 cask "handbrake-app"
-cask "jumpshare"
+#cask "jumpshare"
 cask "karabiner-elements"
 cask "keyboard-maestro"
 cask "launchcontrol"
@@ -132,7 +119,6 @@ cask "raindropio"
 cask "rapidapi"
 cask "rectangle-pro"
 cask "retcon"
-cask "screens"
 cask "secretive"
 cask "slack"
 cask "stats"
@@ -150,20 +136,19 @@ cask "zed"
 cask "zoom"
 cask "ghostty"
 
-cask "indirect/tap/font-menlo-nerd-font"
-cask "indirect/tap/font-sf-mono-nerd-font"
-
-cask "indirect/tap/glance"
+cask "indirect/tap/font-menlo-nerd-font", trusted: true
+cask "indirect/tap/font-sf-mono-nerd-font", trusted: true
+cask "indirect/tap/glance", trusted: true
 
 {{- if .server }}
 # Server-specific
 brew "caddy"
-brew "indirect/tap/cronitor"
+brew "indirect/tap/cronitor", trusted: true
 brew "transmission-cli", restart_service: :changed
 
 cask "fujitsu-scansnap-home"
-cask "indirect/tap/lidarr"
-cask "indirect/tap/radarr"
+cask "indirect/tap/lidarr", trusted: true
+cask "indirect/tap/radarr", trusted: true
 cask "plex-media-server"
 cask "sabnzbd"
 cask "softraid"
