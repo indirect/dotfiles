@@ -64,7 +64,7 @@ fi
 init = ["util", "exec", "--", "bash", "-c", """
 jj git init --colocate
 # only track origin branches, not upstream or others
-jj bookmark track 'glob:*@origin'
+jj bookmark track 'glob:"*@origin"'
 """]
 
 # track the remote branch and new on top of it
