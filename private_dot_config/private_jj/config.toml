@@ -152,17 +152,6 @@ ignore = [
 name = "André Arko"
 email = "andre@arko.net"
 
-[ui]
-editor = ["mvim", "-f", "--nomru", "-c", "au VimLeave * !open -b $__CFBundleIdentifier"]
-diff-editor = ":builtin"
-merge-editor = "weave"
-
-# Don't wait on editor when editing config
-[[--scope]]
---when.commands = ["config"]
-[--scope.ui]
-editor = ["mvim", "--nomru", "-c", "au VimLeave * !open -b $__CFBundleIdentifier"]
-
 [[--scope]]
 --when.commands = ["diff", "show"]
 [--scope.ui]
@@ -211,3 +200,11 @@ auto-track-bookmarks = "glob:*"
 [merge-tools.weave]
 program = "weave-driver"
 merge-args = ["$base", "$left", "$right", "-o", "$output", "-p", "$path"]
+
+[merge-tools.oyui]
+program = "oyui"
+edit-args = ["diff", "$left", "$right"]
+
+[ui]
+diff-editor = "oyui"
+diff-instructions = false
