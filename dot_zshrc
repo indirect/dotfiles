@@ -60,6 +60,8 @@ znap fpath _cargo   'rustup completions zsh cargo'
 znap fpath _atuin   'atuin gen-completions --shell zsh'
 znap fpath _posh    'posh completion zsh'
 znap fpath _rv      'rv shell completions zsh'
+znap fpath _spin    'COMPLETE=zsh spin maintenance generate-completions'
+znap fpath _ohttp   'ohttp completions zsh'
 
 comppaths=(
   ~/.zsh/functions
