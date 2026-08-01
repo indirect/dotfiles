@@ -35,7 +35,25 @@ def run(cmd)
   system(cmd)
 end
 
-res = HTTP.get("https://www.dnalounge.com/webcast/mixtapes/").to_s
+def get(url)
+  HTTP.headers(
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "accept-language": "en-US,en;q=0.9",
+    "cache-control": "no-cache",
+    "pragma": "no-cache",
+    "priority": "u=0, i",
+    "sec-ch-ua": "\"Not=A?Brand\";v=\"99\", \"Google Chrome\";v=\"151\", \"Chromium\";v=\"151\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "none",
+    "sec-fetch-user": "?1",
+    "upgrade-insecure-requests": "1"
+  ).get(url)
+end
+
+res = get("https://www.dnalounge.com/webcast/mixtapes/").to_s
 doc = Oga.parse_html(res)
 
 mixtapes = doc.xpath('//b[text()="Watch"]').map do |link|
@@ -74,7 +92,7 @@ run 'yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4" -o "%(autonumber)s %(
 
 Dir.mktmpdir do |path|
   tmpdir = path.encode('UTF-8')
-  File.write "vhs.gif", HTTP.get("https://www.dnalounge.com/webcast/vhs.gif").body
+  File.write "vhs.gif", get("https://www.dnalounge.com/webcast/vhs.gif").body
   system "sips -s format png vhs.gif --out vhs.png"
 
   Dir["*.mp4"].sort.each_with_index do |f, i|
