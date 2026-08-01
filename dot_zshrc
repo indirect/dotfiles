@@ -19,7 +19,7 @@ source ~/.zsh/znap/zsh-snap/znap.zsh
 
 # znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-autosuggestions
-znap source zsh-users/zsh-syntax-highlighting
+# znap source zsh-users/zsh-syntax-highlighting
 # znap source softmoth/zsh-vim-mode
 znap source zsh-users/zsh-history-substring-search
 znap source scriptingosx/mac-zsh-completions
@@ -44,6 +44,7 @@ znap eval atuin  'atuin init zsh --disable-up-arrow'
 znap eval ghcs   'gh copilot alias zsh'
 znap eval jj     'COMPLETE=zsh jj'
 znap eval rv     'rv shell init zsh'
+znap eval patina 'zsh-patina activate'
 
 # bind the history substring search to up and down arrows
 bindkey '^[[A' history-substring-search-up
