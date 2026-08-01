@@ -10,6 +10,7 @@ brew "dockutil"
 brew "doggo"
 brew "dust"
 brew "eza"
+brew "fastly"
 brew "fd"
 brew "ffmpeg"
 brew "flyctl"
@@ -55,17 +56,30 @@ brew "yt-dlp"
 brew "zoxide"
 brew "zsh-completions"
 
-brew "eth-p/software/bat-extras", trusted: true
-brew "heroku/brew/heroku", trusted: true
-brew "indirect/tap/bpb", trusted: true
-brew "indirect/tap/horse_fortunes", trusted: true
-brew "indirect/tap/utilitylimb_fortunes", trusted: true
-brew "indirect/tap/weird_fortunes", trusted: true
-brew "indirect/tap/wishfish", trusted: true
-brew "nodenv/nodenv/nodenv-package-json-engine", trusted: true
-brew "puma/puma/puma-dev", trusted: true
-brew "skatkov/tap/poshtui", trusted: true
-brew "smudge/smudge/nightlight", trusted: true
+tap "eth-p/software"
+brew "eth-p/software/bat-extras"
+
+tap "heroku/brew"
+brew "heroku/brew/heroku"
+
+tap "indirect/tap"
+brew "indirect/tap/bpb"
+brew "indirect/tap/horse_fortunes"
+brew "indirect/tap/weird_fortunes"
+brew "indirect/tap/utilitylimb_fortunes"
+brew "indirect/tap/wishfish"
+
+tap "nodenv/nodenv"
+brew "nodenv/nodenv/nodenv-package-json-engine"
+
+tap "puma/puma"
+brew "puma/puma/puma-dev"
+
+tap "smudge/smudge"
+brew "smudge/smudge/nightlight"
+
+tap "skatkov/tap"
+brew "skatkov/tap/poshtui"
 
 # cask "dymo-connect"
 cask "1password-cli"
@@ -91,7 +105,7 @@ cask "fork"
 cask "google-chrome"
 cask "hammerspoon"
 cask "handbrake-app"
-#cask "jumpshare"
+cask "jumpshare"
 cask "karabiner-elements"
 cask "keyboard-maestro"
 cask "launchcontrol"
@@ -114,6 +128,7 @@ cask "qlprettypatch"
 cask "quicklook-video"
 cask "qlzipinfo"
 cask "quicklook-csv"
+cask "quicklook-json"
 cask "quicknfo"
 cask "raindropio"
 cask "rapidapi"
@@ -134,11 +149,12 @@ cask "vlc"
 cask "webpquicklook"
 cask "zed"
 cask "zoom"
-cask "ghostty"
 
 cask "indirect/tap/font-menlo-nerd-font", trusted: true
 cask "indirect/tap/font-sf-mono-nerd-font", trusted: true
-cask "indirect/tap/glance", trusted: true
+cask "indirect/tap/ghostty", trusted: true
+cask "indirect/tap/glance", args: { no_quarantine: true }, trusted: true
+cask "indirect/tap/zoomin", trusted: true
 
 {{- if .server }}
 # Server-specific
