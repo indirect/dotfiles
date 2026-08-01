@@ -27,9 +27,18 @@
     },
   },
   {
-    "context": "Editor",
+    "context": "Editor && !menu",
     "bindings": {
-      "cmd-shift-g": ["task::Spawn", { "task_name": "Open in GitHub" }],
+      "ctrl-cmd-a": [
+        "task::Spawn",
+        { "task_name": "Switch to Alternate File", "reevaluate_context": true },
+      ],
+      "ctrl-cmd-g": [
+        "task::Spawn",
+        {
+          "task_name": "Open in GitHub",
+        },
+      ],
     },
   },
 ]
