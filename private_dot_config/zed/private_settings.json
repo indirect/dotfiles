@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "default_open_behavior": "new_window",
+  "when_closing_with_no_tabs": "close_window",
+  "tab_size": 2,
   "cli_default_open_behavior": "new_window",
   "icon_theme": "Zed (Default)",
   "project_panel": {
@@ -41,13 +44,45 @@
         },
       },
     },
+    "tailwindcss-language-server": {
+      "settings": {
+        "experimental": {
+          "classRegex": ["\\bclass:\\s*['\"]([^'\"]*)['\"]"],
+        },
+      },
+    },
+    "ruby-lsp": {
+      "binary": {
+        "ignore_system_version": false,
+        "path": "rv",
+        "arguments": ["run", "ruby-lsp"],
+      },
+    },
   },
   "file_types": { "Diff": ["*.jjdescription"] },
   "languages": {
+    "HTML+ERB": {
+      "formatter": {
+        "external": {
+          "command": "npx @herb-tools/formatter",
+        },
+      },
+    },
+    "JSONC": {
+      "format_on_save": "on",
+    },
+    "Ruby": {
+      "language_servers": ["ruby-lsp", "!rubocop", "!solargraph"],
+      "format_on_save": "on",
+    },
+    "Rust": {
+      "tab_size": 4,
+    },
     "Markdown": {
       "show_edit_predictions": false,
     },
     "Diff": { "soft_wrap": "editor_width" },
   },
   "confirm_quit": true,
+  "vim": { "use_system_clipboard": "on_yank" },
 }
