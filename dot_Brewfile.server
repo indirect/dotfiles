@@ -1,0 +1,12 @@
+# Server-specific
+brew "caddy"
+brew "indirect/tap/cronitor", trusted: true
+brew "transmission-cli", restart_service: :changed
+
+cask "fujitsu-scansnap-home"
+cask "indirect/tap/lidarr", trusted: true
+cask "indirect/tap/radarr", trusted: true
+cask "plex-media-server"
+cask "sabnzbd"
+cask "softraid"
+cask "sonarr"
