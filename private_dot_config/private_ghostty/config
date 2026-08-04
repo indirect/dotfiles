@@ -1,4 +1,4 @@
-config-file = /Users/andre/.config/ghostty/themes/selenized-dark
+theme = selenized-dark
 font-family = "Menlo Nerd Font"
 font-size = 14
 
