@@ -121,6 +121,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export KALEIDOSCOPE_DIR=$HOME/src/indirect/Kaleidoscope
 export HOMEBREW_NO_ENV_HINTS=1
 
+if [[ "$(hostname)" == "andré-arko-ML-CJVQ971Y92" ]]; then
+  # santa requires binaries be inside .asdf/installs
+  export RUBIES_PATH="$HOME/.asdf/installs/ruby"
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 znap source romkatv/powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
