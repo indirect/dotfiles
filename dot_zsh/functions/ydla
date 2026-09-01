@@ -1,1 +1,1 @@
-ydl -f "bestaudio[ext=m4a]" --embed-thumbnail --add-metadata $@
+ydl --cookies-from-browser safari -f "bestaudio[ext=m4a]" --embed-thumbnail --add-metadata $@
